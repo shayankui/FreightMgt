@@ -1,7 +1,8 @@
 package com.kings.ttp.dao;
 
 import java.util.List;
-import java.util.Map;
+
+import javax.sql.DataSource;
 
 import org.apache.log4j.Logger;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -16,30 +17,32 @@ import com.kings.ttp.exception.DAOException;
  *
  */
 public class BaseDAO extends JdbcDaoSupport {
+	
 	private static final Logger logger = Logger.getLogger(BaseDAO.class);
 	
-	
 	/**
-	 * 查询
+	 * 查询,强制使用该方法
 	 * @param sql
 	 * @param params
 	 * @return
 	 */
-	public List query(String sql , String[] args)  throws DAOException
+	public List query(String sql , Object[] args)  throws DAOException
 	{
-		JdbcTemplate jt = (JdbcTemplate)WebApp.SPRING_CONTEXT.getBean("readJdbcTemplate");
+		JdbcTemplate jt = this.getJdbcTemplate();
+		jt.setDataSource((DataSource)WebApp.SPRING_CONTEXT.getBean("readDataSource"));
 		return jt.queryForList(sql, args);
 	}
 	
 	/**
-	 * 修改数据
+	 * 修改数据,强制使用该方法
 	 * @param sql
 	 * @param params
 	 * @return
 	 */
-	public int update(String sql , String[] args) throws DAOException
+	public int update(String sql , Object[] args) throws DAOException
 	{
-		JdbcTemplate jt = (JdbcTemplate)WebApp.SPRING_CONTEXT.getBean("writeJdbcTemplate");
+		JdbcTemplate jt = this.getJdbcTemplate();
+		jt.setDataSource((DataSource)WebApp.SPRING_CONTEXT.getBean("writeDataSource"));
 		return jt.update(sql, args);
 	}
 	

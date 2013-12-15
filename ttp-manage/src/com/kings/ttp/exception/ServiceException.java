@@ -4,22 +4,22 @@ package com.kings.ttp.exception;
  * @author Kfighter
  *
  */
-public class DAOException extends Exception
+public class ServiceException extends RuntimeException
 {
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 5136766583944710749L;
-	public DAOException()
+	public ServiceException()
 	{		
 	}
 	
-	public DAOException(Exception e)
+	public ServiceException(Exception e)
 	{
 		super(e);
 	}
 	
-	public DAOException(String s)
+	public ServiceException(String s)
 	{
 		super(s);
 	}

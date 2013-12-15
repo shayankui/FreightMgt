@@ -3,17 +3,22 @@
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:p="http://www.springframework.org/schema/p"
 	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
 
-	
-	
-	
-	<bean id="viewResolver" 
+	<!-- 统一变量数据 -->
+	<bean id="propertyConfigurer"
+		class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+		<property name="location" value="/WEB-INF/classes/config.properties" />
+	</bean>
+	<!-- 视图解析器 -->
+	<bean id="viewResolver"
 		class="org.springframework.web.servlet.view.InternalResourceViewResolver">
-	   <property name="viewClass" value="org.springframework.web.servlet.view.InternalResourceView"/>
-	   <property name="prefix" value="/"/>
-	   <property name="suffix" value=".jsp"/>
+		<property name="viewClass"
+			value="org.springframework.web.servlet.view.InternalResourceView" />
+		<property name="prefix" value="/" />
+		<property name="suffix" value=".jsp" />
 	</bean>
 
-	<bean id="paraMethodResolver" 
+	<!-- 控制器参数 -->
+	<bean id="paraMethodResolver"
 		class="org.springframework.web.servlet.mvc.multiaction.ParameterMethodNameResolver">
 		<property name="paramName">
 			<value>method</value>
@@ -22,7 +27,9 @@
 			<value>defaultHandle</value>
 		</property>
 	</bean>
-    
-    <import resource="applicationContext-datasource.xml"/>
 
+	<import resource="applicationContext-datasource.xml" />
+	<import resource="applicationContext-dao.xml" />
+	<import resource="applicationContext-service.xml" />
+	<import resource="applicationContext-controller.xml" />
 </beans>

@@ -55,17 +55,5 @@
 		<property name="logAbandoned" value="true"></property>
 	</bean>
 
-	<!-- -->
-	<bean id="readJdbcTemplate" class="org.springframework.jdbc.core.JdbcTemplate">
-		<property name="dataSource">
-			<ref bean="readDataSource" />
-		</property>
-	</bean>
-	
-	<bean id="writeJdbcTemplate" class="org.springframework.jdbc.core.JdbcTemplate">
-		<property name="dataSource">
-			<ref bean="writeDataSource" />
-		</property>
-	</bean>
 
 </beans>
