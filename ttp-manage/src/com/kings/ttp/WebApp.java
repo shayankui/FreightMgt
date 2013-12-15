@@ -8,5 +8,5 @@ import org.springframework.context.ApplicationContext;
  */
 public class WebApp {
 	//Spring容器
-	public static ApplicationContext context;
+	public static ApplicationContext SPRING_CONTEXT;
 }

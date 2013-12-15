@@ -3,6 +3,8 @@ package com.kings.ttp.web.init;
 import javax.servlet.ServletContextEvent;
 import javax.servlet.ServletContextListener;
 
+import org.springframework.web.context.support.WebApplicationContextUtils;
+
 import com.kings.ttp.WebApp;
 
 /**
@@ -12,17 +14,15 @@ import com.kings.ttp.WebApp;
  * 
  */
 public class SystemInit implements ServletContextListener {
-	public void init() {
-		WebApp.context = null;
-	}
+
 
 	public void contextDestroyed(ServletContextEvent arg0) {
 		// TODO Auto-generated method stub
 
 	}
 
-	public void contextInitialized(ServletContextEvent arg0) {
-		// TODO Auto-generated method stub
+	public void contextInitialized(ServletContextEvent context) {
+		WebApp.SPRING_CONTEXT = WebApplicationContextUtils.getWebApplicationContext(context.getServletContext());
 
 	}
 
