@@ -32,8 +32,8 @@ public class SysParaController extends BaseActionController {
 		this.systemParamService = systemParamService;
 	}
 
-	public void defaultHandle(HttpServletRequest request,HttpServletResponse response) {
-		return ;
+	public ModelAndView defaultHandle(HttpServletRequest request,HttpServletResponse response) {
+		return new ModelAndView("/WEB-INF/jsp/system/sys_param_add");
 	}
 	
 	

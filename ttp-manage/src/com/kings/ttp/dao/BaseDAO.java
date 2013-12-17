@@ -29,7 +29,6 @@ public class BaseDAO extends JdbcDaoSupport {
 	public List query(String sql , Object[] args)  throws DAOException
 	{
 		JdbcTemplate jt = this.getJdbcTemplate();
-		jt.setDataSource((DataSource)WebApp.SPRING_CONTEXT.getBean("readDataSource"));
 		return jt.queryForList(sql, args);
 	}
 	
@@ -42,7 +41,6 @@ public class BaseDAO extends JdbcDaoSupport {
 	public int update(String sql , Object[] args) throws DAOException
 	{
 		JdbcTemplate jt = this.getJdbcTemplate();
-		jt.setDataSource((DataSource)WebApp.SPRING_CONTEXT.getBean("writeDataSource"));
 		return jt.update(sql, args);
 	}
 	
