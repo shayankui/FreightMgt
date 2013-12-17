@@ -80,10 +80,10 @@ public class SysParaController extends BaseActionController {
 	 * @throws Exception
 	 */
 	private SystemParamBean getRequestValue(HttpServletRequest request) throws Exception{
-		String csbm 		= RequestUtil.getStringParameter(request, "csbm", "");
-		String csmc 		= RequestUtil.getStringParameter(request, "csmc", "");
-		String csz 			= RequestUtil.getStringParameter(request, "csz", "");
-		String bz 			= RequestUtil.getStringParameter(request, "bz", "");
+		String csbm 		= RequestUtil.getStrParam(request, "csbm", "");
+		String csmc 		= RequestUtil.getStrParam(request, "csmc", "");
+		String csz 			= RequestUtil.getStrParam(request, "csz", "");
+		String bz 			= RequestUtil.getStrParam(request, "bz", "");
 		SystemParamBean bean = new SystemParamBean();
 		bean.setCsbm(csbm);
 		bean.setCsmc(csmc);
