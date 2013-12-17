@@ -13,3 +13,5 @@ CREATE TABLE `T_SYSTEM` (
 `F_BZ`  varchar(1000) NULL COMMENT '备注信息' ,
 PRIMARY KEY (`F_CSBM`)
 );
+
+--
