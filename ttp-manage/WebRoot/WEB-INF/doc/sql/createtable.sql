@@ -276,7 +276,7 @@ CREATE TABLE T_ORDER_SUB (
 		PRIMARY KEY (F_SUB_NUM)
 );
 
-/*交易单子单*/
+/*交易单处理日志*/
 CREATE TABLE T_ORDER_LOG (
 		F_LOG_ID										VARCHAR(64) 			NOT NULL 											COMMENT '交易单日志ID，主键',
 		F_ORDER_NUM  								VARCHAR(64) 			NOT NULL 											COMMENT '交易单号',
