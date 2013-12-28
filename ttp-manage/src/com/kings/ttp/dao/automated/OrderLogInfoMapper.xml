@@ -1,0 +1,323 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.kings.ttp.dao.automated.OrderLogInfoMapper" >
+  <resultMap id="BaseResultMap" type="com.kings.ttp.pojo.OrderLogInfo" >
+    <id column="F_LOG_ID" property="logId" jdbcType="VARCHAR" />
+    <result column="F_ORDER_NUM" property="orderNum" jdbcType="VARCHAR" />
+    <result column="F_SUB_NUM" property="subNum" jdbcType="VARCHAR" />
+    <result column="F_ORDER_STATUS" property="orderStatus" jdbcType="VARCHAR" />
+    <result column="F_OP_TYPE" property="opType" jdbcType="INTEGER" />
+    <result column="F_OP_NUM" property="opNum" jdbcType="VARCHAR" />
+    <result column="F_CLIENT_TYPE" property="clientType" jdbcType="INTEGER" />
+    <result column="F_CLIENT_IMEI" property="clientImei" jdbcType="VARCHAR" />
+    <result column="F_OP_MANCODE" property="opMancode" jdbcType="VARCHAR" />
+    <result column="F_OP_MANNAME" property="opManname" jdbcType="VARCHAR" />
+    <result column="F_OP_TIME" property="opTime" jdbcType="VARCHAR" />
+    <result column="F_OP_MEMO" property="opMemo" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    F_LOG_ID, F_ORDER_NUM, F_SUB_NUM, F_ORDER_STATUS, F_OP_TYPE, F_OP_NUM, F_CLIENT_TYPE, 
+    F_CLIENT_IMEI, F_OP_MANCODE, F_OP_MANNAME, F_OP_TIME, F_OP_MEMO
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.kings.ttp.pojo.OrderLogInfoExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from t_order_log
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from t_order_log
+    where F_LOG_ID = #{logId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from t_order_log
+    where F_LOG_ID = #{logId,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.kings.ttp.pojo.OrderLogInfoExample" >
+    delete from t_order_log
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.kings.ttp.pojo.OrderLogInfo" >
+    insert into t_order_log (F_LOG_ID, F_ORDER_NUM, F_SUB_NUM, 
+      F_ORDER_STATUS, F_OP_TYPE, F_OP_NUM, 
+      F_CLIENT_TYPE, F_CLIENT_IMEI, F_OP_MANCODE, 
+      F_OP_MANNAME, F_OP_TIME, F_OP_MEMO
+      )
+    values (#{logId,jdbcType=VARCHAR}, #{orderNum,jdbcType=VARCHAR}, #{subNum,jdbcType=VARCHAR}, 
+      #{orderStatus,jdbcType=VARCHAR}, #{opType,jdbcType=INTEGER}, #{opNum,jdbcType=VARCHAR}, 
+      #{clientType,jdbcType=INTEGER}, #{clientImei,jdbcType=VARCHAR}, #{opMancode,jdbcType=VARCHAR}, 
+      #{opManname,jdbcType=VARCHAR}, #{opTime,jdbcType=VARCHAR}, #{opMemo,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.kings.ttp.pojo.OrderLogInfo" >
+    insert into t_order_log
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="logId != null" >
+        F_LOG_ID,
+      </if>
+      <if test="orderNum != null" >
+        F_ORDER_NUM,
+      </if>
+      <if test="subNum != null" >
+        F_SUB_NUM,
+      </if>
+      <if test="orderStatus != null" >
+        F_ORDER_STATUS,
+      </if>
+      <if test="opType != null" >
+        F_OP_TYPE,
+      </if>
+      <if test="opNum != null" >
+        F_OP_NUM,
+      </if>
+      <if test="clientType != null" >
+        F_CLIENT_TYPE,
+      </if>
+      <if test="clientImei != null" >
+        F_CLIENT_IMEI,
+      </if>
+      <if test="opMancode != null" >
+        F_OP_MANCODE,
+      </if>
+      <if test="opManname != null" >
+        F_OP_MANNAME,
+      </if>
+      <if test="opTime != null" >
+        F_OP_TIME,
+      </if>
+      <if test="opMemo != null" >
+        F_OP_MEMO,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="logId != null" >
+        #{logId,jdbcType=VARCHAR},
+      </if>
+      <if test="orderNum != null" >
+        #{orderNum,jdbcType=VARCHAR},
+      </if>
+      <if test="subNum != null" >
+        #{subNum,jdbcType=VARCHAR},
+      </if>
+      <if test="orderStatus != null" >
+        #{orderStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="opType != null" >
+        #{opType,jdbcType=INTEGER},
+      </if>
+      <if test="opNum != null" >
+        #{opNum,jdbcType=VARCHAR},
+      </if>
+      <if test="clientType != null" >
+        #{clientType,jdbcType=INTEGER},
+      </if>
+      <if test="clientImei != null" >
+        #{clientImei,jdbcType=VARCHAR},
+      </if>
+      <if test="opMancode != null" >
+        #{opMancode,jdbcType=VARCHAR},
+      </if>
+      <if test="opManname != null" >
+        #{opManname,jdbcType=VARCHAR},
+      </if>
+      <if test="opTime != null" >
+        #{opTime,jdbcType=VARCHAR},
+      </if>
+      <if test="opMemo != null" >
+        #{opMemo,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.kings.ttp.pojo.OrderLogInfoExample" resultType="java.lang.Integer" >
+    select count(*) from t_order_log
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update t_order_log
+    <set >
+      <if test="record.logId != null" >
+        F_LOG_ID = #{record.logId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.orderNum != null" >
+        F_ORDER_NUM = #{record.orderNum,jdbcType=VARCHAR},
+      </if>
+      <if test="record.subNum != null" >
+        F_SUB_NUM = #{record.subNum,jdbcType=VARCHAR},
+      </if>
+      <if test="record.orderStatus != null" >
+        F_ORDER_STATUS = #{record.orderStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="record.opType != null" >
+        F_OP_TYPE = #{record.opType,jdbcType=INTEGER},
+      </if>
+      <if test="record.opNum != null" >
+        F_OP_NUM = #{record.opNum,jdbcType=VARCHAR},
+      </if>
+      <if test="record.clientType != null" >
+        F_CLIENT_TYPE = #{record.clientType,jdbcType=INTEGER},
+      </if>
+      <if test="record.clientImei != null" >
+        F_CLIENT_IMEI = #{record.clientImei,jdbcType=VARCHAR},
+      </if>
+      <if test="record.opMancode != null" >
+        F_OP_MANCODE = #{record.opMancode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.opManname != null" >
+        F_OP_MANNAME = #{record.opManname,jdbcType=VARCHAR},
+      </if>
+      <if test="record.opTime != null" >
+        F_OP_TIME = #{record.opTime,jdbcType=VARCHAR},
+      </if>
+      <if test="record.opMemo != null" >
+        F_OP_MEMO = #{record.opMemo,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update t_order_log
+    set F_LOG_ID = #{record.logId,jdbcType=VARCHAR},
+      F_ORDER_NUM = #{record.orderNum,jdbcType=VARCHAR},
+      F_SUB_NUM = #{record.subNum,jdbcType=VARCHAR},
+      F_ORDER_STATUS = #{record.orderStatus,jdbcType=VARCHAR},
+      F_OP_TYPE = #{record.opType,jdbcType=INTEGER},
+      F_OP_NUM = #{record.opNum,jdbcType=VARCHAR},
+      F_CLIENT_TYPE = #{record.clientType,jdbcType=INTEGER},
+      F_CLIENT_IMEI = #{record.clientImei,jdbcType=VARCHAR},
+      F_OP_MANCODE = #{record.opMancode,jdbcType=VARCHAR},
+      F_OP_MANNAME = #{record.opManname,jdbcType=VARCHAR},
+      F_OP_TIME = #{record.opTime,jdbcType=VARCHAR},
+      F_OP_MEMO = #{record.opMemo,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.kings.ttp.pojo.OrderLogInfo" >
+    update t_order_log
+    <set >
+      <if test="orderNum != null" >
+        F_ORDER_NUM = #{orderNum,jdbcType=VARCHAR},
+      </if>
+      <if test="subNum != null" >
+        F_SUB_NUM = #{subNum,jdbcType=VARCHAR},
+      </if>
+      <if test="orderStatus != null" >
+        F_ORDER_STATUS = #{orderStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="opType != null" >
+        F_OP_TYPE = #{opType,jdbcType=INTEGER},
+      </if>
+      <if test="opNum != null" >
+        F_OP_NUM = #{opNum,jdbcType=VARCHAR},
+      </if>
+      <if test="clientType != null" >
+        F_CLIENT_TYPE = #{clientType,jdbcType=INTEGER},
+      </if>
+      <if test="clientImei != null" >
+        F_CLIENT_IMEI = #{clientImei,jdbcType=VARCHAR},
+      </if>
+      <if test="opMancode != null" >
+        F_OP_MANCODE = #{opMancode,jdbcType=VARCHAR},
+      </if>
+      <if test="opManname != null" >
+        F_OP_MANNAME = #{opManname,jdbcType=VARCHAR},
+      </if>
+      <if test="opTime != null" >
+        F_OP_TIME = #{opTime,jdbcType=VARCHAR},
+      </if>
+      <if test="opMemo != null" >
+        F_OP_MEMO = #{opMemo,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where F_LOG_ID = #{logId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.kings.ttp.pojo.OrderLogInfo" >
+    update t_order_log
+    set F_ORDER_NUM = #{orderNum,jdbcType=VARCHAR},
+      F_SUB_NUM = #{subNum,jdbcType=VARCHAR},
+      F_ORDER_STATUS = #{orderStatus,jdbcType=VARCHAR},
+      F_OP_TYPE = #{opType,jdbcType=INTEGER},
+      F_OP_NUM = #{opNum,jdbcType=VARCHAR},
+      F_CLIENT_TYPE = #{clientType,jdbcType=INTEGER},
+      F_CLIENT_IMEI = #{clientImei,jdbcType=VARCHAR},
+      F_OP_MANCODE = #{opMancode,jdbcType=VARCHAR},
+      F_OP_MANNAME = #{opManname,jdbcType=VARCHAR},
+      F_OP_TIME = #{opTime,jdbcType=VARCHAR},
+      F_OP_MEMO = #{opMemo,jdbcType=VARCHAR}
+    where F_LOG_ID = #{logId,jdbcType=VARCHAR}
+  </update>
+</mapper>

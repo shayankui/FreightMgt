@@ -1,0 +1,354 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.kings.ttp.dao.automated.OrderSubInfoMapper" >
+  <resultMap id="BaseResultMap" type="com.kings.ttp.pojo.OrderSubInfo" >
+    <id column="F_SUB_NUM" property="subNum" jdbcType="VARCHAR" />
+    <result column="F_ORDER_NUM" property="orderNum" jdbcType="VARCHAR" />
+    <result column="F_EXT_SUB_NUM" property="extSubNum" jdbcType="VARCHAR" />
+    <result column="F_GOODS_NUM" property="goodsNum" jdbcType="VARCHAR" />
+    <result column="F_GOODS_COUNT" property="goodsCount" jdbcType="INTEGER" />
+    <result column="F_GOODS_PRICE" property="goodsPrice" jdbcType="DOUBLE" />
+    <result column="F_VALID_DATE" property="validDate" jdbcType="VARCHAR" />
+    <result column="F_PAY_TIME" property="payTime" jdbcType="VARCHAR" />
+    <result column="F_CHECK_DATE" property="checkDate" jdbcType="VARCHAR" />
+    <result column="F_ORDER_MONEY" property="orderMoney" jdbcType="DOUBLE" />
+    <result column="F_ORDER_ISPAY" property="orderIspay" jdbcType="INTEGER" />
+    <result column="F_ORDER_PAYMONEY" property="orderPaymoney" jdbcType="DOUBLE" />
+    <result column="F_ORDER_DISCOUNT" property="orderDiscount" jdbcType="DOUBLE" />
+    <result column="F_GOODS_MEMO" property="goodsMemo" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    F_SUB_NUM, F_ORDER_NUM, F_EXT_SUB_NUM, F_GOODS_NUM, F_GOODS_COUNT, F_GOODS_PRICE, 
+    F_VALID_DATE, F_PAY_TIME, F_CHECK_DATE, F_ORDER_MONEY, F_ORDER_ISPAY, F_ORDER_PAYMONEY, 
+    F_ORDER_DISCOUNT, F_GOODS_MEMO
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.kings.ttp.pojo.OrderSubInfoExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from t_order_sub
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from t_order_sub
+    where F_SUB_NUM = #{subNum,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from t_order_sub
+    where F_SUB_NUM = #{subNum,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.kings.ttp.pojo.OrderSubInfoExample" >
+    delete from t_order_sub
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.kings.ttp.pojo.OrderSubInfo" >
+    insert into t_order_sub (F_SUB_NUM, F_ORDER_NUM, F_EXT_SUB_NUM, 
+      F_GOODS_NUM, F_GOODS_COUNT, F_GOODS_PRICE, 
+      F_VALID_DATE, F_PAY_TIME, F_CHECK_DATE, 
+      F_ORDER_MONEY, F_ORDER_ISPAY, F_ORDER_PAYMONEY, 
+      F_ORDER_DISCOUNT, F_GOODS_MEMO)
+    values (#{subNum,jdbcType=VARCHAR}, #{orderNum,jdbcType=VARCHAR}, #{extSubNum,jdbcType=VARCHAR}, 
+      #{goodsNum,jdbcType=VARCHAR}, #{goodsCount,jdbcType=INTEGER}, #{goodsPrice,jdbcType=DOUBLE}, 
+      #{validDate,jdbcType=VARCHAR}, #{payTime,jdbcType=VARCHAR}, #{checkDate,jdbcType=VARCHAR}, 
+      #{orderMoney,jdbcType=DOUBLE}, #{orderIspay,jdbcType=INTEGER}, #{orderPaymoney,jdbcType=DOUBLE}, 
+      #{orderDiscount,jdbcType=DOUBLE}, #{goodsMemo,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.kings.ttp.pojo.OrderSubInfo" >
+    insert into t_order_sub
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="subNum != null" >
+        F_SUB_NUM,
+      </if>
+      <if test="orderNum != null" >
+        F_ORDER_NUM,
+      </if>
+      <if test="extSubNum != null" >
+        F_EXT_SUB_NUM,
+      </if>
+      <if test="goodsNum != null" >
+        F_GOODS_NUM,
+      </if>
+      <if test="goodsCount != null" >
+        F_GOODS_COUNT,
+      </if>
+      <if test="goodsPrice != null" >
+        F_GOODS_PRICE,
+      </if>
+      <if test="validDate != null" >
+        F_VALID_DATE,
+      </if>
+      <if test="payTime != null" >
+        F_PAY_TIME,
+      </if>
+      <if test="checkDate != null" >
+        F_CHECK_DATE,
+      </if>
+      <if test="orderMoney != null" >
+        F_ORDER_MONEY,
+      </if>
+      <if test="orderIspay != null" >
+        F_ORDER_ISPAY,
+      </if>
+      <if test="orderPaymoney != null" >
+        F_ORDER_PAYMONEY,
+      </if>
+      <if test="orderDiscount != null" >
+        F_ORDER_DISCOUNT,
+      </if>
+      <if test="goodsMemo != null" >
+        F_GOODS_MEMO,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="subNum != null" >
+        #{subNum,jdbcType=VARCHAR},
+      </if>
+      <if test="orderNum != null" >
+        #{orderNum,jdbcType=VARCHAR},
+      </if>
+      <if test="extSubNum != null" >
+        #{extSubNum,jdbcType=VARCHAR},
+      </if>
+      <if test="goodsNum != null" >
+        #{goodsNum,jdbcType=VARCHAR},
+      </if>
+      <if test="goodsCount != null" >
+        #{goodsCount,jdbcType=INTEGER},
+      </if>
+      <if test="goodsPrice != null" >
+        #{goodsPrice,jdbcType=DOUBLE},
+      </if>
+      <if test="validDate != null" >
+        #{validDate,jdbcType=VARCHAR},
+      </if>
+      <if test="payTime != null" >
+        #{payTime,jdbcType=VARCHAR},
+      </if>
+      <if test="checkDate != null" >
+        #{checkDate,jdbcType=VARCHAR},
+      </if>
+      <if test="orderMoney != null" >
+        #{orderMoney,jdbcType=DOUBLE},
+      </if>
+      <if test="orderIspay != null" >
+        #{orderIspay,jdbcType=INTEGER},
+      </if>
+      <if test="orderPaymoney != null" >
+        #{orderPaymoney,jdbcType=DOUBLE},
+      </if>
+      <if test="orderDiscount != null" >
+        #{orderDiscount,jdbcType=DOUBLE},
+      </if>
+      <if test="goodsMemo != null" >
+        #{goodsMemo,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.kings.ttp.pojo.OrderSubInfoExample" resultType="java.lang.Integer" >
+    select count(*) from t_order_sub
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update t_order_sub
+    <set >
+      <if test="record.subNum != null" >
+        F_SUB_NUM = #{record.subNum,jdbcType=VARCHAR},
+      </if>
+      <if test="record.orderNum != null" >
+        F_ORDER_NUM = #{record.orderNum,jdbcType=VARCHAR},
+      </if>
+      <if test="record.extSubNum != null" >
+        F_EXT_SUB_NUM = #{record.extSubNum,jdbcType=VARCHAR},
+      </if>
+      <if test="record.goodsNum != null" >
+        F_GOODS_NUM = #{record.goodsNum,jdbcType=VARCHAR},
+      </if>
+      <if test="record.goodsCount != null" >
+        F_GOODS_COUNT = #{record.goodsCount,jdbcType=INTEGER},
+      </if>
+      <if test="record.goodsPrice != null" >
+        F_GOODS_PRICE = #{record.goodsPrice,jdbcType=DOUBLE},
+      </if>
+      <if test="record.validDate != null" >
+        F_VALID_DATE = #{record.validDate,jdbcType=VARCHAR},
+      </if>
+      <if test="record.payTime != null" >
+        F_PAY_TIME = #{record.payTime,jdbcType=VARCHAR},
+      </if>
+      <if test="record.checkDate != null" >
+        F_CHECK_DATE = #{record.checkDate,jdbcType=VARCHAR},
+      </if>
+      <if test="record.orderMoney != null" >
+        F_ORDER_MONEY = #{record.orderMoney,jdbcType=DOUBLE},
+      </if>
+      <if test="record.orderIspay != null" >
+        F_ORDER_ISPAY = #{record.orderIspay,jdbcType=INTEGER},
+      </if>
+      <if test="record.orderPaymoney != null" >
+        F_ORDER_PAYMONEY = #{record.orderPaymoney,jdbcType=DOUBLE},
+      </if>
+      <if test="record.orderDiscount != null" >
+        F_ORDER_DISCOUNT = #{record.orderDiscount,jdbcType=DOUBLE},
+      </if>
+      <if test="record.goodsMemo != null" >
+        F_GOODS_MEMO = #{record.goodsMemo,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update t_order_sub
+    set F_SUB_NUM = #{record.subNum,jdbcType=VARCHAR},
+      F_ORDER_NUM = #{record.orderNum,jdbcType=VARCHAR},
+      F_EXT_SUB_NUM = #{record.extSubNum,jdbcType=VARCHAR},
+      F_GOODS_NUM = #{record.goodsNum,jdbcType=VARCHAR},
+      F_GOODS_COUNT = #{record.goodsCount,jdbcType=INTEGER},
+      F_GOODS_PRICE = #{record.goodsPrice,jdbcType=DOUBLE},
+      F_VALID_DATE = #{record.validDate,jdbcType=VARCHAR},
+      F_PAY_TIME = #{record.payTime,jdbcType=VARCHAR},
+      F_CHECK_DATE = #{record.checkDate,jdbcType=VARCHAR},
+      F_ORDER_MONEY = #{record.orderMoney,jdbcType=DOUBLE},
+      F_ORDER_ISPAY = #{record.orderIspay,jdbcType=INTEGER},
+      F_ORDER_PAYMONEY = #{record.orderPaymoney,jdbcType=DOUBLE},
+      F_ORDER_DISCOUNT = #{record.orderDiscount,jdbcType=DOUBLE},
+      F_GOODS_MEMO = #{record.goodsMemo,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.kings.ttp.pojo.OrderSubInfo" >
+    update t_order_sub
+    <set >
+      <if test="orderNum != null" >
+        F_ORDER_NUM = #{orderNum,jdbcType=VARCHAR},
+      </if>
+      <if test="extSubNum != null" >
+        F_EXT_SUB_NUM = #{extSubNum,jdbcType=VARCHAR},
+      </if>
+      <if test="goodsNum != null" >
+        F_GOODS_NUM = #{goodsNum,jdbcType=VARCHAR},
+      </if>
+      <if test="goodsCount != null" >
+        F_GOODS_COUNT = #{goodsCount,jdbcType=INTEGER},
+      </if>
+      <if test="goodsPrice != null" >
+        F_GOODS_PRICE = #{goodsPrice,jdbcType=DOUBLE},
+      </if>
+      <if test="validDate != null" >
+        F_VALID_DATE = #{validDate,jdbcType=VARCHAR},
+      </if>
+      <if test="payTime != null" >
+        F_PAY_TIME = #{payTime,jdbcType=VARCHAR},
+      </if>
+      <if test="checkDate != null" >
+        F_CHECK_DATE = #{checkDate,jdbcType=VARCHAR},
+      </if>
+      <if test="orderMoney != null" >
+        F_ORDER_MONEY = #{orderMoney,jdbcType=DOUBLE},
+      </if>
+      <if test="orderIspay != null" >
+        F_ORDER_ISPAY = #{orderIspay,jdbcType=INTEGER},
+      </if>
+      <if test="orderPaymoney != null" >
+        F_ORDER_PAYMONEY = #{orderPaymoney,jdbcType=DOUBLE},
+      </if>
+      <if test="orderDiscount != null" >
+        F_ORDER_DISCOUNT = #{orderDiscount,jdbcType=DOUBLE},
+      </if>
+      <if test="goodsMemo != null" >
+        F_GOODS_MEMO = #{goodsMemo,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where F_SUB_NUM = #{subNum,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.kings.ttp.pojo.OrderSubInfo" >
+    update t_order_sub
+    set F_ORDER_NUM = #{orderNum,jdbcType=VARCHAR},
+      F_EXT_SUB_NUM = #{extSubNum,jdbcType=VARCHAR},
+      F_GOODS_NUM = #{goodsNum,jdbcType=VARCHAR},
+      F_GOODS_COUNT = #{goodsCount,jdbcType=INTEGER},
+      F_GOODS_PRICE = #{goodsPrice,jdbcType=DOUBLE},
+      F_VALID_DATE = #{validDate,jdbcType=VARCHAR},
+      F_PAY_TIME = #{payTime,jdbcType=VARCHAR},
+      F_CHECK_DATE = #{checkDate,jdbcType=VARCHAR},
+      F_ORDER_MONEY = #{orderMoney,jdbcType=DOUBLE},
+      F_ORDER_ISPAY = #{orderIspay,jdbcType=INTEGER},
+      F_ORDER_PAYMONEY = #{orderPaymoney,jdbcType=DOUBLE},
+      F_ORDER_DISCOUNT = #{orderDiscount,jdbcType=DOUBLE},
+      F_GOODS_MEMO = #{goodsMemo,jdbcType=VARCHAR}
+    where F_SUB_NUM = #{subNum,jdbcType=VARCHAR}
+  </update>
+</mapper>

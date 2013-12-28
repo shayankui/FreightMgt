@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.kings.ttp.dao.automated.OrderRuleDzMapper" >
+  <resultMap id="BaseResultMap" type="com.kings.ttp.pojo.OrderRuleDz" >
+    <result column="F_ORDER_NUM" property="orderNum" jdbcType="VARCHAR" />
+    <result column="F_SUB_NUM" property="subNum" jdbcType="VARCHAR" />
+    <result column="F_RULE_NUM" property="ruleNum" jdbcType="VARCHAR" />
+    <result column="F_RULE_NAME" property="ruleName" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    F_ORDER_NUM, F_SUB_NUM, F_RULE_NUM, F_RULE_NAME
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.kings.ttp.pojo.OrderRuleDzExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from t_dz_order_rule
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <delete id="deleteByExample" parameterType="com.kings.ttp.pojo.OrderRuleDzExample" >
+    delete from t_dz_order_rule
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.kings.ttp.pojo.OrderRuleDz" >
+    insert into t_dz_order_rule (F_ORDER_NUM, F_SUB_NUM, F_RULE_NUM, 
+      F_RULE_NAME)
+    values (#{orderNum,jdbcType=VARCHAR}, #{subNum,jdbcType=VARCHAR}, #{ruleNum,jdbcType=VARCHAR}, 
+      #{ruleName,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.kings.ttp.pojo.OrderRuleDz" >
+    insert into t_dz_order_rule
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="orderNum != null" >
+        F_ORDER_NUM,
+      </if>
+      <if test="subNum != null" >
+        F_SUB_NUM,
+      </if>
+      <if test="ruleNum != null" >
+        F_RULE_NUM,
+      </if>
+      <if test="ruleName != null" >
+        F_RULE_NAME,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="orderNum != null" >
+        #{orderNum,jdbcType=VARCHAR},
+      </if>
+      <if test="subNum != null" >
+        #{subNum,jdbcType=VARCHAR},
+      </if>
+      <if test="ruleNum != null" >
+        #{ruleNum,jdbcType=VARCHAR},
+      </if>
+      <if test="ruleName != null" >
+        #{ruleName,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.kings.ttp.pojo.OrderRuleDzExample" resultType="java.lang.Integer" >
+    select count(*) from t_dz_order_rule
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update t_dz_order_rule
+    <set >
+      <if test="record.orderNum != null" >
+        F_ORDER_NUM = #{record.orderNum,jdbcType=VARCHAR},
+      </if>
+      <if test="record.subNum != null" >
+        F_SUB_NUM = #{record.subNum,jdbcType=VARCHAR},
+      </if>
+      <if test="record.ruleNum != null" >
+        F_RULE_NUM = #{record.ruleNum,jdbcType=VARCHAR},
+      </if>
+      <if test="record.ruleName != null" >
+        F_RULE_NAME = #{record.ruleName,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update t_dz_order_rule
+    set F_ORDER_NUM = #{record.orderNum,jdbcType=VARCHAR},
+      F_SUB_NUM = #{record.subNum,jdbcType=VARCHAR},
+      F_RULE_NUM = #{record.ruleNum,jdbcType=VARCHAR},
+      F_RULE_NAME = #{record.ruleName,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+</mapper>

@@ -1,0 +1,276 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.kings.ttp.dao.automated.UserAccountBeanMapper" >
+  <resultMap id="BaseResultMap" type="com.kings.ttp.pojo.UserAccountBean" >
+    <id column="F_ACCOUNT_ID" property="accountId" jdbcType="VARCHAR" />
+    <result column="F_USER_ID" property="userId" jdbcType="VARCHAR" />
+    <result column="F_STATUS" property="status" jdbcType="INTEGER" />
+    <result column="F_RMB_MONEY" property="rmbMoney" jdbcType="DOUBLE" />
+    <result column="F_OTHER_AMOUNT" property="otherAmount" jdbcType="DOUBLE" />
+    <result column="F_OTHER_MONEY" property="otherMoney" jdbcType="DOUBLE" />
+    <result column="F_MIN_MONEY" property="minMoney" jdbcType="DOUBLE" />
+    <result column="F_MAX_MONEY" property="maxMoney" jdbcType="DOUBLE" />
+    <result column="F_BUILD_TIME" property="buildTime" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    F_ACCOUNT_ID, F_USER_ID, F_STATUS, F_RMB_MONEY, F_OTHER_AMOUNT, F_OTHER_MONEY, F_MIN_MONEY, 
+    F_MAX_MONEY, F_BUILD_TIME
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.kings.ttp.pojo.UserAccountBeanExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from t_user_account
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from t_user_account
+    where F_ACCOUNT_ID = #{accountId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from t_user_account
+    where F_ACCOUNT_ID = #{accountId,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.kings.ttp.pojo.UserAccountBeanExample" >
+    delete from t_user_account
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.kings.ttp.pojo.UserAccountBean" >
+    insert into t_user_account (F_ACCOUNT_ID, F_USER_ID, F_STATUS, 
+      F_RMB_MONEY, F_OTHER_AMOUNT, F_OTHER_MONEY, 
+      F_MIN_MONEY, F_MAX_MONEY, F_BUILD_TIME
+      )
+    values (#{accountId,jdbcType=VARCHAR}, #{userId,jdbcType=VARCHAR}, #{status,jdbcType=INTEGER}, 
+      #{rmbMoney,jdbcType=DOUBLE}, #{otherAmount,jdbcType=DOUBLE}, #{otherMoney,jdbcType=DOUBLE}, 
+      #{minMoney,jdbcType=DOUBLE}, #{maxMoney,jdbcType=DOUBLE}, #{buildTime,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.kings.ttp.pojo.UserAccountBean" >
+    insert into t_user_account
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="accountId != null" >
+        F_ACCOUNT_ID,
+      </if>
+      <if test="userId != null" >
+        F_USER_ID,
+      </if>
+      <if test="status != null" >
+        F_STATUS,
+      </if>
+      <if test="rmbMoney != null" >
+        F_RMB_MONEY,
+      </if>
+      <if test="otherAmount != null" >
+        F_OTHER_AMOUNT,
+      </if>
+      <if test="otherMoney != null" >
+        F_OTHER_MONEY,
+      </if>
+      <if test="minMoney != null" >
+        F_MIN_MONEY,
+      </if>
+      <if test="maxMoney != null" >
+        F_MAX_MONEY,
+      </if>
+      <if test="buildTime != null" >
+        F_BUILD_TIME,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="accountId != null" >
+        #{accountId,jdbcType=VARCHAR},
+      </if>
+      <if test="userId != null" >
+        #{userId,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=INTEGER},
+      </if>
+      <if test="rmbMoney != null" >
+        #{rmbMoney,jdbcType=DOUBLE},
+      </if>
+      <if test="otherAmount != null" >
+        #{otherAmount,jdbcType=DOUBLE},
+      </if>
+      <if test="otherMoney != null" >
+        #{otherMoney,jdbcType=DOUBLE},
+      </if>
+      <if test="minMoney != null" >
+        #{minMoney,jdbcType=DOUBLE},
+      </if>
+      <if test="maxMoney != null" >
+        #{maxMoney,jdbcType=DOUBLE},
+      </if>
+      <if test="buildTime != null" >
+        #{buildTime,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.kings.ttp.pojo.UserAccountBeanExample" resultType="java.lang.Integer" >
+    select count(*) from t_user_account
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update t_user_account
+    <set >
+      <if test="record.accountId != null" >
+        F_ACCOUNT_ID = #{record.accountId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.userId != null" >
+        F_USER_ID = #{record.userId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.status != null" >
+        F_STATUS = #{record.status,jdbcType=INTEGER},
+      </if>
+      <if test="record.rmbMoney != null" >
+        F_RMB_MONEY = #{record.rmbMoney,jdbcType=DOUBLE},
+      </if>
+      <if test="record.otherAmount != null" >
+        F_OTHER_AMOUNT = #{record.otherAmount,jdbcType=DOUBLE},
+      </if>
+      <if test="record.otherMoney != null" >
+        F_OTHER_MONEY = #{record.otherMoney,jdbcType=DOUBLE},
+      </if>
+      <if test="record.minMoney != null" >
+        F_MIN_MONEY = #{record.minMoney,jdbcType=DOUBLE},
+      </if>
+      <if test="record.maxMoney != null" >
+        F_MAX_MONEY = #{record.maxMoney,jdbcType=DOUBLE},
+      </if>
+      <if test="record.buildTime != null" >
+        F_BUILD_TIME = #{record.buildTime,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update t_user_account
+    set F_ACCOUNT_ID = #{record.accountId,jdbcType=VARCHAR},
+      F_USER_ID = #{record.userId,jdbcType=VARCHAR},
+      F_STATUS = #{record.status,jdbcType=INTEGER},
+      F_RMB_MONEY = #{record.rmbMoney,jdbcType=DOUBLE},
+      F_OTHER_AMOUNT = #{record.otherAmount,jdbcType=DOUBLE},
+      F_OTHER_MONEY = #{record.otherMoney,jdbcType=DOUBLE},
+      F_MIN_MONEY = #{record.minMoney,jdbcType=DOUBLE},
+      F_MAX_MONEY = #{record.maxMoney,jdbcType=DOUBLE},
+      F_BUILD_TIME = #{record.buildTime,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.kings.ttp.pojo.UserAccountBean" >
+    update t_user_account
+    <set >
+      <if test="userId != null" >
+        F_USER_ID = #{userId,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        F_STATUS = #{status,jdbcType=INTEGER},
+      </if>
+      <if test="rmbMoney != null" >
+        F_RMB_MONEY = #{rmbMoney,jdbcType=DOUBLE},
+      </if>
+      <if test="otherAmount != null" >
+        F_OTHER_AMOUNT = #{otherAmount,jdbcType=DOUBLE},
+      </if>
+      <if test="otherMoney != null" >
+        F_OTHER_MONEY = #{otherMoney,jdbcType=DOUBLE},
+      </if>
+      <if test="minMoney != null" >
+        F_MIN_MONEY = #{minMoney,jdbcType=DOUBLE},
+      </if>
+      <if test="maxMoney != null" >
+        F_MAX_MONEY = #{maxMoney,jdbcType=DOUBLE},
+      </if>
+      <if test="buildTime != null" >
+        F_BUILD_TIME = #{buildTime,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where F_ACCOUNT_ID = #{accountId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.kings.ttp.pojo.UserAccountBean" >
+    update t_user_account
+    set F_USER_ID = #{userId,jdbcType=VARCHAR},
+      F_STATUS = #{status,jdbcType=INTEGER},
+      F_RMB_MONEY = #{rmbMoney,jdbcType=DOUBLE},
+      F_OTHER_AMOUNT = #{otherAmount,jdbcType=DOUBLE},
+      F_OTHER_MONEY = #{otherMoney,jdbcType=DOUBLE},
+      F_MIN_MONEY = #{minMoney,jdbcType=DOUBLE},
+      F_MAX_MONEY = #{maxMoney,jdbcType=DOUBLE},
+      F_BUILD_TIME = #{buildTime,jdbcType=VARCHAR}
+    where F_ACCOUNT_ID = #{accountId,jdbcType=VARCHAR}
+  </update>
+</mapper>

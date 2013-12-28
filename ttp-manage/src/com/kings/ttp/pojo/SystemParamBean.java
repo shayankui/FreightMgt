@@ -1,45 +1,43 @@
 package com.kings.ttp.pojo;
-/**
- * 系统参数
- * @author Kfighter
- *
- */
+
 public class SystemParamBean {
-	private String csbm;
-	private String csmc;
-	private String csz;
-	private String bz;
+    private String csbm;
 
-	public String getCsbm() {
-		return csbm;
-	}
+    private String csmc;
 
-	public void setCsbm(String csbm) {
-		this.csbm = csbm;
-	}
+    private String csz;
 
-	public String getCsmc() {
-		return csmc;
-	}
+    private String bz;
 
-	public void setCsmc(String csmc) {
-		this.csmc = csmc;
-	}
+    public String getCsbm() {
+        return csbm;
+    }
 
-	public String getCsz() {
-		return csz;
-	}
+    public void setCsbm(String csbm) {
+        this.csbm = csbm == null ? null : csbm.trim();
+    }
 
-	public void setCsz(String csz) {
-		this.csz = csz;
-	}
+    public String getCsmc() {
+        return csmc;
+    }
 
-	public String getBz() {
-		return bz;
-	}
+    public void setCsmc(String csmc) {
+        this.csmc = csmc == null ? null : csmc.trim();
+    }
 
-	public void setBz(String bz) {
-		this.bz = bz;
-	}
+    public String getCsz() {
+        return csz;
+    }
 
+    public void setCsz(String csz) {
+        this.csz = csz == null ? null : csz.trim();
+    }
+
+    public String getBz() {
+        return bz;
+    }
+
+    public void setBz(String bz) {
+        this.bz = bz == null ? null : bz.trim();
+    }
 }

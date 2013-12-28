@@ -1,0 +1,196 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.kings.ttp.dao.automated.OrderStatusBeanMapper" >
+  <resultMap id="BaseResultMap" type="com.kings.ttp.pojo.OrderStatusBean" >
+    <id column="F_STATUS_NUM" property="statusNum" jdbcType="VARCHAR" />
+    <result column="F_STATUS_NAME" property="statusName" jdbcType="VARCHAR" />
+    <result column="F_STATUS_CAPTION" property="statusCaption" jdbcType="VARCHAR" />
+    <result column="F_STATUS_MEMO" property="statusMemo" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    F_STATUS_NUM, F_STATUS_NAME, F_STATUS_CAPTION, F_STATUS_MEMO
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.kings.ttp.pojo.OrderStatusBeanExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from t_order_status
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from t_order_status
+    where F_STATUS_NUM = #{statusNum,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from t_order_status
+    where F_STATUS_NUM = #{statusNum,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.kings.ttp.pojo.OrderStatusBeanExample" >
+    delete from t_order_status
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.kings.ttp.pojo.OrderStatusBean" >
+    insert into t_order_status (F_STATUS_NUM, F_STATUS_NAME, F_STATUS_CAPTION, 
+      F_STATUS_MEMO)
+    values (#{statusNum,jdbcType=VARCHAR}, #{statusName,jdbcType=VARCHAR}, #{statusCaption,jdbcType=VARCHAR}, 
+      #{statusMemo,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.kings.ttp.pojo.OrderStatusBean" >
+    insert into t_order_status
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="statusNum != null" >
+        F_STATUS_NUM,
+      </if>
+      <if test="statusName != null" >
+        F_STATUS_NAME,
+      </if>
+      <if test="statusCaption != null" >
+        F_STATUS_CAPTION,
+      </if>
+      <if test="statusMemo != null" >
+        F_STATUS_MEMO,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="statusNum != null" >
+        #{statusNum,jdbcType=VARCHAR},
+      </if>
+      <if test="statusName != null" >
+        #{statusName,jdbcType=VARCHAR},
+      </if>
+      <if test="statusCaption != null" >
+        #{statusCaption,jdbcType=VARCHAR},
+      </if>
+      <if test="statusMemo != null" >
+        #{statusMemo,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.kings.ttp.pojo.OrderStatusBeanExample" resultType="java.lang.Integer" >
+    select count(*) from t_order_status
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update t_order_status
+    <set >
+      <if test="record.statusNum != null" >
+        F_STATUS_NUM = #{record.statusNum,jdbcType=VARCHAR},
+      </if>
+      <if test="record.statusName != null" >
+        F_STATUS_NAME = #{record.statusName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.statusCaption != null" >
+        F_STATUS_CAPTION = #{record.statusCaption,jdbcType=VARCHAR},
+      </if>
+      <if test="record.statusMemo != null" >
+        F_STATUS_MEMO = #{record.statusMemo,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update t_order_status
+    set F_STATUS_NUM = #{record.statusNum,jdbcType=VARCHAR},
+      F_STATUS_NAME = #{record.statusName,jdbcType=VARCHAR},
+      F_STATUS_CAPTION = #{record.statusCaption,jdbcType=VARCHAR},
+      F_STATUS_MEMO = #{record.statusMemo,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.kings.ttp.pojo.OrderStatusBean" >
+    update t_order_status
+    <set >
+      <if test="statusName != null" >
+        F_STATUS_NAME = #{statusName,jdbcType=VARCHAR},
+      </if>
+      <if test="statusCaption != null" >
+        F_STATUS_CAPTION = #{statusCaption,jdbcType=VARCHAR},
+      </if>
+      <if test="statusMemo != null" >
+        F_STATUS_MEMO = #{statusMemo,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where F_STATUS_NUM = #{statusNum,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.kings.ttp.pojo.OrderStatusBean" >
+    update t_order_status
+    set F_STATUS_NAME = #{statusName,jdbcType=VARCHAR},
+      F_STATUS_CAPTION = #{statusCaption,jdbcType=VARCHAR},
+      F_STATUS_MEMO = #{statusMemo,jdbcType=VARCHAR}
+    where F_STATUS_NUM = #{statusNum,jdbcType=VARCHAR}
+  </update>
+</mapper>

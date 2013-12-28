@@ -1,0 +1,181 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.kings.ttp.dao.automated.TrainDirverDzMapper" >
+  <resultMap id="BaseResultMap" type="com.kings.ttp.pojo.TrainDirverDz" >
+    <id column="F_TRAIN_ID" property="trainId" jdbcType="VARCHAR" />
+    <id column="F_DRIVER_ID" property="driverId" jdbcType="VARCHAR" />
+    <result column="F_STATUS" property="status" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    F_TRAIN_ID, F_DRIVER_ID, F_STATUS
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.kings.ttp.pojo.TrainDirverDzExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from t_dz_train_dirver
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="com.kings.ttp.pojo.TrainDirverDzKey" >
+    select 
+    <include refid="Base_Column_List" />
+    from t_dz_train_dirver
+    where F_TRAIN_ID = #{trainId,jdbcType=VARCHAR}
+      and F_DRIVER_ID = #{driverId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="com.kings.ttp.pojo.TrainDirverDzKey" >
+    delete from t_dz_train_dirver
+    where F_TRAIN_ID = #{trainId,jdbcType=VARCHAR}
+      and F_DRIVER_ID = #{driverId,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.kings.ttp.pojo.TrainDirverDzExample" >
+    delete from t_dz_train_dirver
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.kings.ttp.pojo.TrainDirverDz" >
+    insert into t_dz_train_dirver (F_TRAIN_ID, F_DRIVER_ID, F_STATUS
+      )
+    values (#{trainId,jdbcType=VARCHAR}, #{driverId,jdbcType=VARCHAR}, #{status,jdbcType=INTEGER}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.kings.ttp.pojo.TrainDirverDz" >
+    insert into t_dz_train_dirver
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="trainId != null" >
+        F_TRAIN_ID,
+      </if>
+      <if test="driverId != null" >
+        F_DRIVER_ID,
+      </if>
+      <if test="status != null" >
+        F_STATUS,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="trainId != null" >
+        #{trainId,jdbcType=VARCHAR},
+      </if>
+      <if test="driverId != null" >
+        #{driverId,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.kings.ttp.pojo.TrainDirverDzExample" resultType="java.lang.Integer" >
+    select count(*) from t_dz_train_dirver
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update t_dz_train_dirver
+    <set >
+      <if test="record.trainId != null" >
+        F_TRAIN_ID = #{record.trainId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.driverId != null" >
+        F_DRIVER_ID = #{record.driverId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.status != null" >
+        F_STATUS = #{record.status,jdbcType=INTEGER},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update t_dz_train_dirver
+    set F_TRAIN_ID = #{record.trainId,jdbcType=VARCHAR},
+      F_DRIVER_ID = #{record.driverId,jdbcType=VARCHAR},
+      F_STATUS = #{record.status,jdbcType=INTEGER}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.kings.ttp.pojo.TrainDirverDz" >
+    update t_dz_train_dirver
+    <set >
+      <if test="status != null" >
+        F_STATUS = #{status,jdbcType=INTEGER},
+      </if>
+    </set>
+    where F_TRAIN_ID = #{trainId,jdbcType=VARCHAR}
+      and F_DRIVER_ID = #{driverId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.kings.ttp.pojo.TrainDirverDz" >
+    update t_dz_train_dirver
+    set F_STATUS = #{status,jdbcType=INTEGER}
+    where F_TRAIN_ID = #{trainId,jdbcType=VARCHAR}
+      and F_DRIVER_ID = #{driverId,jdbcType=VARCHAR}
+  </update>
+</mapper>

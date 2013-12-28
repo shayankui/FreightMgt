@@ -60,7 +60,7 @@
 		<property name="logAbandoned" value="true"></property>
 	</bean>
 
-	<!-- 动态数据源 -->
+	<!-- 动态数据源 
 	<bean id="dataSource" class="com.kings.ttp.datasource.DynamicDataSource">
 		<property name="targetDataSources">
 			<map>
@@ -70,8 +70,9 @@
 		</property>
 		<property name="defaultTargetDataSource" ref="readDataSource" />
 	</bean>
+	-->
 
-	<!-- 前置通知 -->
+	<!-- 前置通知 
 	<bean id="ba" class="com.kings.ttp.datasource.BeforeAdvice" />
 	<aop:config proxy-target-class="true">
 		<aop:aspect ref="ba">
@@ -85,6 +86,52 @@
 				pointcut="execution(* org.springframework.jdbc.core.JdbcTemplate.query*(..)) || execution(* org.springframework.jdbc.core.JdbcTemplate.execute(..))" />
 		</aop:aspect>
 	</aop:config>
+	-->
+	
+	<!-- 前置通知 -->
+	<bean id="ba" class="com.kings.ttp.datasource.BeforeAdvice" />
+	<aop:config >
+		<aop:aspect ref="ba">
+			<aop:pointcut id="update"
+				expression="execution(* com.kings.ttp.dao.automated.*.insert*(..)) 
+						||  execution(* com.kings.ttp.dao.automated.*.delete*(..))
+						||  execution(* com.kings.ttp.dao.automated.*.update*(..))" />
+			<aop:before method="setWriteDataSource" pointcut-ref="update" />
+			
+			<aop:pointcut id="query"
+				expression="execution(* com.kings.ttp.dao.automated.*.count*(..)) 
+						||  execution(* com.kings.ttp.dao.automated.*.select*(..))
+						||  execution(* com.kings.ttp.dao.automated.*.query*(..))" />
+			<aop:before method="setReadDataSource" pointcut-ref="query" />
+		
+		</aop:aspect>
+	</aop:config>
+	
+	<bean id="readSqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+        <property name="mapperLocations" value="classpath*:com/kings/ttp/dao/automated/*Mapper.xml" />
+        <property name="dataSource" ref="readDataSource" />
+    </bean>
+    
+    <bean id="writeSqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+        <property name="mapperLocations" value="classpath*:com/kings/ttp/dao/automated/*Mapper.xml" />
+        <property name="dataSource" ref="writeDataSource" />
+    </bean>
+    
+    
+     <bean id="sqlSessionTemplate" class="com.kings.ttp.datasource.CustomSqlSessionTemplate" >
+        <constructor-arg ref="readSqlSessionFactory" />
+        <property name="targetSqlSessionFactorys">
+            <map>     
+                <entry value-ref="readSqlSessionFactory" key="read"/>
+                <entry value-ref="writeSqlSessionFactory" key="write"/>
+            </map> 
+        </property>
+    </bean>
 
+    
+    <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">  
+   		<property name="basePackage" value="com.kings.ttp.dao.automated" />  
+   		<property name="sqlSessionTemplateBeanName" value="sqlSessionTemplate"/>
+	</bean> 
 
 </beans>

@@ -7,7 +7,7 @@ import org.apache.log4j.Logger;
 import org.springframework.web.context.support.WebApplicationContextUtils;
 
 import com.kings.ttp.WebApp;
-import com.kings.ttp.dao.BaseDAO;
+import com.kings.ttp.datasource.CustomerContextHolder;
 
 /**
  * 系统初始化类
@@ -30,6 +30,7 @@ public class SystemInit implements ServletContextListener {
 	public void contextInitialized(ServletContextEvent context) {
 		
 		WebApp.SPRING_CONTEXT = WebApplicationContextUtils.getWebApplicationContext(context.getServletContext());
+		CustomerContextHolder.setCustomerType("read");
 		logger.info("系统初始化成功...");
 	}
 

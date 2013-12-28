@@ -1,0 +1,323 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.kings.ttp.dao.automated.TripRecInfoMapper" >
+  <resultMap id="BaseResultMap" type="com.kings.ttp.pojo.TripRecInfo" >
+    <id column="F_REC_ID" property="recId" jdbcType="VARCHAR" />
+    <result column="F_ORDER_NUM" property="orderNum" jdbcType="VARCHAR" />
+    <result column="F_SUB_NUM" property="subNum" jdbcType="VARCHAR" />
+    <result column="F_DRIVER_ID" property="driverId" jdbcType="VARCHAR" />
+    <result column="F_DRIVER_NAME" property="driverName" jdbcType="VARCHAR" />
+    <result column="F_CLIENT_TYPE" property="clientType" jdbcType="INTEGER" />
+    <result column="F_CLIENT_IMEI" property="clientImei" jdbcType="VARCHAR" />
+    <result column="F_PROVINCE_NUM" property="provinceNum" jdbcType="VARCHAR" />
+    <result column="F_REGION_NUM" property="regionNum" jdbcType="VARCHAR" />
+    <result column="F_COUNTRY_NUM" property="countryNum" jdbcType="VARCHAR" />
+    <result column="F_DETAIL_ADDRESS" property="detailAddress" jdbcType="VARCHAR" />
+    <result column="F_REC_TIME" property="recTime" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    F_REC_ID, F_ORDER_NUM, F_SUB_NUM, F_DRIVER_ID, F_DRIVER_NAME, F_CLIENT_TYPE, F_CLIENT_IMEI, 
+    F_PROVINCE_NUM, F_REGION_NUM, F_COUNTRY_NUM, F_DETAIL_ADDRESS, F_REC_TIME
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.kings.ttp.pojo.TripRecInfoExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from t_trip_rec
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from t_trip_rec
+    where F_REC_ID = #{recId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from t_trip_rec
+    where F_REC_ID = #{recId,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.kings.ttp.pojo.TripRecInfoExample" >
+    delete from t_trip_rec
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.kings.ttp.pojo.TripRecInfo" >
+    insert into t_trip_rec (F_REC_ID, F_ORDER_NUM, F_SUB_NUM, 
+      F_DRIVER_ID, F_DRIVER_NAME, F_CLIENT_TYPE, 
+      F_CLIENT_IMEI, F_PROVINCE_NUM, F_REGION_NUM, 
+      F_COUNTRY_NUM, F_DETAIL_ADDRESS, F_REC_TIME
+      )
+    values (#{recId,jdbcType=VARCHAR}, #{orderNum,jdbcType=VARCHAR}, #{subNum,jdbcType=VARCHAR}, 
+      #{driverId,jdbcType=VARCHAR}, #{driverName,jdbcType=VARCHAR}, #{clientType,jdbcType=INTEGER}, 
+      #{clientImei,jdbcType=VARCHAR}, #{provinceNum,jdbcType=VARCHAR}, #{regionNum,jdbcType=VARCHAR}, 
+      #{countryNum,jdbcType=VARCHAR}, #{detailAddress,jdbcType=VARCHAR}, #{recTime,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.kings.ttp.pojo.TripRecInfo" >
+    insert into t_trip_rec
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="recId != null" >
+        F_REC_ID,
+      </if>
+      <if test="orderNum != null" >
+        F_ORDER_NUM,
+      </if>
+      <if test="subNum != null" >
+        F_SUB_NUM,
+      </if>
+      <if test="driverId != null" >
+        F_DRIVER_ID,
+      </if>
+      <if test="driverName != null" >
+        F_DRIVER_NAME,
+      </if>
+      <if test="clientType != null" >
+        F_CLIENT_TYPE,
+      </if>
+      <if test="clientImei != null" >
+        F_CLIENT_IMEI,
+      </if>
+      <if test="provinceNum != null" >
+        F_PROVINCE_NUM,
+      </if>
+      <if test="regionNum != null" >
+        F_REGION_NUM,
+      </if>
+      <if test="countryNum != null" >
+        F_COUNTRY_NUM,
+      </if>
+      <if test="detailAddress != null" >
+        F_DETAIL_ADDRESS,
+      </if>
+      <if test="recTime != null" >
+        F_REC_TIME,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="recId != null" >
+        #{recId,jdbcType=VARCHAR},
+      </if>
+      <if test="orderNum != null" >
+        #{orderNum,jdbcType=VARCHAR},
+      </if>
+      <if test="subNum != null" >
+        #{subNum,jdbcType=VARCHAR},
+      </if>
+      <if test="driverId != null" >
+        #{driverId,jdbcType=VARCHAR},
+      </if>
+      <if test="driverName != null" >
+        #{driverName,jdbcType=VARCHAR},
+      </if>
+      <if test="clientType != null" >
+        #{clientType,jdbcType=INTEGER},
+      </if>
+      <if test="clientImei != null" >
+        #{clientImei,jdbcType=VARCHAR},
+      </if>
+      <if test="provinceNum != null" >
+        #{provinceNum,jdbcType=VARCHAR},
+      </if>
+      <if test="regionNum != null" >
+        #{regionNum,jdbcType=VARCHAR},
+      </if>
+      <if test="countryNum != null" >
+        #{countryNum,jdbcType=VARCHAR},
+      </if>
+      <if test="detailAddress != null" >
+        #{detailAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="recTime != null" >
+        #{recTime,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.kings.ttp.pojo.TripRecInfoExample" resultType="java.lang.Integer" >
+    select count(*) from t_trip_rec
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update t_trip_rec
+    <set >
+      <if test="record.recId != null" >
+        F_REC_ID = #{record.recId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.orderNum != null" >
+        F_ORDER_NUM = #{record.orderNum,jdbcType=VARCHAR},
+      </if>
+      <if test="record.subNum != null" >
+        F_SUB_NUM = #{record.subNum,jdbcType=VARCHAR},
+      </if>
+      <if test="record.driverId != null" >
+        F_DRIVER_ID = #{record.driverId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.driverName != null" >
+        F_DRIVER_NAME = #{record.driverName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.clientType != null" >
+        F_CLIENT_TYPE = #{record.clientType,jdbcType=INTEGER},
+      </if>
+      <if test="record.clientImei != null" >
+        F_CLIENT_IMEI = #{record.clientImei,jdbcType=VARCHAR},
+      </if>
+      <if test="record.provinceNum != null" >
+        F_PROVINCE_NUM = #{record.provinceNum,jdbcType=VARCHAR},
+      </if>
+      <if test="record.regionNum != null" >
+        F_REGION_NUM = #{record.regionNum,jdbcType=VARCHAR},
+      </if>
+      <if test="record.countryNum != null" >
+        F_COUNTRY_NUM = #{record.countryNum,jdbcType=VARCHAR},
+      </if>
+      <if test="record.detailAddress != null" >
+        F_DETAIL_ADDRESS = #{record.detailAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="record.recTime != null" >
+        F_REC_TIME = #{record.recTime,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update t_trip_rec
+    set F_REC_ID = #{record.recId,jdbcType=VARCHAR},
+      F_ORDER_NUM = #{record.orderNum,jdbcType=VARCHAR},
+      F_SUB_NUM = #{record.subNum,jdbcType=VARCHAR},
+      F_DRIVER_ID = #{record.driverId,jdbcType=VARCHAR},
+      F_DRIVER_NAME = #{record.driverName,jdbcType=VARCHAR},
+      F_CLIENT_TYPE = #{record.clientType,jdbcType=INTEGER},
+      F_CLIENT_IMEI = #{record.clientImei,jdbcType=VARCHAR},
+      F_PROVINCE_NUM = #{record.provinceNum,jdbcType=VARCHAR},
+      F_REGION_NUM = #{record.regionNum,jdbcType=VARCHAR},
+      F_COUNTRY_NUM = #{record.countryNum,jdbcType=VARCHAR},
+      F_DETAIL_ADDRESS = #{record.detailAddress,jdbcType=VARCHAR},
+      F_REC_TIME = #{record.recTime,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.kings.ttp.pojo.TripRecInfo" >
+    update t_trip_rec
+    <set >
+      <if test="orderNum != null" >
+        F_ORDER_NUM = #{orderNum,jdbcType=VARCHAR},
+      </if>
+      <if test="subNum != null" >
+        F_SUB_NUM = #{subNum,jdbcType=VARCHAR},
+      </if>
+      <if test="driverId != null" >
+        F_DRIVER_ID = #{driverId,jdbcType=VARCHAR},
+      </if>
+      <if test="driverName != null" >
+        F_DRIVER_NAME = #{driverName,jdbcType=VARCHAR},
+      </if>
+      <if test="clientType != null" >
+        F_CLIENT_TYPE = #{clientType,jdbcType=INTEGER},
+      </if>
+      <if test="clientImei != null" >
+        F_CLIENT_IMEI = #{clientImei,jdbcType=VARCHAR},
+      </if>
+      <if test="provinceNum != null" >
+        F_PROVINCE_NUM = #{provinceNum,jdbcType=VARCHAR},
+      </if>
+      <if test="regionNum != null" >
+        F_REGION_NUM = #{regionNum,jdbcType=VARCHAR},
+      </if>
+      <if test="countryNum != null" >
+        F_COUNTRY_NUM = #{countryNum,jdbcType=VARCHAR},
+      </if>
+      <if test="detailAddress != null" >
+        F_DETAIL_ADDRESS = #{detailAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="recTime != null" >
+        F_REC_TIME = #{recTime,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where F_REC_ID = #{recId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.kings.ttp.pojo.TripRecInfo" >
+    update t_trip_rec
+    set F_ORDER_NUM = #{orderNum,jdbcType=VARCHAR},
+      F_SUB_NUM = #{subNum,jdbcType=VARCHAR},
+      F_DRIVER_ID = #{driverId,jdbcType=VARCHAR},
+      F_DRIVER_NAME = #{driverName,jdbcType=VARCHAR},
+      F_CLIENT_TYPE = #{clientType,jdbcType=INTEGER},
+      F_CLIENT_IMEI = #{clientImei,jdbcType=VARCHAR},
+      F_PROVINCE_NUM = #{provinceNum,jdbcType=VARCHAR},
+      F_REGION_NUM = #{regionNum,jdbcType=VARCHAR},
+      F_COUNTRY_NUM = #{countryNum,jdbcType=VARCHAR},
+      F_DETAIL_ADDRESS = #{detailAddress,jdbcType=VARCHAR},
+      F_REC_TIME = #{recTime,jdbcType=VARCHAR}
+    where F_REC_ID = #{recId,jdbcType=VARCHAR}
+  </update>
+</mapper>

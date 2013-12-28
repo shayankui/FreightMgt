@@ -1,0 +1,401 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.kings.ttp.dao.automated.TrainBeanMapper" >
+  <resultMap id="BaseResultMap" type="com.kings.ttp.pojo.TrainBean" >
+    <id column="F_TRAIN_ID" property="trainId" jdbcType="VARCHAR" />
+    <result column="F_TRAIN_NUM" property="trainNum" jdbcType="VARCHAR" />
+    <result column="F_TRAIN_LENGTH" property="trainLength" jdbcType="DOUBLE" />
+    <result column="F_TRAIN_WIDTH" property="trainWidth" jdbcType="DOUBLE" />
+    <result column="F_TRAIN_HEIGHT" property="trainHeight" jdbcType="DOUBLE" />
+    <result column="F_TRAIN_SIZE" property="trainSize" jdbcType="DOUBLE" />
+    <result column="F_TRAIN_MAX_WEIGHT" property="trainMaxWeight" jdbcType="DOUBLE" />
+    <result column="F_TRAIN_BRAND" property="trainBrand" jdbcType="VARCHAR" />
+    <result column="F_BEEN_RUNNED" property="beenRunned" jdbcType="INTEGER" />
+    <result column="F_FACTORY_TIME" property="factoryTime" jdbcType="VARCHAR" />
+    <result column="F_BUILD_TIME" property="buildTime" jdbcType="VARCHAR" />
+    <result column="F_PIC1" property="pic1" jdbcType="VARCHAR" />
+    <result column="F_PIC2" property="pic2" jdbcType="VARCHAR" />
+    <result column="F_PIC3" property="pic3" jdbcType="VARCHAR" />
+    <result column="F_PIC4" property="pic4" jdbcType="VARCHAR" />
+    <result column="F_PIC5" property="pic5" jdbcType="VARCHAR" />
+    <result column="F_MEMO" property="memo" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    F_TRAIN_ID, F_TRAIN_NUM, F_TRAIN_LENGTH, F_TRAIN_WIDTH, F_TRAIN_HEIGHT, F_TRAIN_SIZE, 
+    F_TRAIN_MAX_WEIGHT, F_TRAIN_BRAND, F_BEEN_RUNNED, F_FACTORY_TIME, F_BUILD_TIME, F_PIC1, 
+    F_PIC2, F_PIC3, F_PIC4, F_PIC5, F_MEMO
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.kings.ttp.pojo.TrainBeanExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from t_da_train
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from t_da_train
+    where F_TRAIN_ID = #{trainId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from t_da_train
+    where F_TRAIN_ID = #{trainId,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.kings.ttp.pojo.TrainBeanExample" >
+    delete from t_da_train
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.kings.ttp.pojo.TrainBean" >
+    insert into t_da_train (F_TRAIN_ID, F_TRAIN_NUM, F_TRAIN_LENGTH, 
+      F_TRAIN_WIDTH, F_TRAIN_HEIGHT, F_TRAIN_SIZE, 
+      F_TRAIN_MAX_WEIGHT, F_TRAIN_BRAND, F_BEEN_RUNNED, 
+      F_FACTORY_TIME, F_BUILD_TIME, F_PIC1, 
+      F_PIC2, F_PIC3, F_PIC4, F_PIC5, 
+      F_MEMO)
+    values (#{trainId,jdbcType=VARCHAR}, #{trainNum,jdbcType=VARCHAR}, #{trainLength,jdbcType=DOUBLE}, 
+      #{trainWidth,jdbcType=DOUBLE}, #{trainHeight,jdbcType=DOUBLE}, #{trainSize,jdbcType=DOUBLE}, 
+      #{trainMaxWeight,jdbcType=DOUBLE}, #{trainBrand,jdbcType=VARCHAR}, #{beenRunned,jdbcType=INTEGER}, 
+      #{factoryTime,jdbcType=VARCHAR}, #{buildTime,jdbcType=VARCHAR}, #{pic1,jdbcType=VARCHAR}, 
+      #{pic2,jdbcType=VARCHAR}, #{pic3,jdbcType=VARCHAR}, #{pic4,jdbcType=VARCHAR}, #{pic5,jdbcType=VARCHAR}, 
+      #{memo,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.kings.ttp.pojo.TrainBean" >
+    insert into t_da_train
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="trainId != null" >
+        F_TRAIN_ID,
+      </if>
+      <if test="trainNum != null" >
+        F_TRAIN_NUM,
+      </if>
+      <if test="trainLength != null" >
+        F_TRAIN_LENGTH,
+      </if>
+      <if test="trainWidth != null" >
+        F_TRAIN_WIDTH,
+      </if>
+      <if test="trainHeight != null" >
+        F_TRAIN_HEIGHT,
+      </if>
+      <if test="trainSize != null" >
+        F_TRAIN_SIZE,
+      </if>
+      <if test="trainMaxWeight != null" >
+        F_TRAIN_MAX_WEIGHT,
+      </if>
+      <if test="trainBrand != null" >
+        F_TRAIN_BRAND,
+      </if>
+      <if test="beenRunned != null" >
+        F_BEEN_RUNNED,
+      </if>
+      <if test="factoryTime != null" >
+        F_FACTORY_TIME,
+      </if>
+      <if test="buildTime != null" >
+        F_BUILD_TIME,
+      </if>
+      <if test="pic1 != null" >
+        F_PIC1,
+      </if>
+      <if test="pic2 != null" >
+        F_PIC2,
+      </if>
+      <if test="pic3 != null" >
+        F_PIC3,
+      </if>
+      <if test="pic4 != null" >
+        F_PIC4,
+      </if>
+      <if test="pic5 != null" >
+        F_PIC5,
+      </if>
+      <if test="memo != null" >
+        F_MEMO,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="trainId != null" >
+        #{trainId,jdbcType=VARCHAR},
+      </if>
+      <if test="trainNum != null" >
+        #{trainNum,jdbcType=VARCHAR},
+      </if>
+      <if test="trainLength != null" >
+        #{trainLength,jdbcType=DOUBLE},
+      </if>
+      <if test="trainWidth != null" >
+        #{trainWidth,jdbcType=DOUBLE},
+      </if>
+      <if test="trainHeight != null" >
+        #{trainHeight,jdbcType=DOUBLE},
+      </if>
+      <if test="trainSize != null" >
+        #{trainSize,jdbcType=DOUBLE},
+      </if>
+      <if test="trainMaxWeight != null" >
+        #{trainMaxWeight,jdbcType=DOUBLE},
+      </if>
+      <if test="trainBrand != null" >
+        #{trainBrand,jdbcType=VARCHAR},
+      </if>
+      <if test="beenRunned != null" >
+        #{beenRunned,jdbcType=INTEGER},
+      </if>
+      <if test="factoryTime != null" >
+        #{factoryTime,jdbcType=VARCHAR},
+      </if>
+      <if test="buildTime != null" >
+        #{buildTime,jdbcType=VARCHAR},
+      </if>
+      <if test="pic1 != null" >
+        #{pic1,jdbcType=VARCHAR},
+      </if>
+      <if test="pic2 != null" >
+        #{pic2,jdbcType=VARCHAR},
+      </if>
+      <if test="pic3 != null" >
+        #{pic3,jdbcType=VARCHAR},
+      </if>
+      <if test="pic4 != null" >
+        #{pic4,jdbcType=VARCHAR},
+      </if>
+      <if test="pic5 != null" >
+        #{pic5,jdbcType=VARCHAR},
+      </if>
+      <if test="memo != null" >
+        #{memo,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.kings.ttp.pojo.TrainBeanExample" resultType="java.lang.Integer" >
+    select count(*) from t_da_train
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update t_da_train
+    <set >
+      <if test="record.trainId != null" >
+        F_TRAIN_ID = #{record.trainId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.trainNum != null" >
+        F_TRAIN_NUM = #{record.trainNum,jdbcType=VARCHAR},
+      </if>
+      <if test="record.trainLength != null" >
+        F_TRAIN_LENGTH = #{record.trainLength,jdbcType=DOUBLE},
+      </if>
+      <if test="record.trainWidth != null" >
+        F_TRAIN_WIDTH = #{record.trainWidth,jdbcType=DOUBLE},
+      </if>
+      <if test="record.trainHeight != null" >
+        F_TRAIN_HEIGHT = #{record.trainHeight,jdbcType=DOUBLE},
+      </if>
+      <if test="record.trainSize != null" >
+        F_TRAIN_SIZE = #{record.trainSize,jdbcType=DOUBLE},
+      </if>
+      <if test="record.trainMaxWeight != null" >
+        F_TRAIN_MAX_WEIGHT = #{record.trainMaxWeight,jdbcType=DOUBLE},
+      </if>
+      <if test="record.trainBrand != null" >
+        F_TRAIN_BRAND = #{record.trainBrand,jdbcType=VARCHAR},
+      </if>
+      <if test="record.beenRunned != null" >
+        F_BEEN_RUNNED = #{record.beenRunned,jdbcType=INTEGER},
+      </if>
+      <if test="record.factoryTime != null" >
+        F_FACTORY_TIME = #{record.factoryTime,jdbcType=VARCHAR},
+      </if>
+      <if test="record.buildTime != null" >
+        F_BUILD_TIME = #{record.buildTime,jdbcType=VARCHAR},
+      </if>
+      <if test="record.pic1 != null" >
+        F_PIC1 = #{record.pic1,jdbcType=VARCHAR},
+      </if>
+      <if test="record.pic2 != null" >
+        F_PIC2 = #{record.pic2,jdbcType=VARCHAR},
+      </if>
+      <if test="record.pic3 != null" >
+        F_PIC3 = #{record.pic3,jdbcType=VARCHAR},
+      </if>
+      <if test="record.pic4 != null" >
+        F_PIC4 = #{record.pic4,jdbcType=VARCHAR},
+      </if>
+      <if test="record.pic5 != null" >
+        F_PIC5 = #{record.pic5,jdbcType=VARCHAR},
+      </if>
+      <if test="record.memo != null" >
+        F_MEMO = #{record.memo,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update t_da_train
+    set F_TRAIN_ID = #{record.trainId,jdbcType=VARCHAR},
+      F_TRAIN_NUM = #{record.trainNum,jdbcType=VARCHAR},
+      F_TRAIN_LENGTH = #{record.trainLength,jdbcType=DOUBLE},
+      F_TRAIN_WIDTH = #{record.trainWidth,jdbcType=DOUBLE},
+      F_TRAIN_HEIGHT = #{record.trainHeight,jdbcType=DOUBLE},
+      F_TRAIN_SIZE = #{record.trainSize,jdbcType=DOUBLE},
+      F_TRAIN_MAX_WEIGHT = #{record.trainMaxWeight,jdbcType=DOUBLE},
+      F_TRAIN_BRAND = #{record.trainBrand,jdbcType=VARCHAR},
+      F_BEEN_RUNNED = #{record.beenRunned,jdbcType=INTEGER},
+      F_FACTORY_TIME = #{record.factoryTime,jdbcType=VARCHAR},
+      F_BUILD_TIME = #{record.buildTime,jdbcType=VARCHAR},
+      F_PIC1 = #{record.pic1,jdbcType=VARCHAR},
+      F_PIC2 = #{record.pic2,jdbcType=VARCHAR},
+      F_PIC3 = #{record.pic3,jdbcType=VARCHAR},
+      F_PIC4 = #{record.pic4,jdbcType=VARCHAR},
+      F_PIC5 = #{record.pic5,jdbcType=VARCHAR},
+      F_MEMO = #{record.memo,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.kings.ttp.pojo.TrainBean" >
+    update t_da_train
+    <set >
+      <if test="trainNum != null" >
+        F_TRAIN_NUM = #{trainNum,jdbcType=VARCHAR},
+      </if>
+      <if test="trainLength != null" >
+        F_TRAIN_LENGTH = #{trainLength,jdbcType=DOUBLE},
+      </if>
+      <if test="trainWidth != null" >
+        F_TRAIN_WIDTH = #{trainWidth,jdbcType=DOUBLE},
+      </if>
+      <if test="trainHeight != null" >
+        F_TRAIN_HEIGHT = #{trainHeight,jdbcType=DOUBLE},
+      </if>
+      <if test="trainSize != null" >
+        F_TRAIN_SIZE = #{trainSize,jdbcType=DOUBLE},
+      </if>
+      <if test="trainMaxWeight != null" >
+        F_TRAIN_MAX_WEIGHT = #{trainMaxWeight,jdbcType=DOUBLE},
+      </if>
+      <if test="trainBrand != null" >
+        F_TRAIN_BRAND = #{trainBrand,jdbcType=VARCHAR},
+      </if>
+      <if test="beenRunned != null" >
+        F_BEEN_RUNNED = #{beenRunned,jdbcType=INTEGER},
+      </if>
+      <if test="factoryTime != null" >
+        F_FACTORY_TIME = #{factoryTime,jdbcType=VARCHAR},
+      </if>
+      <if test="buildTime != null" >
+        F_BUILD_TIME = #{buildTime,jdbcType=VARCHAR},
+      </if>
+      <if test="pic1 != null" >
+        F_PIC1 = #{pic1,jdbcType=VARCHAR},
+      </if>
+      <if test="pic2 != null" >
+        F_PIC2 = #{pic2,jdbcType=VARCHAR},
+      </if>
+      <if test="pic3 != null" >
+        F_PIC3 = #{pic3,jdbcType=VARCHAR},
+      </if>
+      <if test="pic4 != null" >
+        F_PIC4 = #{pic4,jdbcType=VARCHAR},
+      </if>
+      <if test="pic5 != null" >
+        F_PIC5 = #{pic5,jdbcType=VARCHAR},
+      </if>
+      <if test="memo != null" >
+        F_MEMO = #{memo,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where F_TRAIN_ID = #{trainId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.kings.ttp.pojo.TrainBean" >
+    update t_da_train
+    set F_TRAIN_NUM = #{trainNum,jdbcType=VARCHAR},
+      F_TRAIN_LENGTH = #{trainLength,jdbcType=DOUBLE},
+      F_TRAIN_WIDTH = #{trainWidth,jdbcType=DOUBLE},
+      F_TRAIN_HEIGHT = #{trainHeight,jdbcType=DOUBLE},
+      F_TRAIN_SIZE = #{trainSize,jdbcType=DOUBLE},
+      F_TRAIN_MAX_WEIGHT = #{trainMaxWeight,jdbcType=DOUBLE},
+      F_TRAIN_BRAND = #{trainBrand,jdbcType=VARCHAR},
+      F_BEEN_RUNNED = #{beenRunned,jdbcType=INTEGER},
+      F_FACTORY_TIME = #{factoryTime,jdbcType=VARCHAR},
+      F_BUILD_TIME = #{buildTime,jdbcType=VARCHAR},
+      F_PIC1 = #{pic1,jdbcType=VARCHAR},
+      F_PIC2 = #{pic2,jdbcType=VARCHAR},
+      F_PIC3 = #{pic3,jdbcType=VARCHAR},
+      F_PIC4 = #{pic4,jdbcType=VARCHAR},
+      F_PIC5 = #{pic5,jdbcType=VARCHAR},
+      F_MEMO = #{memo,jdbcType=VARCHAR}
+    where F_TRAIN_ID = #{trainId,jdbcType=VARCHAR}
+  </update>
+</mapper>

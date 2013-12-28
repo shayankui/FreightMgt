@@ -1,0 +1,181 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.kings.ttp.dao.automated.GoodsTypeBeanMapper" >
+  <resultMap id="BaseResultMap" type="com.kings.ttp.pojo.GoodsTypeBean" >
+    <id column="F_TYPE_NUM" property="typeNum" jdbcType="VARCHAR" />
+    <result column="F_TYPE_NAME" property="typeName" jdbcType="VARCHAR" />
+    <result column="F_TYPE_MEMO" property="typeMemo" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    F_TYPE_NUM, F_TYPE_NAME, F_TYPE_MEMO
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.kings.ttp.pojo.GoodsTypeBeanExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from t_goods_type
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from t_goods_type
+    where F_TYPE_NUM = #{typeNum,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from t_goods_type
+    where F_TYPE_NUM = #{typeNum,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.kings.ttp.pojo.GoodsTypeBeanExample" >
+    delete from t_goods_type
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.kings.ttp.pojo.GoodsTypeBean" >
+    insert into t_goods_type (F_TYPE_NUM, F_TYPE_NAME, F_TYPE_MEMO
+      )
+    values (#{typeNum,jdbcType=VARCHAR}, #{typeName,jdbcType=VARCHAR}, #{typeMemo,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.kings.ttp.pojo.GoodsTypeBean" >
+    insert into t_goods_type
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="typeNum != null" >
+        F_TYPE_NUM,
+      </if>
+      <if test="typeName != null" >
+        F_TYPE_NAME,
+      </if>
+      <if test="typeMemo != null" >
+        F_TYPE_MEMO,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="typeNum != null" >
+        #{typeNum,jdbcType=VARCHAR},
+      </if>
+      <if test="typeName != null" >
+        #{typeName,jdbcType=VARCHAR},
+      </if>
+      <if test="typeMemo != null" >
+        #{typeMemo,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.kings.ttp.pojo.GoodsTypeBeanExample" resultType="java.lang.Integer" >
+    select count(*) from t_goods_type
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update t_goods_type
+    <set >
+      <if test="record.typeNum != null" >
+        F_TYPE_NUM = #{record.typeNum,jdbcType=VARCHAR},
+      </if>
+      <if test="record.typeName != null" >
+        F_TYPE_NAME = #{record.typeName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.typeMemo != null" >
+        F_TYPE_MEMO = #{record.typeMemo,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update t_goods_type
+    set F_TYPE_NUM = #{record.typeNum,jdbcType=VARCHAR},
+      F_TYPE_NAME = #{record.typeName,jdbcType=VARCHAR},
+      F_TYPE_MEMO = #{record.typeMemo,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.kings.ttp.pojo.GoodsTypeBean" >
+    update t_goods_type
+    <set >
+      <if test="typeName != null" >
+        F_TYPE_NAME = #{typeName,jdbcType=VARCHAR},
+      </if>
+      <if test="typeMemo != null" >
+        F_TYPE_MEMO = #{typeMemo,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where F_TYPE_NUM = #{typeNum,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.kings.ttp.pojo.GoodsTypeBean" >
+    update t_goods_type
+    set F_TYPE_NAME = #{typeName,jdbcType=VARCHAR},
+      F_TYPE_MEMO = #{typeMemo,jdbcType=VARCHAR}
+    where F_TYPE_NUM = #{typeNum,jdbcType=VARCHAR}
+  </update>
+</mapper>

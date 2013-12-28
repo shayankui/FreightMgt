@@ -1,0 +1,386 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.kings.ttp.dao.automated.AccountTransLogMapper" >
+  <resultMap id="BaseResultMap" type="com.kings.ttp.pojo.AccountTransLog" >
+    <id column="F_LOG_ID" property="logId" jdbcType="VARCHAR" />
+    <result column="F_TRANS_NUM" property="transNum" jdbcType="VARCHAR" />
+    <result column="F_ACCOUNT_ID" property="accountId" jdbcType="VARCHAR" />
+    <result column="F_OPT_TYPE" property="optType" jdbcType="INTEGER" />
+    <result column="F_TRANS_SRC" property="transSrc" jdbcType="VARCHAR" />
+    <result column="F_TRANS_SRC_BILL" property="transSrcBill" jdbcType="VARCHAR" />
+    <result column="F_CLIENT_TYPE" property="clientType" jdbcType="INTEGER" />
+    <result column="F_CLIENT_IMEI" property="clientImei" jdbcType="VARCHAR" />
+    <result column="F_TRANS_DES" property="transDes" jdbcType="VARCHAR" />
+    <result column="F_TRANS_DES_BILL" property="transDesBill" jdbcType="VARCHAR" />
+    <result column="F_RMB_MONEY" property="rmbMoney" jdbcType="DOUBLE" />
+    <result column="F_OTHER_AMOUNT" property="otherAmount" jdbcType="DOUBLE" />
+    <result column="F_OTHER_MONEY" property="otherMoney" jdbcType="DOUBLE" />
+    <result column="F_RESULT_CODE" property="resultCode" jdbcType="INTEGER" />
+    <result column="F_TRANS_TIME" property="transTime" jdbcType="VARCHAR" />
+    <result column="F_BUILD_TIME" property="buildTime" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    F_LOG_ID, F_TRANS_NUM, F_ACCOUNT_ID, F_OPT_TYPE, F_TRANS_SRC, F_TRANS_SRC_BILL, F_CLIENT_TYPE, 
+    F_CLIENT_IMEI, F_TRANS_DES, F_TRANS_DES_BILL, F_RMB_MONEY, F_OTHER_AMOUNT, F_OTHER_MONEY, 
+    F_RESULT_CODE, F_TRANS_TIME, F_BUILD_TIME
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.kings.ttp.pojo.AccountTransLogExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from t_account_trans_log
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from t_account_trans_log
+    where F_LOG_ID = #{logId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from t_account_trans_log
+    where F_LOG_ID = #{logId,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.kings.ttp.pojo.AccountTransLogExample" >
+    delete from t_account_trans_log
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.kings.ttp.pojo.AccountTransLog" >
+    insert into t_account_trans_log (F_LOG_ID, F_TRANS_NUM, F_ACCOUNT_ID, 
+      F_OPT_TYPE, F_TRANS_SRC, F_TRANS_SRC_BILL, 
+      F_CLIENT_TYPE, F_CLIENT_IMEI, F_TRANS_DES, 
+      F_TRANS_DES_BILL, F_RMB_MONEY, F_OTHER_AMOUNT, 
+      F_OTHER_MONEY, F_RESULT_CODE, F_TRANS_TIME, 
+      F_BUILD_TIME)
+    values (#{logId,jdbcType=VARCHAR}, #{transNum,jdbcType=VARCHAR}, #{accountId,jdbcType=VARCHAR}, 
+      #{optType,jdbcType=INTEGER}, #{transSrc,jdbcType=VARCHAR}, #{transSrcBill,jdbcType=VARCHAR}, 
+      #{clientType,jdbcType=INTEGER}, #{clientImei,jdbcType=VARCHAR}, #{transDes,jdbcType=VARCHAR}, 
+      #{transDesBill,jdbcType=VARCHAR}, #{rmbMoney,jdbcType=DOUBLE}, #{otherAmount,jdbcType=DOUBLE}, 
+      #{otherMoney,jdbcType=DOUBLE}, #{resultCode,jdbcType=INTEGER}, #{transTime,jdbcType=VARCHAR}, 
+      #{buildTime,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.kings.ttp.pojo.AccountTransLog" >
+    insert into t_account_trans_log
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="logId != null" >
+        F_LOG_ID,
+      </if>
+      <if test="transNum != null" >
+        F_TRANS_NUM,
+      </if>
+      <if test="accountId != null" >
+        F_ACCOUNT_ID,
+      </if>
+      <if test="optType != null" >
+        F_OPT_TYPE,
+      </if>
+      <if test="transSrc != null" >
+        F_TRANS_SRC,
+      </if>
+      <if test="transSrcBill != null" >
+        F_TRANS_SRC_BILL,
+      </if>
+      <if test="clientType != null" >
+        F_CLIENT_TYPE,
+      </if>
+      <if test="clientImei != null" >
+        F_CLIENT_IMEI,
+      </if>
+      <if test="transDes != null" >
+        F_TRANS_DES,
+      </if>
+      <if test="transDesBill != null" >
+        F_TRANS_DES_BILL,
+      </if>
+      <if test="rmbMoney != null" >
+        F_RMB_MONEY,
+      </if>
+      <if test="otherAmount != null" >
+        F_OTHER_AMOUNT,
+      </if>
+      <if test="otherMoney != null" >
+        F_OTHER_MONEY,
+      </if>
+      <if test="resultCode != null" >
+        F_RESULT_CODE,
+      </if>
+      <if test="transTime != null" >
+        F_TRANS_TIME,
+      </if>
+      <if test="buildTime != null" >
+        F_BUILD_TIME,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="logId != null" >
+        #{logId,jdbcType=VARCHAR},
+      </if>
+      <if test="transNum != null" >
+        #{transNum,jdbcType=VARCHAR},
+      </if>
+      <if test="accountId != null" >
+        #{accountId,jdbcType=VARCHAR},
+      </if>
+      <if test="optType != null" >
+        #{optType,jdbcType=INTEGER},
+      </if>
+      <if test="transSrc != null" >
+        #{transSrc,jdbcType=VARCHAR},
+      </if>
+      <if test="transSrcBill != null" >
+        #{transSrcBill,jdbcType=VARCHAR},
+      </if>
+      <if test="clientType != null" >
+        #{clientType,jdbcType=INTEGER},
+      </if>
+      <if test="clientImei != null" >
+        #{clientImei,jdbcType=VARCHAR},
+      </if>
+      <if test="transDes != null" >
+        #{transDes,jdbcType=VARCHAR},
+      </if>
+      <if test="transDesBill != null" >
+        #{transDesBill,jdbcType=VARCHAR},
+      </if>
+      <if test="rmbMoney != null" >
+        #{rmbMoney,jdbcType=DOUBLE},
+      </if>
+      <if test="otherAmount != null" >
+        #{otherAmount,jdbcType=DOUBLE},
+      </if>
+      <if test="otherMoney != null" >
+        #{otherMoney,jdbcType=DOUBLE},
+      </if>
+      <if test="resultCode != null" >
+        #{resultCode,jdbcType=INTEGER},
+      </if>
+      <if test="transTime != null" >
+        #{transTime,jdbcType=VARCHAR},
+      </if>
+      <if test="buildTime != null" >
+        #{buildTime,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.kings.ttp.pojo.AccountTransLogExample" resultType="java.lang.Integer" >
+    select count(*) from t_account_trans_log
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update t_account_trans_log
+    <set >
+      <if test="record.logId != null" >
+        F_LOG_ID = #{record.logId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.transNum != null" >
+        F_TRANS_NUM = #{record.transNum,jdbcType=VARCHAR},
+      </if>
+      <if test="record.accountId != null" >
+        F_ACCOUNT_ID = #{record.accountId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.optType != null" >
+        F_OPT_TYPE = #{record.optType,jdbcType=INTEGER},
+      </if>
+      <if test="record.transSrc != null" >
+        F_TRANS_SRC = #{record.transSrc,jdbcType=VARCHAR},
+      </if>
+      <if test="record.transSrcBill != null" >
+        F_TRANS_SRC_BILL = #{record.transSrcBill,jdbcType=VARCHAR},
+      </if>
+      <if test="record.clientType != null" >
+        F_CLIENT_TYPE = #{record.clientType,jdbcType=INTEGER},
+      </if>
+      <if test="record.clientImei != null" >
+        F_CLIENT_IMEI = #{record.clientImei,jdbcType=VARCHAR},
+      </if>
+      <if test="record.transDes != null" >
+        F_TRANS_DES = #{record.transDes,jdbcType=VARCHAR},
+      </if>
+      <if test="record.transDesBill != null" >
+        F_TRANS_DES_BILL = #{record.transDesBill,jdbcType=VARCHAR},
+      </if>
+      <if test="record.rmbMoney != null" >
+        F_RMB_MONEY = #{record.rmbMoney,jdbcType=DOUBLE},
+      </if>
+      <if test="record.otherAmount != null" >
+        F_OTHER_AMOUNT = #{record.otherAmount,jdbcType=DOUBLE},
+      </if>
+      <if test="record.otherMoney != null" >
+        F_OTHER_MONEY = #{record.otherMoney,jdbcType=DOUBLE},
+      </if>
+      <if test="record.resultCode != null" >
+        F_RESULT_CODE = #{record.resultCode,jdbcType=INTEGER},
+      </if>
+      <if test="record.transTime != null" >
+        F_TRANS_TIME = #{record.transTime,jdbcType=VARCHAR},
+      </if>
+      <if test="record.buildTime != null" >
+        F_BUILD_TIME = #{record.buildTime,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update t_account_trans_log
+    set F_LOG_ID = #{record.logId,jdbcType=VARCHAR},
+      F_TRANS_NUM = #{record.transNum,jdbcType=VARCHAR},
+      F_ACCOUNT_ID = #{record.accountId,jdbcType=VARCHAR},
+      F_OPT_TYPE = #{record.optType,jdbcType=INTEGER},
+      F_TRANS_SRC = #{record.transSrc,jdbcType=VARCHAR},
+      F_TRANS_SRC_BILL = #{record.transSrcBill,jdbcType=VARCHAR},
+      F_CLIENT_TYPE = #{record.clientType,jdbcType=INTEGER},
+      F_CLIENT_IMEI = #{record.clientImei,jdbcType=VARCHAR},
+      F_TRANS_DES = #{record.transDes,jdbcType=VARCHAR},
+      F_TRANS_DES_BILL = #{record.transDesBill,jdbcType=VARCHAR},
+      F_RMB_MONEY = #{record.rmbMoney,jdbcType=DOUBLE},
+      F_OTHER_AMOUNT = #{record.otherAmount,jdbcType=DOUBLE},
+      F_OTHER_MONEY = #{record.otherMoney,jdbcType=DOUBLE},
+      F_RESULT_CODE = #{record.resultCode,jdbcType=INTEGER},
+      F_TRANS_TIME = #{record.transTime,jdbcType=VARCHAR},
+      F_BUILD_TIME = #{record.buildTime,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.kings.ttp.pojo.AccountTransLog" >
+    update t_account_trans_log
+    <set >
+      <if test="transNum != null" >
+        F_TRANS_NUM = #{transNum,jdbcType=VARCHAR},
+      </if>
+      <if test="accountId != null" >
+        F_ACCOUNT_ID = #{accountId,jdbcType=VARCHAR},
+      </if>
+      <if test="optType != null" >
+        F_OPT_TYPE = #{optType,jdbcType=INTEGER},
+      </if>
+      <if test="transSrc != null" >
+        F_TRANS_SRC = #{transSrc,jdbcType=VARCHAR},
+      </if>
+      <if test="transSrcBill != null" >
+        F_TRANS_SRC_BILL = #{transSrcBill,jdbcType=VARCHAR},
+      </if>
+      <if test="clientType != null" >
+        F_CLIENT_TYPE = #{clientType,jdbcType=INTEGER},
+      </if>
+      <if test="clientImei != null" >
+        F_CLIENT_IMEI = #{clientImei,jdbcType=VARCHAR},
+      </if>
+      <if test="transDes != null" >
+        F_TRANS_DES = #{transDes,jdbcType=VARCHAR},
+      </if>
+      <if test="transDesBill != null" >
+        F_TRANS_DES_BILL = #{transDesBill,jdbcType=VARCHAR},
+      </if>
+      <if test="rmbMoney != null" >
+        F_RMB_MONEY = #{rmbMoney,jdbcType=DOUBLE},
+      </if>
+      <if test="otherAmount != null" >
+        F_OTHER_AMOUNT = #{otherAmount,jdbcType=DOUBLE},
+      </if>
+      <if test="otherMoney != null" >
+        F_OTHER_MONEY = #{otherMoney,jdbcType=DOUBLE},
+      </if>
+      <if test="resultCode != null" >
+        F_RESULT_CODE = #{resultCode,jdbcType=INTEGER},
+      </if>
+      <if test="transTime != null" >
+        F_TRANS_TIME = #{transTime,jdbcType=VARCHAR},
+      </if>
+      <if test="buildTime != null" >
+        F_BUILD_TIME = #{buildTime,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where F_LOG_ID = #{logId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.kings.ttp.pojo.AccountTransLog" >
+    update t_account_trans_log
+    set F_TRANS_NUM = #{transNum,jdbcType=VARCHAR},
+      F_ACCOUNT_ID = #{accountId,jdbcType=VARCHAR},
+      F_OPT_TYPE = #{optType,jdbcType=INTEGER},
+      F_TRANS_SRC = #{transSrc,jdbcType=VARCHAR},
+      F_TRANS_SRC_BILL = #{transSrcBill,jdbcType=VARCHAR},
+      F_CLIENT_TYPE = #{clientType,jdbcType=INTEGER},
+      F_CLIENT_IMEI = #{clientImei,jdbcType=VARCHAR},
+      F_TRANS_DES = #{transDes,jdbcType=VARCHAR},
+      F_TRANS_DES_BILL = #{transDesBill,jdbcType=VARCHAR},
+      F_RMB_MONEY = #{rmbMoney,jdbcType=DOUBLE},
+      F_OTHER_AMOUNT = #{otherAmount,jdbcType=DOUBLE},
+      F_OTHER_MONEY = #{otherMoney,jdbcType=DOUBLE},
+      F_RESULT_CODE = #{resultCode,jdbcType=INTEGER},
+      F_TRANS_TIME = #{transTime,jdbcType=VARCHAR},
+      F_BUILD_TIME = #{buildTime,jdbcType=VARCHAR}
+    where F_LOG_ID = #{logId,jdbcType=VARCHAR}
+  </update>
+</mapper>

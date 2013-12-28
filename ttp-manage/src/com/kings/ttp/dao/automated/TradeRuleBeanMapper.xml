@@ -1,0 +1,211 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.kings.ttp.dao.automated.TradeRuleBeanMapper" >
+  <resultMap id="BaseResultMap" type="com.kings.ttp.pojo.TradeRuleBean" >
+    <id column="F_RULE_NUM" property="ruleNum" jdbcType="VARCHAR" />
+    <result column="F_RULE_TYPE" property="ruleType" jdbcType="VARCHAR" />
+    <result column="F_RULE_NAME" property="ruleName" jdbcType="VARCHAR" />
+    <result column="F_IS_USE" property="isUse" jdbcType="INTEGER" />
+    <result column="F_RULE_MEMO" property="ruleMemo" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    F_RULE_NUM, F_RULE_TYPE, F_RULE_NAME, F_IS_USE, F_RULE_MEMO
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.kings.ttp.pojo.TradeRuleBeanExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from t_trade_rule
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from t_trade_rule
+    where F_RULE_NUM = #{ruleNum,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from t_trade_rule
+    where F_RULE_NUM = #{ruleNum,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.kings.ttp.pojo.TradeRuleBeanExample" >
+    delete from t_trade_rule
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.kings.ttp.pojo.TradeRuleBean" >
+    insert into t_trade_rule (F_RULE_NUM, F_RULE_TYPE, F_RULE_NAME, 
+      F_IS_USE, F_RULE_MEMO)
+    values (#{ruleNum,jdbcType=VARCHAR}, #{ruleType,jdbcType=VARCHAR}, #{ruleName,jdbcType=VARCHAR}, 
+      #{isUse,jdbcType=INTEGER}, #{ruleMemo,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.kings.ttp.pojo.TradeRuleBean" >
+    insert into t_trade_rule
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="ruleNum != null" >
+        F_RULE_NUM,
+      </if>
+      <if test="ruleType != null" >
+        F_RULE_TYPE,
+      </if>
+      <if test="ruleName != null" >
+        F_RULE_NAME,
+      </if>
+      <if test="isUse != null" >
+        F_IS_USE,
+      </if>
+      <if test="ruleMemo != null" >
+        F_RULE_MEMO,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="ruleNum != null" >
+        #{ruleNum,jdbcType=VARCHAR},
+      </if>
+      <if test="ruleType != null" >
+        #{ruleType,jdbcType=VARCHAR},
+      </if>
+      <if test="ruleName != null" >
+        #{ruleName,jdbcType=VARCHAR},
+      </if>
+      <if test="isUse != null" >
+        #{isUse,jdbcType=INTEGER},
+      </if>
+      <if test="ruleMemo != null" >
+        #{ruleMemo,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.kings.ttp.pojo.TradeRuleBeanExample" resultType="java.lang.Integer" >
+    select count(*) from t_trade_rule
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update t_trade_rule
+    <set >
+      <if test="record.ruleNum != null" >
+        F_RULE_NUM = #{record.ruleNum,jdbcType=VARCHAR},
+      </if>
+      <if test="record.ruleType != null" >
+        F_RULE_TYPE = #{record.ruleType,jdbcType=VARCHAR},
+      </if>
+      <if test="record.ruleName != null" >
+        F_RULE_NAME = #{record.ruleName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.isUse != null" >
+        F_IS_USE = #{record.isUse,jdbcType=INTEGER},
+      </if>
+      <if test="record.ruleMemo != null" >
+        F_RULE_MEMO = #{record.ruleMemo,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update t_trade_rule
+    set F_RULE_NUM = #{record.ruleNum,jdbcType=VARCHAR},
+      F_RULE_TYPE = #{record.ruleType,jdbcType=VARCHAR},
+      F_RULE_NAME = #{record.ruleName,jdbcType=VARCHAR},
+      F_IS_USE = #{record.isUse,jdbcType=INTEGER},
+      F_RULE_MEMO = #{record.ruleMemo,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.kings.ttp.pojo.TradeRuleBean" >
+    update t_trade_rule
+    <set >
+      <if test="ruleType != null" >
+        F_RULE_TYPE = #{ruleType,jdbcType=VARCHAR},
+      </if>
+      <if test="ruleName != null" >
+        F_RULE_NAME = #{ruleName,jdbcType=VARCHAR},
+      </if>
+      <if test="isUse != null" >
+        F_IS_USE = #{isUse,jdbcType=INTEGER},
+      </if>
+      <if test="ruleMemo != null" >
+        F_RULE_MEMO = #{ruleMemo,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where F_RULE_NUM = #{ruleNum,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.kings.ttp.pojo.TradeRuleBean" >
+    update t_trade_rule
+    set F_RULE_TYPE = #{ruleType,jdbcType=VARCHAR},
+      F_RULE_NAME = #{ruleName,jdbcType=VARCHAR},
+      F_IS_USE = #{isUse,jdbcType=INTEGER},
+      F_RULE_MEMO = #{ruleMemo,jdbcType=VARCHAR}
+    where F_RULE_NUM = #{ruleNum,jdbcType=VARCHAR}
+  </update>
+</mapper>

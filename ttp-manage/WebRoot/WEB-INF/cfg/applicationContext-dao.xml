@@ -4,11 +4,4 @@
 	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
 
 
-	<bean id="baseDAO" class="com.kings.ttp.dao.BaseDAO" >
-		<property name="dataSource" ref="readDataSource" />
-	</bean>
-	<bean id="systemParamDAO" class="com.kings.ttp.dao.impl.SystemParamDAOImpl" >
-		<property name="dataSource" ref="readDataSource" />
-	</bean>
-
 </beans>

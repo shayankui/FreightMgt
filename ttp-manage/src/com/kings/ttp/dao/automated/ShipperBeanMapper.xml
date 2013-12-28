@@ -1,0 +1,465 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.kings.ttp.dao.automated.ShipperBeanMapper" >
+  <resultMap id="BaseResultMap" type="com.kings.ttp.pojo.ShipperBean" >
+    <id column="F_USER_ID" property="userId" jdbcType="VARCHAR" />
+    <result column="F_PASSWD" property="passwd" jdbcType="VARCHAR" />
+    <result column="F_NAME" property="name" jdbcType="VARCHAR" />
+    <result column="F_CARD_TYPE" property="cardType" jdbcType="INTEGER" />
+    <result column="F_CARD" property="card" jdbcType="VARCHAR" />
+    <result column="F_MOBILE" property="mobile" jdbcType="VARCHAR" />
+    <result column="F_PHOTO" property="photo" jdbcType="VARCHAR" />
+    <result column="F_COMPANY" property="company" jdbcType="VARCHAR" />
+    <result column="F_STATUS" property="status" jdbcType="INTEGER" />
+    <result column="F_PROVINCE_NUM" property="provinceNum" jdbcType="VARCHAR" />
+    <result column="F_REGION_NUM" property="regionNum" jdbcType="VARCHAR" />
+    <result column="F_COUNTRY_NUM" property="countryNum" jdbcType="VARCHAR" />
+    <result column="F_contact_address" property="contactAddress" jdbcType="VARCHAR" />
+    <result column="f_email" property="fEmail" jdbcType="VARCHAR" />
+    <result column="F_TELNUM" property="telnum" jdbcType="VARCHAR" />
+    <result column="F_CONTACT_USER" property="contactUser" jdbcType="VARCHAR" />
+    <result column="F_CONTACT_MOBILE" property="contactMobile" jdbcType="VARCHAR" />
+    <result column="F_CONTACT_TEL" property="contactTel" jdbcType="VARCHAR" />
+    <result column="F_ATTACH_FILE" property="attachFile" jdbcType="VARCHAR" />
+    <result column="F_BUILD_TIME" property="buildTime" jdbcType="VARCHAR" />
+    <result column="F_MEMO" property="memo" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    F_USER_ID, F_PASSWD, F_NAME, F_CARD_TYPE, F_CARD, F_MOBILE, F_PHOTO, F_COMPANY, F_STATUS, 
+    F_PROVINCE_NUM, F_REGION_NUM, F_COUNTRY_NUM, F_contact_address, f_email, F_TELNUM, 
+    F_CONTACT_USER, F_CONTACT_MOBILE, F_CONTACT_TEL, F_ATTACH_FILE, F_BUILD_TIME, F_MEMO
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.kings.ttp.pojo.ShipperBeanExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from t_user_shipper
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from t_user_shipper
+    where F_USER_ID = #{userId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from t_user_shipper
+    where F_USER_ID = #{userId,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.kings.ttp.pojo.ShipperBeanExample" >
+    delete from t_user_shipper
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.kings.ttp.pojo.ShipperBean" >
+    insert into t_user_shipper (F_USER_ID, F_PASSWD, F_NAME, 
+      F_CARD_TYPE, F_CARD, F_MOBILE, 
+      F_PHOTO, F_COMPANY, F_STATUS, 
+      F_PROVINCE_NUM, F_REGION_NUM, F_COUNTRY_NUM, 
+      F_contact_address, f_email, F_TELNUM, 
+      F_CONTACT_USER, F_CONTACT_MOBILE, F_CONTACT_TEL, 
+      F_ATTACH_FILE, F_BUILD_TIME, F_MEMO
+      )
+    values (#{userId,jdbcType=VARCHAR}, #{passwd,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR}, 
+      #{cardType,jdbcType=INTEGER}, #{card,jdbcType=VARCHAR}, #{mobile,jdbcType=VARCHAR}, 
+      #{photo,jdbcType=VARCHAR}, #{company,jdbcType=VARCHAR}, #{status,jdbcType=INTEGER}, 
+      #{provinceNum,jdbcType=VARCHAR}, #{regionNum,jdbcType=VARCHAR}, #{countryNum,jdbcType=VARCHAR}, 
+      #{contactAddress,jdbcType=VARCHAR}, #{fEmail,jdbcType=VARCHAR}, #{telnum,jdbcType=VARCHAR}, 
+      #{contactUser,jdbcType=VARCHAR}, #{contactMobile,jdbcType=VARCHAR}, #{contactTel,jdbcType=VARCHAR}, 
+      #{attachFile,jdbcType=VARCHAR}, #{buildTime,jdbcType=VARCHAR}, #{memo,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.kings.ttp.pojo.ShipperBean" >
+    insert into t_user_shipper
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="userId != null" >
+        F_USER_ID,
+      </if>
+      <if test="passwd != null" >
+        F_PASSWD,
+      </if>
+      <if test="name != null" >
+        F_NAME,
+      </if>
+      <if test="cardType != null" >
+        F_CARD_TYPE,
+      </if>
+      <if test="card != null" >
+        F_CARD,
+      </if>
+      <if test="mobile != null" >
+        F_MOBILE,
+      </if>
+      <if test="photo != null" >
+        F_PHOTO,
+      </if>
+      <if test="company != null" >
+        F_COMPANY,
+      </if>
+      <if test="status != null" >
+        F_STATUS,
+      </if>
+      <if test="provinceNum != null" >
+        F_PROVINCE_NUM,
+      </if>
+      <if test="regionNum != null" >
+        F_REGION_NUM,
+      </if>
+      <if test="countryNum != null" >
+        F_COUNTRY_NUM,
+      </if>
+      <if test="contactAddress != null" >
+        F_contact_address,
+      </if>
+      <if test="fEmail != null" >
+        f_email,
+      </if>
+      <if test="telnum != null" >
+        F_TELNUM,
+      </if>
+      <if test="contactUser != null" >
+        F_CONTACT_USER,
+      </if>
+      <if test="contactMobile != null" >
+        F_CONTACT_MOBILE,
+      </if>
+      <if test="contactTel != null" >
+        F_CONTACT_TEL,
+      </if>
+      <if test="attachFile != null" >
+        F_ATTACH_FILE,
+      </if>
+      <if test="buildTime != null" >
+        F_BUILD_TIME,
+      </if>
+      <if test="memo != null" >
+        F_MEMO,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="userId != null" >
+        #{userId,jdbcType=VARCHAR},
+      </if>
+      <if test="passwd != null" >
+        #{passwd,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null" >
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="cardType != null" >
+        #{cardType,jdbcType=INTEGER},
+      </if>
+      <if test="card != null" >
+        #{card,jdbcType=VARCHAR},
+      </if>
+      <if test="mobile != null" >
+        #{mobile,jdbcType=VARCHAR},
+      </if>
+      <if test="photo != null" >
+        #{photo,jdbcType=VARCHAR},
+      </if>
+      <if test="company != null" >
+        #{company,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=INTEGER},
+      </if>
+      <if test="provinceNum != null" >
+        #{provinceNum,jdbcType=VARCHAR},
+      </if>
+      <if test="regionNum != null" >
+        #{regionNum,jdbcType=VARCHAR},
+      </if>
+      <if test="countryNum != null" >
+        #{countryNum,jdbcType=VARCHAR},
+      </if>
+      <if test="contactAddress != null" >
+        #{contactAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="fEmail != null" >
+        #{fEmail,jdbcType=VARCHAR},
+      </if>
+      <if test="telnum != null" >
+        #{telnum,jdbcType=VARCHAR},
+      </if>
+      <if test="contactUser != null" >
+        #{contactUser,jdbcType=VARCHAR},
+      </if>
+      <if test="contactMobile != null" >
+        #{contactMobile,jdbcType=VARCHAR},
+      </if>
+      <if test="contactTel != null" >
+        #{contactTel,jdbcType=VARCHAR},
+      </if>
+      <if test="attachFile != null" >
+        #{attachFile,jdbcType=VARCHAR},
+      </if>
+      <if test="buildTime != null" >
+        #{buildTime,jdbcType=VARCHAR},
+      </if>
+      <if test="memo != null" >
+        #{memo,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.kings.ttp.pojo.ShipperBeanExample" resultType="java.lang.Integer" >
+    select count(*) from t_user_shipper
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update t_user_shipper
+    <set >
+      <if test="record.userId != null" >
+        F_USER_ID = #{record.userId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.passwd != null" >
+        F_PASSWD = #{record.passwd,jdbcType=VARCHAR},
+      </if>
+      <if test="record.name != null" >
+        F_NAME = #{record.name,jdbcType=VARCHAR},
+      </if>
+      <if test="record.cardType != null" >
+        F_CARD_TYPE = #{record.cardType,jdbcType=INTEGER},
+      </if>
+      <if test="record.card != null" >
+        F_CARD = #{record.card,jdbcType=VARCHAR},
+      </if>
+      <if test="record.mobile != null" >
+        F_MOBILE = #{record.mobile,jdbcType=VARCHAR},
+      </if>
+      <if test="record.photo != null" >
+        F_PHOTO = #{record.photo,jdbcType=VARCHAR},
+      </if>
+      <if test="record.company != null" >
+        F_COMPANY = #{record.company,jdbcType=VARCHAR},
+      </if>
+      <if test="record.status != null" >
+        F_STATUS = #{record.status,jdbcType=INTEGER},
+      </if>
+      <if test="record.provinceNum != null" >
+        F_PROVINCE_NUM = #{record.provinceNum,jdbcType=VARCHAR},
+      </if>
+      <if test="record.regionNum != null" >
+        F_REGION_NUM = #{record.regionNum,jdbcType=VARCHAR},
+      </if>
+      <if test="record.countryNum != null" >
+        F_COUNTRY_NUM = #{record.countryNum,jdbcType=VARCHAR},
+      </if>
+      <if test="record.contactAddress != null" >
+        F_contact_address = #{record.contactAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="record.fEmail != null" >
+        f_email = #{record.fEmail,jdbcType=VARCHAR},
+      </if>
+      <if test="record.telnum != null" >
+        F_TELNUM = #{record.telnum,jdbcType=VARCHAR},
+      </if>
+      <if test="record.contactUser != null" >
+        F_CONTACT_USER = #{record.contactUser,jdbcType=VARCHAR},
+      </if>
+      <if test="record.contactMobile != null" >
+        F_CONTACT_MOBILE = #{record.contactMobile,jdbcType=VARCHAR},
+      </if>
+      <if test="record.contactTel != null" >
+        F_CONTACT_TEL = #{record.contactTel,jdbcType=VARCHAR},
+      </if>
+      <if test="record.attachFile != null" >
+        F_ATTACH_FILE = #{record.attachFile,jdbcType=VARCHAR},
+      </if>
+      <if test="record.buildTime != null" >
+        F_BUILD_TIME = #{record.buildTime,jdbcType=VARCHAR},
+      </if>
+      <if test="record.memo != null" >
+        F_MEMO = #{record.memo,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update t_user_shipper
+    set F_USER_ID = #{record.userId,jdbcType=VARCHAR},
+      F_PASSWD = #{record.passwd,jdbcType=VARCHAR},
+      F_NAME = #{record.name,jdbcType=VARCHAR},
+      F_CARD_TYPE = #{record.cardType,jdbcType=INTEGER},
+      F_CARD = #{record.card,jdbcType=VARCHAR},
+      F_MOBILE = #{record.mobile,jdbcType=VARCHAR},
+      F_PHOTO = #{record.photo,jdbcType=VARCHAR},
+      F_COMPANY = #{record.company,jdbcType=VARCHAR},
+      F_STATUS = #{record.status,jdbcType=INTEGER},
+      F_PROVINCE_NUM = #{record.provinceNum,jdbcType=VARCHAR},
+      F_REGION_NUM = #{record.regionNum,jdbcType=VARCHAR},
+      F_COUNTRY_NUM = #{record.countryNum,jdbcType=VARCHAR},
+      F_contact_address = #{record.contactAddress,jdbcType=VARCHAR},
+      f_email = #{record.fEmail,jdbcType=VARCHAR},
+      F_TELNUM = #{record.telnum,jdbcType=VARCHAR},
+      F_CONTACT_USER = #{record.contactUser,jdbcType=VARCHAR},
+      F_CONTACT_MOBILE = #{record.contactMobile,jdbcType=VARCHAR},
+      F_CONTACT_TEL = #{record.contactTel,jdbcType=VARCHAR},
+      F_ATTACH_FILE = #{record.attachFile,jdbcType=VARCHAR},
+      F_BUILD_TIME = #{record.buildTime,jdbcType=VARCHAR},
+      F_MEMO = #{record.memo,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.kings.ttp.pojo.ShipperBean" >
+    update t_user_shipper
+    <set >
+      <if test="passwd != null" >
+        F_PASSWD = #{passwd,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null" >
+        F_NAME = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="cardType != null" >
+        F_CARD_TYPE = #{cardType,jdbcType=INTEGER},
+      </if>
+      <if test="card != null" >
+        F_CARD = #{card,jdbcType=VARCHAR},
+      </if>
+      <if test="mobile != null" >
+        F_MOBILE = #{mobile,jdbcType=VARCHAR},
+      </if>
+      <if test="photo != null" >
+        F_PHOTO = #{photo,jdbcType=VARCHAR},
+      </if>
+      <if test="company != null" >
+        F_COMPANY = #{company,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        F_STATUS = #{status,jdbcType=INTEGER},
+      </if>
+      <if test="provinceNum != null" >
+        F_PROVINCE_NUM = #{provinceNum,jdbcType=VARCHAR},
+      </if>
+      <if test="regionNum != null" >
+        F_REGION_NUM = #{regionNum,jdbcType=VARCHAR},
+      </if>
+      <if test="countryNum != null" >
+        F_COUNTRY_NUM = #{countryNum,jdbcType=VARCHAR},
+      </if>
+      <if test="contactAddress != null" >
+        F_contact_address = #{contactAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="fEmail != null" >
+        f_email = #{fEmail,jdbcType=VARCHAR},
+      </if>
+      <if test="telnum != null" >
+        F_TELNUM = #{telnum,jdbcType=VARCHAR},
+      </if>
+      <if test="contactUser != null" >
+        F_CONTACT_USER = #{contactUser,jdbcType=VARCHAR},
+      </if>
+      <if test="contactMobile != null" >
+        F_CONTACT_MOBILE = #{contactMobile,jdbcType=VARCHAR},
+      </if>
+      <if test="contactTel != null" >
+        F_CONTACT_TEL = #{contactTel,jdbcType=VARCHAR},
+      </if>
+      <if test="attachFile != null" >
+        F_ATTACH_FILE = #{attachFile,jdbcType=VARCHAR},
+      </if>
+      <if test="buildTime != null" >
+        F_BUILD_TIME = #{buildTime,jdbcType=VARCHAR},
+      </if>
+      <if test="memo != null" >
+        F_MEMO = #{memo,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where F_USER_ID = #{userId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.kings.ttp.pojo.ShipperBean" >
+    update t_user_shipper
+    set F_PASSWD = #{passwd,jdbcType=VARCHAR},
+      F_NAME = #{name,jdbcType=VARCHAR},
+      F_CARD_TYPE = #{cardType,jdbcType=INTEGER},
+      F_CARD = #{card,jdbcType=VARCHAR},
+      F_MOBILE = #{mobile,jdbcType=VARCHAR},
+      F_PHOTO = #{photo,jdbcType=VARCHAR},
+      F_COMPANY = #{company,jdbcType=VARCHAR},
+      F_STATUS = #{status,jdbcType=INTEGER},
+      F_PROVINCE_NUM = #{provinceNum,jdbcType=VARCHAR},
+      F_REGION_NUM = #{regionNum,jdbcType=VARCHAR},
+      F_COUNTRY_NUM = #{countryNum,jdbcType=VARCHAR},
+      F_contact_address = #{contactAddress,jdbcType=VARCHAR},
+      f_email = #{fEmail,jdbcType=VARCHAR},
+      F_TELNUM = #{telnum,jdbcType=VARCHAR},
+      F_CONTACT_USER = #{contactUser,jdbcType=VARCHAR},
+      F_CONTACT_MOBILE = #{contactMobile,jdbcType=VARCHAR},
+      F_CONTACT_TEL = #{contactTel,jdbcType=VARCHAR},
+      F_ATTACH_FILE = #{attachFile,jdbcType=VARCHAR},
+      F_BUILD_TIME = #{buildTime,jdbcType=VARCHAR},
+      F_MEMO = #{memo,jdbcType=VARCHAR}
+    where F_USER_ID = #{userId,jdbcType=VARCHAR}
+  </update>
+</mapper>

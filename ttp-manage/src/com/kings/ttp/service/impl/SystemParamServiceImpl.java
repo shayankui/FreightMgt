@@ -2,8 +2,8 @@ package com.kings.ttp.service.impl;
 
 import org.apache.log4j.Logger;
 
+import com.kings.ttp.dao.automated.SystemParamBeanMapper;
 import com.kings.ttp.dao.iface.ISystemParamDAO;
-import com.kings.ttp.dao.impl.SystemParamDAOImpl;
 import com.kings.ttp.exception.DAOException;
 import com.kings.ttp.exception.ServiceException;
 import com.kings.ttp.pojo.SystemParamBean;
@@ -25,6 +25,11 @@ public class SystemParamServiceImpl implements ISystemParamService{
 	public void setSystemParamDAO(ISystemParamDAO systemParamDAO) {
 		this.systemParamDAO = systemParamDAO;
 	}
+	
+	private SystemParamBeanMapper systemParamBeanMapper;
+	public void setSystemParamBeanMapper(SystemParamBeanMapper systemParamBeanMapper) {
+		this.systemParamBeanMapper = systemParamBeanMapper;
+	}
 
 	/**
 	 * 新增系统参数
@@ -33,10 +38,12 @@ public class SystemParamServiceImpl implements ISystemParamService{
 	public void addParam(SystemParamBean param)
 	{
 		try {
-			systemParamDAO.addParam(param);
-		} catch (DAOException e) {
+			systemParamBeanMapper.insert(param);
+			
+			systemParamBeanMapper.selectByPrimaryKey("adsf");
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
 			e.printStackTrace();
-			throw new ServiceException();
 		}
 	}
 

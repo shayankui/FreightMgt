@@ -1,0 +1,321 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.kings.ttp.dao.automated.GoodsBeanMapper" >
+  <resultMap id="BaseResultMap" type="com.kings.ttp.pojo.GoodsBean" >
+    <id column="F_GOODS_ID" property="goodsId" jdbcType="VARCHAR" />
+    <result column="F_GOODS_TYPE" property="goodsType" jdbcType="VARCHAR" />
+    <result column="F_USER_ID" property="userId" jdbcType="VARCHAR" />
+    <result column="F_GOODS_MODE" property="goodsMode" jdbcType="INTEGER" />
+    <result column="F_GOODS_WEIGHT" property="goodsWeight" jdbcType="DOUBLE" />
+    <result column="F_GOODS_SIZE" property="goodsSize" jdbcType="VARCHAR" />
+    <result column="F_PIC1" property="pic1" jdbcType="VARCHAR" />
+    <result column="F_PIC2" property="pic2" jdbcType="VARCHAR" />
+    <result column="F_PIC3" property="pic3" jdbcType="VARCHAR" />
+    <result column="F_PIC4" property="pic4" jdbcType="VARCHAR" />
+    <result column="F_PIC5" property="pic5" jdbcType="VARCHAR" />
+    <result column="F_MEMO" property="memo" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    F_GOODS_ID, F_GOODS_TYPE, F_USER_ID, F_GOODS_MODE, F_GOODS_WEIGHT, F_GOODS_SIZE, 
+    F_PIC1, F_PIC2, F_PIC3, F_PIC4, F_PIC5, F_MEMO
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.kings.ttp.pojo.GoodsBeanExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from t_da_goods
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from t_da_goods
+    where F_GOODS_ID = #{goodsId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from t_da_goods
+    where F_GOODS_ID = #{goodsId,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.kings.ttp.pojo.GoodsBeanExample" >
+    delete from t_da_goods
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.kings.ttp.pojo.GoodsBean" >
+    insert into t_da_goods (F_GOODS_ID, F_GOODS_TYPE, F_USER_ID, 
+      F_GOODS_MODE, F_GOODS_WEIGHT, F_GOODS_SIZE, 
+      F_PIC1, F_PIC2, F_PIC3, F_PIC4, 
+      F_PIC5, F_MEMO)
+    values (#{goodsId,jdbcType=VARCHAR}, #{goodsType,jdbcType=VARCHAR}, #{userId,jdbcType=VARCHAR}, 
+      #{goodsMode,jdbcType=INTEGER}, #{goodsWeight,jdbcType=DOUBLE}, #{goodsSize,jdbcType=VARCHAR}, 
+      #{pic1,jdbcType=VARCHAR}, #{pic2,jdbcType=VARCHAR}, #{pic3,jdbcType=VARCHAR}, #{pic4,jdbcType=VARCHAR}, 
+      #{pic5,jdbcType=VARCHAR}, #{memo,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.kings.ttp.pojo.GoodsBean" >
+    insert into t_da_goods
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="goodsId != null" >
+        F_GOODS_ID,
+      </if>
+      <if test="goodsType != null" >
+        F_GOODS_TYPE,
+      </if>
+      <if test="userId != null" >
+        F_USER_ID,
+      </if>
+      <if test="goodsMode != null" >
+        F_GOODS_MODE,
+      </if>
+      <if test="goodsWeight != null" >
+        F_GOODS_WEIGHT,
+      </if>
+      <if test="goodsSize != null" >
+        F_GOODS_SIZE,
+      </if>
+      <if test="pic1 != null" >
+        F_PIC1,
+      </if>
+      <if test="pic2 != null" >
+        F_PIC2,
+      </if>
+      <if test="pic3 != null" >
+        F_PIC3,
+      </if>
+      <if test="pic4 != null" >
+        F_PIC4,
+      </if>
+      <if test="pic5 != null" >
+        F_PIC5,
+      </if>
+      <if test="memo != null" >
+        F_MEMO,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="goodsId != null" >
+        #{goodsId,jdbcType=VARCHAR},
+      </if>
+      <if test="goodsType != null" >
+        #{goodsType,jdbcType=VARCHAR},
+      </if>
+      <if test="userId != null" >
+        #{userId,jdbcType=VARCHAR},
+      </if>
+      <if test="goodsMode != null" >
+        #{goodsMode,jdbcType=INTEGER},
+      </if>
+      <if test="goodsWeight != null" >
+        #{goodsWeight,jdbcType=DOUBLE},
+      </if>
+      <if test="goodsSize != null" >
+        #{goodsSize,jdbcType=VARCHAR},
+      </if>
+      <if test="pic1 != null" >
+        #{pic1,jdbcType=VARCHAR},
+      </if>
+      <if test="pic2 != null" >
+        #{pic2,jdbcType=VARCHAR},
+      </if>
+      <if test="pic3 != null" >
+        #{pic3,jdbcType=VARCHAR},
+      </if>
+      <if test="pic4 != null" >
+        #{pic4,jdbcType=VARCHAR},
+      </if>
+      <if test="pic5 != null" >
+        #{pic5,jdbcType=VARCHAR},
+      </if>
+      <if test="memo != null" >
+        #{memo,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.kings.ttp.pojo.GoodsBeanExample" resultType="java.lang.Integer" >
+    select count(*) from t_da_goods
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update t_da_goods
+    <set >
+      <if test="record.goodsId != null" >
+        F_GOODS_ID = #{record.goodsId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.goodsType != null" >
+        F_GOODS_TYPE = #{record.goodsType,jdbcType=VARCHAR},
+      </if>
+      <if test="record.userId != null" >
+        F_USER_ID = #{record.userId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.goodsMode != null" >
+        F_GOODS_MODE = #{record.goodsMode,jdbcType=INTEGER},
+      </if>
+      <if test="record.goodsWeight != null" >
+        F_GOODS_WEIGHT = #{record.goodsWeight,jdbcType=DOUBLE},
+      </if>
+      <if test="record.goodsSize != null" >
+        F_GOODS_SIZE = #{record.goodsSize,jdbcType=VARCHAR},
+      </if>
+      <if test="record.pic1 != null" >
+        F_PIC1 = #{record.pic1,jdbcType=VARCHAR},
+      </if>
+      <if test="record.pic2 != null" >
+        F_PIC2 = #{record.pic2,jdbcType=VARCHAR},
+      </if>
+      <if test="record.pic3 != null" >
+        F_PIC3 = #{record.pic3,jdbcType=VARCHAR},
+      </if>
+      <if test="record.pic4 != null" >
+        F_PIC4 = #{record.pic4,jdbcType=VARCHAR},
+      </if>
+      <if test="record.pic5 != null" >
+        F_PIC5 = #{record.pic5,jdbcType=VARCHAR},
+      </if>
+      <if test="record.memo != null" >
+        F_MEMO = #{record.memo,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update t_da_goods
+    set F_GOODS_ID = #{record.goodsId,jdbcType=VARCHAR},
+      F_GOODS_TYPE = #{record.goodsType,jdbcType=VARCHAR},
+      F_USER_ID = #{record.userId,jdbcType=VARCHAR},
+      F_GOODS_MODE = #{record.goodsMode,jdbcType=INTEGER},
+      F_GOODS_WEIGHT = #{record.goodsWeight,jdbcType=DOUBLE},
+      F_GOODS_SIZE = #{record.goodsSize,jdbcType=VARCHAR},
+      F_PIC1 = #{record.pic1,jdbcType=VARCHAR},
+      F_PIC2 = #{record.pic2,jdbcType=VARCHAR},
+      F_PIC3 = #{record.pic3,jdbcType=VARCHAR},
+      F_PIC4 = #{record.pic4,jdbcType=VARCHAR},
+      F_PIC5 = #{record.pic5,jdbcType=VARCHAR},
+      F_MEMO = #{record.memo,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.kings.ttp.pojo.GoodsBean" >
+    update t_da_goods
+    <set >
+      <if test="goodsType != null" >
+        F_GOODS_TYPE = #{goodsType,jdbcType=VARCHAR},
+      </if>
+      <if test="userId != null" >
+        F_USER_ID = #{userId,jdbcType=VARCHAR},
+      </if>
+      <if test="goodsMode != null" >
+        F_GOODS_MODE = #{goodsMode,jdbcType=INTEGER},
+      </if>
+      <if test="goodsWeight != null" >
+        F_GOODS_WEIGHT = #{goodsWeight,jdbcType=DOUBLE},
+      </if>
+      <if test="goodsSize != null" >
+        F_GOODS_SIZE = #{goodsSize,jdbcType=VARCHAR},
+      </if>
+      <if test="pic1 != null" >
+        F_PIC1 = #{pic1,jdbcType=VARCHAR},
+      </if>
+      <if test="pic2 != null" >
+        F_PIC2 = #{pic2,jdbcType=VARCHAR},
+      </if>
+      <if test="pic3 != null" >
+        F_PIC3 = #{pic3,jdbcType=VARCHAR},
+      </if>
+      <if test="pic4 != null" >
+        F_PIC4 = #{pic4,jdbcType=VARCHAR},
+      </if>
+      <if test="pic5 != null" >
+        F_PIC5 = #{pic5,jdbcType=VARCHAR},
+      </if>
+      <if test="memo != null" >
+        F_MEMO = #{memo,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where F_GOODS_ID = #{goodsId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.kings.ttp.pojo.GoodsBean" >
+    update t_da_goods
+    set F_GOODS_TYPE = #{goodsType,jdbcType=VARCHAR},
+      F_USER_ID = #{userId,jdbcType=VARCHAR},
+      F_GOODS_MODE = #{goodsMode,jdbcType=INTEGER},
+      F_GOODS_WEIGHT = #{goodsWeight,jdbcType=DOUBLE},
+      F_GOODS_SIZE = #{goodsSize,jdbcType=VARCHAR},
+      F_PIC1 = #{pic1,jdbcType=VARCHAR},
+      F_PIC2 = #{pic2,jdbcType=VARCHAR},
+      F_PIC3 = #{pic3,jdbcType=VARCHAR},
+      F_PIC4 = #{pic4,jdbcType=VARCHAR},
+      F_PIC5 = #{pic5,jdbcType=VARCHAR},
+      F_MEMO = #{memo,jdbcType=VARCHAR}
+    where F_GOODS_ID = #{goodsId,jdbcType=VARCHAR}
+  </update>
+</mapper>

@@ -1,0 +1,752 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.kings.ttp.dao.automated.OrderMainInfoMapper" >
+  <resultMap id="BaseResultMap" type="com.kings.ttp.pojo.OrderMainInfo" >
+    <id column="F_ORDER_NUM" property="orderNum" jdbcType="VARCHAR" />
+    <result column="F_INIT_NUM" property="initNum" jdbcType="VARCHAR" />
+    <result column="F_EXT_NUM" property="extNum" jdbcType="VARCHAR" />
+    <result column="F_ORDER_MANCODE" property="orderMancode" jdbcType="VARCHAR" />
+    <result column="F_ORDER_MANNAME" property="orderManname" jdbcType="VARCHAR" />
+    <result column="F_ORDER_TIME" property="orderTime" jdbcType="VARCHAR" />
+    <result column="F_ORDER_MOBILE" property="orderMobile" jdbcType="VARCHAR" />
+    <result column="F_CLIENT_TYPE" property="clientType" jdbcType="INTEGER" />
+    <result column="F_CLIENT_IMEI" property="clientImei" jdbcType="VARCHAR" />
+    <result column="F_DELIV_PLACE_ID" property="delivPlaceId" jdbcType="VARCHAR" />
+    <result column="F_DELIV_PROVINCE_NUM" property="delivProvinceNum" jdbcType="VARCHAR" />
+    <result column="F_DELIV_REGION_NUM" property="delivRegionNum" jdbcType="VARCHAR" />
+    <result column="F_DELIV_COUNTRY_NUM" property="delivCountryNum" jdbcType="VARCHAR" />
+    <result column="F_DELIV_DETAIL_ADDRESS" property="delivDetailAddress" jdbcType="VARCHAR" />
+    <result column="F_RECEIVE_PLACE_ID" property="receivePlaceId" jdbcType="VARCHAR" />
+    <result column="F_RECEIVE_PROVINCE_NUM" property="receiveProvinceNum" jdbcType="VARCHAR" />
+    <result column="F_RECEIVE_REGION_NUM" property="receiveRegionNum" jdbcType="VARCHAR" />
+    <result column="F_RECEIVE_COUNTRY_NUM" property="receiveCountryNum" jdbcType="VARCHAR" />
+    <result column="F_RECEIVE_DETAIL_ADDRESS" property="receiveDetailAddress" jdbcType="VARCHAR" />
+    <result column="F_DRIVER_ID" property="driverId" jdbcType="VARCHAR" />
+    <result column="F_DRIVER_NAME" property="driverName" jdbcType="VARCHAR" />
+    <result column="F_DRIVER_MOBILE" property="driverMobile" jdbcType="VARCHAR" />
+    <result column="F_DRIVER_CLIENT_TYPE" property="driverClientType" jdbcType="INTEGER" />
+    <result column="F_DRIVER_CLIENT_IMEI" property="driverClientImei" jdbcType="VARCHAR" />
+    <result column="F_ORDER_STATUS" property="orderStatus" jdbcType="VARCHAR" />
+    <result column="F_STATUS_CAPTION" property="statusCaption" jdbcType="VARCHAR" />
+    <result column="F_VALID_DATE" property="validDate" jdbcType="VARCHAR" />
+    <result column="F_PAY_TIME" property="payTime" jdbcType="VARCHAR" />
+    <result column="F_CHECK_DATE" property="checkDate" jdbcType="VARCHAR" />
+    <result column="F_ORDER_MEMO" property="orderMemo" jdbcType="VARCHAR" />
+    <result column="F_ORDER_MONEY" property="orderMoney" jdbcType="DOUBLE" />
+    <result column="F_ORDER_ISPAY" property="orderIspay" jdbcType="INTEGER" />
+    <result column="F_ORDER_PAYMONEY" property="orderPaymoney" jdbcType="DOUBLE" />
+    <result column="F_ORDER_DISCOUNT" property="orderDiscount" jdbcType="DOUBLE" />
+    <result column="F_IS_EVAL" property="isEval" jdbcType="INTEGER" />
+    <result column="F_LAST_MANCODE" property="lastMancode" jdbcType="VARCHAR" />
+    <result column="F_LAST_MANNAME" property="lastManname" jdbcType="VARCHAR" />
+    <result column="F_LAST_TIME" property="lastTime" jdbcType="VARCHAR" />
+    <result column="F_LAST_MEMO" property="lastMemo" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    F_ORDER_NUM, F_INIT_NUM, F_EXT_NUM, F_ORDER_MANCODE, F_ORDER_MANNAME, F_ORDER_TIME, 
+    F_ORDER_MOBILE, F_CLIENT_TYPE, F_CLIENT_IMEI, F_DELIV_PLACE_ID, F_DELIV_PROVINCE_NUM, 
+    F_DELIV_REGION_NUM, F_DELIV_COUNTRY_NUM, F_DELIV_DETAIL_ADDRESS, F_RECEIVE_PLACE_ID, 
+    F_RECEIVE_PROVINCE_NUM, F_RECEIVE_REGION_NUM, F_RECEIVE_COUNTRY_NUM, F_RECEIVE_DETAIL_ADDRESS, 
+    F_DRIVER_ID, F_DRIVER_NAME, F_DRIVER_MOBILE, F_DRIVER_CLIENT_TYPE, F_DRIVER_CLIENT_IMEI, 
+    F_ORDER_STATUS, F_STATUS_CAPTION, F_VALID_DATE, F_PAY_TIME, F_CHECK_DATE, F_ORDER_MEMO, 
+    F_ORDER_MONEY, F_ORDER_ISPAY, F_ORDER_PAYMONEY, F_ORDER_DISCOUNT, F_IS_EVAL, F_LAST_MANCODE, 
+    F_LAST_MANNAME, F_LAST_TIME, F_LAST_MEMO
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.kings.ttp.pojo.OrderMainInfoExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from t_order_main
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from t_order_main
+    where F_ORDER_NUM = #{orderNum,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from t_order_main
+    where F_ORDER_NUM = #{orderNum,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.kings.ttp.pojo.OrderMainInfoExample" >
+    delete from t_order_main
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.kings.ttp.pojo.OrderMainInfo" >
+    insert into t_order_main (F_ORDER_NUM, F_INIT_NUM, F_EXT_NUM, 
+      F_ORDER_MANCODE, F_ORDER_MANNAME, F_ORDER_TIME, 
+      F_ORDER_MOBILE, F_CLIENT_TYPE, F_CLIENT_IMEI, 
+      F_DELIV_PLACE_ID, F_DELIV_PROVINCE_NUM, F_DELIV_REGION_NUM, 
+      F_DELIV_COUNTRY_NUM, F_DELIV_DETAIL_ADDRESS, F_RECEIVE_PLACE_ID, 
+      F_RECEIVE_PROVINCE_NUM, F_RECEIVE_REGION_NUM, F_RECEIVE_COUNTRY_NUM, 
+      F_RECEIVE_DETAIL_ADDRESS, F_DRIVER_ID, F_DRIVER_NAME, 
+      F_DRIVER_MOBILE, F_DRIVER_CLIENT_TYPE, F_DRIVER_CLIENT_IMEI, 
+      F_ORDER_STATUS, F_STATUS_CAPTION, F_VALID_DATE, 
+      F_PAY_TIME, F_CHECK_DATE, F_ORDER_MEMO, 
+      F_ORDER_MONEY, F_ORDER_ISPAY, F_ORDER_PAYMONEY, 
+      F_ORDER_DISCOUNT, F_IS_EVAL, F_LAST_MANCODE, 
+      F_LAST_MANNAME, F_LAST_TIME, F_LAST_MEMO
+      )
+    values (#{orderNum,jdbcType=VARCHAR}, #{initNum,jdbcType=VARCHAR}, #{extNum,jdbcType=VARCHAR}, 
+      #{orderMancode,jdbcType=VARCHAR}, #{orderManname,jdbcType=VARCHAR}, #{orderTime,jdbcType=VARCHAR}, 
+      #{orderMobile,jdbcType=VARCHAR}, #{clientType,jdbcType=INTEGER}, #{clientImei,jdbcType=VARCHAR}, 
+      #{delivPlaceId,jdbcType=VARCHAR}, #{delivProvinceNum,jdbcType=VARCHAR}, #{delivRegionNum,jdbcType=VARCHAR}, 
+      #{delivCountryNum,jdbcType=VARCHAR}, #{delivDetailAddress,jdbcType=VARCHAR}, #{receivePlaceId,jdbcType=VARCHAR}, 
+      #{receiveProvinceNum,jdbcType=VARCHAR}, #{receiveRegionNum,jdbcType=VARCHAR}, #{receiveCountryNum,jdbcType=VARCHAR}, 
+      #{receiveDetailAddress,jdbcType=VARCHAR}, #{driverId,jdbcType=VARCHAR}, #{driverName,jdbcType=VARCHAR}, 
+      #{driverMobile,jdbcType=VARCHAR}, #{driverClientType,jdbcType=INTEGER}, #{driverClientImei,jdbcType=VARCHAR}, 
+      #{orderStatus,jdbcType=VARCHAR}, #{statusCaption,jdbcType=VARCHAR}, #{validDate,jdbcType=VARCHAR}, 
+      #{payTime,jdbcType=VARCHAR}, #{checkDate,jdbcType=VARCHAR}, #{orderMemo,jdbcType=VARCHAR}, 
+      #{orderMoney,jdbcType=DOUBLE}, #{orderIspay,jdbcType=INTEGER}, #{orderPaymoney,jdbcType=DOUBLE}, 
+      #{orderDiscount,jdbcType=DOUBLE}, #{isEval,jdbcType=INTEGER}, #{lastMancode,jdbcType=VARCHAR}, 
+      #{lastManname,jdbcType=VARCHAR}, #{lastTime,jdbcType=VARCHAR}, #{lastMemo,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.kings.ttp.pojo.OrderMainInfo" >
+    insert into t_order_main
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="orderNum != null" >
+        F_ORDER_NUM,
+      </if>
+      <if test="initNum != null" >
+        F_INIT_NUM,
+      </if>
+      <if test="extNum != null" >
+        F_EXT_NUM,
+      </if>
+      <if test="orderMancode != null" >
+        F_ORDER_MANCODE,
+      </if>
+      <if test="orderManname != null" >
+        F_ORDER_MANNAME,
+      </if>
+      <if test="orderTime != null" >
+        F_ORDER_TIME,
+      </if>
+      <if test="orderMobile != null" >
+        F_ORDER_MOBILE,
+      </if>
+      <if test="clientType != null" >
+        F_CLIENT_TYPE,
+      </if>
+      <if test="clientImei != null" >
+        F_CLIENT_IMEI,
+      </if>
+      <if test="delivPlaceId != null" >
+        F_DELIV_PLACE_ID,
+      </if>
+      <if test="delivProvinceNum != null" >
+        F_DELIV_PROVINCE_NUM,
+      </if>
+      <if test="delivRegionNum != null" >
+        F_DELIV_REGION_NUM,
+      </if>
+      <if test="delivCountryNum != null" >
+        F_DELIV_COUNTRY_NUM,
+      </if>
+      <if test="delivDetailAddress != null" >
+        F_DELIV_DETAIL_ADDRESS,
+      </if>
+      <if test="receivePlaceId != null" >
+        F_RECEIVE_PLACE_ID,
+      </if>
+      <if test="receiveProvinceNum != null" >
+        F_RECEIVE_PROVINCE_NUM,
+      </if>
+      <if test="receiveRegionNum != null" >
+        F_RECEIVE_REGION_NUM,
+      </if>
+      <if test="receiveCountryNum != null" >
+        F_RECEIVE_COUNTRY_NUM,
+      </if>
+      <if test="receiveDetailAddress != null" >
+        F_RECEIVE_DETAIL_ADDRESS,
+      </if>
+      <if test="driverId != null" >
+        F_DRIVER_ID,
+      </if>
+      <if test="driverName != null" >
+        F_DRIVER_NAME,
+      </if>
+      <if test="driverMobile != null" >
+        F_DRIVER_MOBILE,
+      </if>
+      <if test="driverClientType != null" >
+        F_DRIVER_CLIENT_TYPE,
+      </if>
+      <if test="driverClientImei != null" >
+        F_DRIVER_CLIENT_IMEI,
+      </if>
+      <if test="orderStatus != null" >
+        F_ORDER_STATUS,
+      </if>
+      <if test="statusCaption != null" >
+        F_STATUS_CAPTION,
+      </if>
+      <if test="validDate != null" >
+        F_VALID_DATE,
+      </if>
+      <if test="payTime != null" >
+        F_PAY_TIME,
+      </if>
+      <if test="checkDate != null" >
+        F_CHECK_DATE,
+      </if>
+      <if test="orderMemo != null" >
+        F_ORDER_MEMO,
+      </if>
+      <if test="orderMoney != null" >
+        F_ORDER_MONEY,
+      </if>
+      <if test="orderIspay != null" >
+        F_ORDER_ISPAY,
+      </if>
+      <if test="orderPaymoney != null" >
+        F_ORDER_PAYMONEY,
+      </if>
+      <if test="orderDiscount != null" >
+        F_ORDER_DISCOUNT,
+      </if>
+      <if test="isEval != null" >
+        F_IS_EVAL,
+      </if>
+      <if test="lastMancode != null" >
+        F_LAST_MANCODE,
+      </if>
+      <if test="lastManname != null" >
+        F_LAST_MANNAME,
+      </if>
+      <if test="lastTime != null" >
+        F_LAST_TIME,
+      </if>
+      <if test="lastMemo != null" >
+        F_LAST_MEMO,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="orderNum != null" >
+        #{orderNum,jdbcType=VARCHAR},
+      </if>
+      <if test="initNum != null" >
+        #{initNum,jdbcType=VARCHAR},
+      </if>
+      <if test="extNum != null" >
+        #{extNum,jdbcType=VARCHAR},
+      </if>
+      <if test="orderMancode != null" >
+        #{orderMancode,jdbcType=VARCHAR},
+      </if>
+      <if test="orderManname != null" >
+        #{orderManname,jdbcType=VARCHAR},
+      </if>
+      <if test="orderTime != null" >
+        #{orderTime,jdbcType=VARCHAR},
+      </if>
+      <if test="orderMobile != null" >
+        #{orderMobile,jdbcType=VARCHAR},
+      </if>
+      <if test="clientType != null" >
+        #{clientType,jdbcType=INTEGER},
+      </if>
+      <if test="clientImei != null" >
+        #{clientImei,jdbcType=VARCHAR},
+      </if>
+      <if test="delivPlaceId != null" >
+        #{delivPlaceId,jdbcType=VARCHAR},
+      </if>
+      <if test="delivProvinceNum != null" >
+        #{delivProvinceNum,jdbcType=VARCHAR},
+      </if>
+      <if test="delivRegionNum != null" >
+        #{delivRegionNum,jdbcType=VARCHAR},
+      </if>
+      <if test="delivCountryNum != null" >
+        #{delivCountryNum,jdbcType=VARCHAR},
+      </if>
+      <if test="delivDetailAddress != null" >
+        #{delivDetailAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="receivePlaceId != null" >
+        #{receivePlaceId,jdbcType=VARCHAR},
+      </if>
+      <if test="receiveProvinceNum != null" >
+        #{receiveProvinceNum,jdbcType=VARCHAR},
+      </if>
+      <if test="receiveRegionNum != null" >
+        #{receiveRegionNum,jdbcType=VARCHAR},
+      </if>
+      <if test="receiveCountryNum != null" >
+        #{receiveCountryNum,jdbcType=VARCHAR},
+      </if>
+      <if test="receiveDetailAddress != null" >
+        #{receiveDetailAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="driverId != null" >
+        #{driverId,jdbcType=VARCHAR},
+      </if>
+      <if test="driverName != null" >
+        #{driverName,jdbcType=VARCHAR},
+      </if>
+      <if test="driverMobile != null" >
+        #{driverMobile,jdbcType=VARCHAR},
+      </if>
+      <if test="driverClientType != null" >
+        #{driverClientType,jdbcType=INTEGER},
+      </if>
+      <if test="driverClientImei != null" >
+        #{driverClientImei,jdbcType=VARCHAR},
+      </if>
+      <if test="orderStatus != null" >
+        #{orderStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="statusCaption != null" >
+        #{statusCaption,jdbcType=VARCHAR},
+      </if>
+      <if test="validDate != null" >
+        #{validDate,jdbcType=VARCHAR},
+      </if>
+      <if test="payTime != null" >
+        #{payTime,jdbcType=VARCHAR},
+      </if>
+      <if test="checkDate != null" >
+        #{checkDate,jdbcType=VARCHAR},
+      </if>
+      <if test="orderMemo != null" >
+        #{orderMemo,jdbcType=VARCHAR},
+      </if>
+      <if test="orderMoney != null" >
+        #{orderMoney,jdbcType=DOUBLE},
+      </if>
+      <if test="orderIspay != null" >
+        #{orderIspay,jdbcType=INTEGER},
+      </if>
+      <if test="orderPaymoney != null" >
+        #{orderPaymoney,jdbcType=DOUBLE},
+      </if>
+      <if test="orderDiscount != null" >
+        #{orderDiscount,jdbcType=DOUBLE},
+      </if>
+      <if test="isEval != null" >
+        #{isEval,jdbcType=INTEGER},
+      </if>
+      <if test="lastMancode != null" >
+        #{lastMancode,jdbcType=VARCHAR},
+      </if>
+      <if test="lastManname != null" >
+        #{lastManname,jdbcType=VARCHAR},
+      </if>
+      <if test="lastTime != null" >
+        #{lastTime,jdbcType=VARCHAR},
+      </if>
+      <if test="lastMemo != null" >
+        #{lastMemo,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.kings.ttp.pojo.OrderMainInfoExample" resultType="java.lang.Integer" >
+    select count(*) from t_order_main
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update t_order_main
+    <set >
+      <if test="record.orderNum != null" >
+        F_ORDER_NUM = #{record.orderNum,jdbcType=VARCHAR},
+      </if>
+      <if test="record.initNum != null" >
+        F_INIT_NUM = #{record.initNum,jdbcType=VARCHAR},
+      </if>
+      <if test="record.extNum != null" >
+        F_EXT_NUM = #{record.extNum,jdbcType=VARCHAR},
+      </if>
+      <if test="record.orderMancode != null" >
+        F_ORDER_MANCODE = #{record.orderMancode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.orderManname != null" >
+        F_ORDER_MANNAME = #{record.orderManname,jdbcType=VARCHAR},
+      </if>
+      <if test="record.orderTime != null" >
+        F_ORDER_TIME = #{record.orderTime,jdbcType=VARCHAR},
+      </if>
+      <if test="record.orderMobile != null" >
+        F_ORDER_MOBILE = #{record.orderMobile,jdbcType=VARCHAR},
+      </if>
+      <if test="record.clientType != null" >
+        F_CLIENT_TYPE = #{record.clientType,jdbcType=INTEGER},
+      </if>
+      <if test="record.clientImei != null" >
+        F_CLIENT_IMEI = #{record.clientImei,jdbcType=VARCHAR},
+      </if>
+      <if test="record.delivPlaceId != null" >
+        F_DELIV_PLACE_ID = #{record.delivPlaceId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.delivProvinceNum != null" >
+        F_DELIV_PROVINCE_NUM = #{record.delivProvinceNum,jdbcType=VARCHAR},
+      </if>
+      <if test="record.delivRegionNum != null" >
+        F_DELIV_REGION_NUM = #{record.delivRegionNum,jdbcType=VARCHAR},
+      </if>
+      <if test="record.delivCountryNum != null" >
+        F_DELIV_COUNTRY_NUM = #{record.delivCountryNum,jdbcType=VARCHAR},
+      </if>
+      <if test="record.delivDetailAddress != null" >
+        F_DELIV_DETAIL_ADDRESS = #{record.delivDetailAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="record.receivePlaceId != null" >
+        F_RECEIVE_PLACE_ID = #{record.receivePlaceId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.receiveProvinceNum != null" >
+        F_RECEIVE_PROVINCE_NUM = #{record.receiveProvinceNum,jdbcType=VARCHAR},
+      </if>
+      <if test="record.receiveRegionNum != null" >
+        F_RECEIVE_REGION_NUM = #{record.receiveRegionNum,jdbcType=VARCHAR},
+      </if>
+      <if test="record.receiveCountryNum != null" >
+        F_RECEIVE_COUNTRY_NUM = #{record.receiveCountryNum,jdbcType=VARCHAR},
+      </if>
+      <if test="record.receiveDetailAddress != null" >
+        F_RECEIVE_DETAIL_ADDRESS = #{record.receiveDetailAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="record.driverId != null" >
+        F_DRIVER_ID = #{record.driverId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.driverName != null" >
+        F_DRIVER_NAME = #{record.driverName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.driverMobile != null" >
+        F_DRIVER_MOBILE = #{record.driverMobile,jdbcType=VARCHAR},
+      </if>
+      <if test="record.driverClientType != null" >
+        F_DRIVER_CLIENT_TYPE = #{record.driverClientType,jdbcType=INTEGER},
+      </if>
+      <if test="record.driverClientImei != null" >
+        F_DRIVER_CLIENT_IMEI = #{record.driverClientImei,jdbcType=VARCHAR},
+      </if>
+      <if test="record.orderStatus != null" >
+        F_ORDER_STATUS = #{record.orderStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="record.statusCaption != null" >
+        F_STATUS_CAPTION = #{record.statusCaption,jdbcType=VARCHAR},
+      </if>
+      <if test="record.validDate != null" >
+        F_VALID_DATE = #{record.validDate,jdbcType=VARCHAR},
+      </if>
+      <if test="record.payTime != null" >
+        F_PAY_TIME = #{record.payTime,jdbcType=VARCHAR},
+      </if>
+      <if test="record.checkDate != null" >
+        F_CHECK_DATE = #{record.checkDate,jdbcType=VARCHAR},
+      </if>
+      <if test="record.orderMemo != null" >
+        F_ORDER_MEMO = #{record.orderMemo,jdbcType=VARCHAR},
+      </if>
+      <if test="record.orderMoney != null" >
+        F_ORDER_MONEY = #{record.orderMoney,jdbcType=DOUBLE},
+      </if>
+      <if test="record.orderIspay != null" >
+        F_ORDER_ISPAY = #{record.orderIspay,jdbcType=INTEGER},
+      </if>
+      <if test="record.orderPaymoney != null" >
+        F_ORDER_PAYMONEY = #{record.orderPaymoney,jdbcType=DOUBLE},
+      </if>
+      <if test="record.orderDiscount != null" >
+        F_ORDER_DISCOUNT = #{record.orderDiscount,jdbcType=DOUBLE},
+      </if>
+      <if test="record.isEval != null" >
+        F_IS_EVAL = #{record.isEval,jdbcType=INTEGER},
+      </if>
+      <if test="record.lastMancode != null" >
+        F_LAST_MANCODE = #{record.lastMancode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.lastManname != null" >
+        F_LAST_MANNAME = #{record.lastManname,jdbcType=VARCHAR},
+      </if>
+      <if test="record.lastTime != null" >
+        F_LAST_TIME = #{record.lastTime,jdbcType=VARCHAR},
+      </if>
+      <if test="record.lastMemo != null" >
+        F_LAST_MEMO = #{record.lastMemo,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update t_order_main
+    set F_ORDER_NUM = #{record.orderNum,jdbcType=VARCHAR},
+      F_INIT_NUM = #{record.initNum,jdbcType=VARCHAR},
+      F_EXT_NUM = #{record.extNum,jdbcType=VARCHAR},
+      F_ORDER_MANCODE = #{record.orderMancode,jdbcType=VARCHAR},
+      F_ORDER_MANNAME = #{record.orderManname,jdbcType=VARCHAR},
+      F_ORDER_TIME = #{record.orderTime,jdbcType=VARCHAR},
+      F_ORDER_MOBILE = #{record.orderMobile,jdbcType=VARCHAR},
+      F_CLIENT_TYPE = #{record.clientType,jdbcType=INTEGER},
+      F_CLIENT_IMEI = #{record.clientImei,jdbcType=VARCHAR},
+      F_DELIV_PLACE_ID = #{record.delivPlaceId,jdbcType=VARCHAR},
+      F_DELIV_PROVINCE_NUM = #{record.delivProvinceNum,jdbcType=VARCHAR},
+      F_DELIV_REGION_NUM = #{record.delivRegionNum,jdbcType=VARCHAR},
+      F_DELIV_COUNTRY_NUM = #{record.delivCountryNum,jdbcType=VARCHAR},
+      F_DELIV_DETAIL_ADDRESS = #{record.delivDetailAddress,jdbcType=VARCHAR},
+      F_RECEIVE_PLACE_ID = #{record.receivePlaceId,jdbcType=VARCHAR},
+      F_RECEIVE_PROVINCE_NUM = #{record.receiveProvinceNum,jdbcType=VARCHAR},
+      F_RECEIVE_REGION_NUM = #{record.receiveRegionNum,jdbcType=VARCHAR},
+      F_RECEIVE_COUNTRY_NUM = #{record.receiveCountryNum,jdbcType=VARCHAR},
+      F_RECEIVE_DETAIL_ADDRESS = #{record.receiveDetailAddress,jdbcType=VARCHAR},
+      F_DRIVER_ID = #{record.driverId,jdbcType=VARCHAR},
+      F_DRIVER_NAME = #{record.driverName,jdbcType=VARCHAR},
+      F_DRIVER_MOBILE = #{record.driverMobile,jdbcType=VARCHAR},
+      F_DRIVER_CLIENT_TYPE = #{record.driverClientType,jdbcType=INTEGER},
+      F_DRIVER_CLIENT_IMEI = #{record.driverClientImei,jdbcType=VARCHAR},
+      F_ORDER_STATUS = #{record.orderStatus,jdbcType=VARCHAR},
+      F_STATUS_CAPTION = #{record.statusCaption,jdbcType=VARCHAR},
+      F_VALID_DATE = #{record.validDate,jdbcType=VARCHAR},
+      F_PAY_TIME = #{record.payTime,jdbcType=VARCHAR},
+      F_CHECK_DATE = #{record.checkDate,jdbcType=VARCHAR},
+      F_ORDER_MEMO = #{record.orderMemo,jdbcType=VARCHAR},
+      F_ORDER_MONEY = #{record.orderMoney,jdbcType=DOUBLE},
+      F_ORDER_ISPAY = #{record.orderIspay,jdbcType=INTEGER},
+      F_ORDER_PAYMONEY = #{record.orderPaymoney,jdbcType=DOUBLE},
+      F_ORDER_DISCOUNT = #{record.orderDiscount,jdbcType=DOUBLE},
+      F_IS_EVAL = #{record.isEval,jdbcType=INTEGER},
+      F_LAST_MANCODE = #{record.lastMancode,jdbcType=VARCHAR},
+      F_LAST_MANNAME = #{record.lastManname,jdbcType=VARCHAR},
+      F_LAST_TIME = #{record.lastTime,jdbcType=VARCHAR},
+      F_LAST_MEMO = #{record.lastMemo,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.kings.ttp.pojo.OrderMainInfo" >
+    update t_order_main
+    <set >
+      <if test="initNum != null" >
+        F_INIT_NUM = #{initNum,jdbcType=VARCHAR},
+      </if>
+      <if test="extNum != null" >
+        F_EXT_NUM = #{extNum,jdbcType=VARCHAR},
+      </if>
+      <if test="orderMancode != null" >
+        F_ORDER_MANCODE = #{orderMancode,jdbcType=VARCHAR},
+      </if>
+      <if test="orderManname != null" >
+        F_ORDER_MANNAME = #{orderManname,jdbcType=VARCHAR},
+      </if>
+      <if test="orderTime != null" >
+        F_ORDER_TIME = #{orderTime,jdbcType=VARCHAR},
+      </if>
+      <if test="orderMobile != null" >
+        F_ORDER_MOBILE = #{orderMobile,jdbcType=VARCHAR},
+      </if>
+      <if test="clientType != null" >
+        F_CLIENT_TYPE = #{clientType,jdbcType=INTEGER},
+      </if>
+      <if test="clientImei != null" >
+        F_CLIENT_IMEI = #{clientImei,jdbcType=VARCHAR},
+      </if>
+      <if test="delivPlaceId != null" >
+        F_DELIV_PLACE_ID = #{delivPlaceId,jdbcType=VARCHAR},
+      </if>
+      <if test="delivProvinceNum != null" >
+        F_DELIV_PROVINCE_NUM = #{delivProvinceNum,jdbcType=VARCHAR},
+      </if>
+      <if test="delivRegionNum != null" >
+        F_DELIV_REGION_NUM = #{delivRegionNum,jdbcType=VARCHAR},
+      </if>
+      <if test="delivCountryNum != null" >
+        F_DELIV_COUNTRY_NUM = #{delivCountryNum,jdbcType=VARCHAR},
+      </if>
+      <if test="delivDetailAddress != null" >
+        F_DELIV_DETAIL_ADDRESS = #{delivDetailAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="receivePlaceId != null" >
+        F_RECEIVE_PLACE_ID = #{receivePlaceId,jdbcType=VARCHAR},
+      </if>
+      <if test="receiveProvinceNum != null" >
+        F_RECEIVE_PROVINCE_NUM = #{receiveProvinceNum,jdbcType=VARCHAR},
+      </if>
+      <if test="receiveRegionNum != null" >
+        F_RECEIVE_REGION_NUM = #{receiveRegionNum,jdbcType=VARCHAR},
+      </if>
+      <if test="receiveCountryNum != null" >
+        F_RECEIVE_COUNTRY_NUM = #{receiveCountryNum,jdbcType=VARCHAR},
+      </if>
+      <if test="receiveDetailAddress != null" >
+        F_RECEIVE_DETAIL_ADDRESS = #{receiveDetailAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="driverId != null" >
+        F_DRIVER_ID = #{driverId,jdbcType=VARCHAR},
+      </if>
+      <if test="driverName != null" >
+        F_DRIVER_NAME = #{driverName,jdbcType=VARCHAR},
+      </if>
+      <if test="driverMobile != null" >
+        F_DRIVER_MOBILE = #{driverMobile,jdbcType=VARCHAR},
+      </if>
+      <if test="driverClientType != null" >
+        F_DRIVER_CLIENT_TYPE = #{driverClientType,jdbcType=INTEGER},
+      </if>
+      <if test="driverClientImei != null" >
+        F_DRIVER_CLIENT_IMEI = #{driverClientImei,jdbcType=VARCHAR},
+      </if>
+      <if test="orderStatus != null" >
+        F_ORDER_STATUS = #{orderStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="statusCaption != null" >
+        F_STATUS_CAPTION = #{statusCaption,jdbcType=VARCHAR},
+      </if>
+      <if test="validDate != null" >
+        F_VALID_DATE = #{validDate,jdbcType=VARCHAR},
+      </if>
+      <if test="payTime != null" >
+        F_PAY_TIME = #{payTime,jdbcType=VARCHAR},
+      </if>
+      <if test="checkDate != null" >
+        F_CHECK_DATE = #{checkDate,jdbcType=VARCHAR},
+      </if>
+      <if test="orderMemo != null" >
+        F_ORDER_MEMO = #{orderMemo,jdbcType=VARCHAR},
+      </if>
+      <if test="orderMoney != null" >
+        F_ORDER_MONEY = #{orderMoney,jdbcType=DOUBLE},
+      </if>
+      <if test="orderIspay != null" >
+        F_ORDER_ISPAY = #{orderIspay,jdbcType=INTEGER},
+      </if>
+      <if test="orderPaymoney != null" >
+        F_ORDER_PAYMONEY = #{orderPaymoney,jdbcType=DOUBLE},
+      </if>
+      <if test="orderDiscount != null" >
+        F_ORDER_DISCOUNT = #{orderDiscount,jdbcType=DOUBLE},
+      </if>
+      <if test="isEval != null" >
+        F_IS_EVAL = #{isEval,jdbcType=INTEGER},
+      </if>
+      <if test="lastMancode != null" >
+        F_LAST_MANCODE = #{lastMancode,jdbcType=VARCHAR},
+      </if>
+      <if test="lastManname != null" >
+        F_LAST_MANNAME = #{lastManname,jdbcType=VARCHAR},
+      </if>
+      <if test="lastTime != null" >
+        F_LAST_TIME = #{lastTime,jdbcType=VARCHAR},
+      </if>
+      <if test="lastMemo != null" >
+        F_LAST_MEMO = #{lastMemo,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where F_ORDER_NUM = #{orderNum,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.kings.ttp.pojo.OrderMainInfo" >
+    update t_order_main
+    set F_INIT_NUM = #{initNum,jdbcType=VARCHAR},
+      F_EXT_NUM = #{extNum,jdbcType=VARCHAR},
+      F_ORDER_MANCODE = #{orderMancode,jdbcType=VARCHAR},
+      F_ORDER_MANNAME = #{orderManname,jdbcType=VARCHAR},
+      F_ORDER_TIME = #{orderTime,jdbcType=VARCHAR},
+      F_ORDER_MOBILE = #{orderMobile,jdbcType=VARCHAR},
+      F_CLIENT_TYPE = #{clientType,jdbcType=INTEGER},
+      F_CLIENT_IMEI = #{clientImei,jdbcType=VARCHAR},
+      F_DELIV_PLACE_ID = #{delivPlaceId,jdbcType=VARCHAR},
+      F_DELIV_PROVINCE_NUM = #{delivProvinceNum,jdbcType=VARCHAR},
+      F_DELIV_REGION_NUM = #{delivRegionNum,jdbcType=VARCHAR},
+      F_DELIV_COUNTRY_NUM = #{delivCountryNum,jdbcType=VARCHAR},
+      F_DELIV_DETAIL_ADDRESS = #{delivDetailAddress,jdbcType=VARCHAR},
+      F_RECEIVE_PLACE_ID = #{receivePlaceId,jdbcType=VARCHAR},
+      F_RECEIVE_PROVINCE_NUM = #{receiveProvinceNum,jdbcType=VARCHAR},
+      F_RECEIVE_REGION_NUM = #{receiveRegionNum,jdbcType=VARCHAR},
+      F_RECEIVE_COUNTRY_NUM = #{receiveCountryNum,jdbcType=VARCHAR},
+      F_RECEIVE_DETAIL_ADDRESS = #{receiveDetailAddress,jdbcType=VARCHAR},
+      F_DRIVER_ID = #{driverId,jdbcType=VARCHAR},
+      F_DRIVER_NAME = #{driverName,jdbcType=VARCHAR},
+      F_DRIVER_MOBILE = #{driverMobile,jdbcType=VARCHAR},
+      F_DRIVER_CLIENT_TYPE = #{driverClientType,jdbcType=INTEGER},
+      F_DRIVER_CLIENT_IMEI = #{driverClientImei,jdbcType=VARCHAR},
+      F_ORDER_STATUS = #{orderStatus,jdbcType=VARCHAR},
+      F_STATUS_CAPTION = #{statusCaption,jdbcType=VARCHAR},
+      F_VALID_DATE = #{validDate,jdbcType=VARCHAR},
+      F_PAY_TIME = #{payTime,jdbcType=VARCHAR},
+      F_CHECK_DATE = #{checkDate,jdbcType=VARCHAR},
+      F_ORDER_MEMO = #{orderMemo,jdbcType=VARCHAR},
+      F_ORDER_MONEY = #{orderMoney,jdbcType=DOUBLE},
+      F_ORDER_ISPAY = #{orderIspay,jdbcType=INTEGER},
+      F_ORDER_PAYMONEY = #{orderPaymoney,jdbcType=DOUBLE},
+      F_ORDER_DISCOUNT = #{orderDiscount,jdbcType=DOUBLE},
+      F_IS_EVAL = #{isEval,jdbcType=INTEGER},
+      F_LAST_MANCODE = #{lastMancode,jdbcType=VARCHAR},
+      F_LAST_MANNAME = #{lastManname,jdbcType=VARCHAR},
+      F_LAST_TIME = #{lastTime,jdbcType=VARCHAR},
+      F_LAST_MEMO = #{lastMemo,jdbcType=VARCHAR}
+    where F_ORDER_NUM = #{orderNum,jdbcType=VARCHAR}
+  </update>
+</mapper>
