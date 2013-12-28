@@ -401,6 +401,47 @@ CREATE TABLE T_USER_CREDIT
 );
 
 
+/*系统管理用户角色表*/
+CREATE TABLE `t_group` (
+  `F_ID` int(10) NOT NULL auto_increment COMMENT '主键',
+  `F_NAME` varchar(32) default NULL COMMENT '用户组名称',
+  `F_DESC` varchar(512) default NULL COMMENT '用户组描述',
+  PRIMARY KEY  (`F_ID`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='用户组表';
+
+
+/*系统管理用户角色-菜单对照表*/
+CREATE TABLE `t_menu_group_dz` (
+  `F_MENU_ID` int(10) default NULL COMMENT '菜单ID',
+  `F_GROUP_ID` int(10) default NULL COMMENT '用户组ID'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='菜单-用户组对照表';
+
+/*系统管理菜单表*/
+CREATE TABLE `t_menu_list` (
+  `F_ID` int(10) NOT NULL auto_increment,
+  `F_MENU_NAME` varchar(32) default NULL COMMENT '菜单名称',
+  `F_URL` varchar(512) default NULL COMMENT 'URL',
+  `F_NEMU_LEVEL` int(2) default NULL COMMENT '菜单层级',
+  `F_PARENT_ID` int(10) default NULL,
+  PRIMARY KEY  (`F_ID`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='菜单表';
+
+/*系统管理用户*/
+CREATE TABLE `t_user` (
+  `F_ID` int(10) NOT NULL auto_increment COMMENT '主键',
+  `F_NAME` varchar(32) default NULL COMMENT '员工真实姓名',
+  `F_USERNAME` varchar(32) default NULL COMMENT '用户名，帐号',
+  `F_PASSWORD` varchar(32) default NULL COMMENT '密码',
+  `F_DEPARTMENT` varchar(32) default NULL COMMENT '所在部门',
+  `F_PROJECT_GROUP` varchar(32) default NULL COMMENT '项目组',
+  `F_EMAIL` varchar(50) default NULL COMMENT '电子邮件',
+  `F_GROUP_ID` int(10) default NULL COMMENT '用户组别',
+  `F_STATUS` int(1) default '0' COMMENT '0:可用，1：不可用',
+  PRIMARY KEY  (`F_ID`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='用户表';
+
+
+
 
 
 
