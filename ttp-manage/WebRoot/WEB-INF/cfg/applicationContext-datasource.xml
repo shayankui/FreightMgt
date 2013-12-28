@@ -71,22 +71,6 @@
 		<property name="defaultTargetDataSource" ref="readDataSource" />
 	</bean>
 	-->
-
-	<!-- 前置通知 
-	<bean id="ba" class="com.kings.ttp.datasource.BeforeAdvice" />
-	<aop:config proxy-target-class="true">
-		<aop:aspect ref="ba">
-			<aop:pointcut id="update"
-				expression="execution(* org.springframework.jdbc.core.JdbcTemplate.update*(..)) || execution(* org.springframework.jdbc.core.JdbcTemplate.batchUpdate(..))" />
-
-			<aop:before method="setWriteDataSource" pointcut-ref="update" />
-		</aop:aspect>
-		<aop:aspect ref="ba">
-			<aop:before method="setReadDataSource"
-				pointcut="execution(* org.springframework.jdbc.core.JdbcTemplate.query*(..)) || execution(* org.springframework.jdbc.core.JdbcTemplate.execute(..))" />
-		</aop:aspect>
-	</aop:config>
-	-->
 	
 	<!-- 前置通知 -->
 	<bean id="ba" class="com.kings.ttp.datasource.BeforeAdvice" />
