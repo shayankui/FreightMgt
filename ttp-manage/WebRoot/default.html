@@ -8,7 +8,7 @@
 	<link rel="stylesheet" type="text/css" href="./static/css/frame.css">
 	<script type="text/javascript" src="./static/js/lib/easyui/jquery.min.js"></script>
 	<script type="text/javascript" src="./static/js/lib/easyui/jquery.easyui.min.js"></script>
-	
+	<script type="text/javascript" src="./static/js/main.js"></script>
 	<script type="text/javascript">
 		$(document).ready(function(){
 			redeploy();
@@ -26,6 +26,22 @@
 		}
 		
 		function addAccordion(){
+			var jsonData = {
+		 		"reqUrl" : "menu",
+		 		"reqMethod" : "getMenuList"
+		 	};
+			$.singleReq({
+				data : jsonData,
+				success : function(ret){
+					if("0" == ret.retCode){
+						genMenu(ret.retObj.menus);
+					}else{
+						//提示错误信息
+						alert('根据当前用户获取菜单失败,请联系管理员!');
+					}
+				}
+			});
+		
 		
 			$('#div_acc').accordion('add',{
 				title:'系统设置',
@@ -41,15 +57,6 @@
 			});
 		}
 		
-		function tt(){
-			$('#div_acc').accordion('remove', '系统信息设置');
-			$('#div_acc').accordion('remove', '商城会员管理');
-			$('#div_acc').accordion('remove', '商城订单管理');
-			$('#div_acc').accordion('remove', '商城库存管理');
-			$('#div_acc').accordion('remove', '终端商城管理');
-			$('#div_acc').accordion('remove', '移动商城管理');
-			addAccordion();
-		}
 		
 		function switchMenu(num) {
 			if(num==0){
@@ -61,6 +68,19 @@
 				$('#mun_sysmenu').removeClass();
 				$('#mnu_selfmenu').removeClass().addClass('selected');
 				$('#div_acc').hide();
+			}
+		}
+		
+		//根据菜单数据生成菜单
+		function genMenu(menus)
+		{
+			for(var i=0;i<menus.length;i++)
+			{
+				var m = menus[i];
+				$('#div_acc').accordion('add',{
+					title:m.menuName,
+					content:m.menuName
+				});
 			}
 		}
 	</script>

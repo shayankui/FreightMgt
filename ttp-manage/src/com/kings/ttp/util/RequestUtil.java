@@ -46,9 +46,13 @@ public class RequestUtil extends ServletRequestUtils{
 	 * @return
 	 * @throws UnsupportedEncodingException
 	 */
-	public static String getStrParam(ServletRequest request, String name, String defaultVal) throws UnsupportedEncodingException {
+	public static String getStrParam(ServletRequest request, String name, String defaultVal) {
 		String str = getStringParameter(request, name, defaultVal);
-		str = new String(str.getBytes("8859_1"), "UTF-8");
+		try {
+			str = new String(str.getBytes("8859_1"), "UTF-8");
+		} catch (UnsupportedEncodingException e) {
+			e.printStackTrace();
+		}
 		return str;
 	}
 	

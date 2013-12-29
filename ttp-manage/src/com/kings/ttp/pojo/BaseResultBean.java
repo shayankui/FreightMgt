@@ -8,33 +8,45 @@ import java.util.Map;
  *
  */
 public class BaseResultBean {
-	protected boolean success;
-	protected String errorCode;
-	protected String errorMsg;
-	protected Map map;
-	public Map getMap() {
-		return map;
+	//返回编码
+	private String retCode;
+	//系统返回码/错误码
+    private String sysCode;
+	//返回消息
+	private String resMsg;
+	//返回结果集
+	private Object retObj;
+
+	public String getRetCode() {
+		return retCode;
 	}
-	public void setMap(Map map) {
-		this.map = map;
+
+	public void setRetCode(String retCode) {
+		this.retCode = retCode;
 	}
-	public boolean isSuccess() {
-		return success;
+
+	public String getSysCode() {
+		return sysCode;
 	}
-	public void setSuccess(boolean success) {
-		this.success = success;
+
+	public void setSysCode(String sysCode) {
+		this.sysCode = sysCode;
 	}
-	public String getErrorCode() {
-		return errorCode;
+
+	public String getResMsg() {
+		return resMsg;
 	}
-	public void setErrorCode(String errorCode) {
-		this.errorCode = errorCode;
+
+	public void setResMsg(String resMsg) {
+		this.resMsg = resMsg;
 	}
-	public String getErrorMsg() {
-		return errorMsg;
+
+	public Object getRetObj() {
+		return retObj;
 	}
-	public void setErrorMsg(String errorMsg) {
-		this.errorMsg = errorMsg;
+
+	public void setRetObj(Object retObj) {
+		this.retObj = retObj;
 	}
 	
 }
