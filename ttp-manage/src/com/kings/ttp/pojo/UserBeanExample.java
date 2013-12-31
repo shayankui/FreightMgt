@@ -3,14 +3,14 @@ package com.kings.ttp.pojo;
 import java.util.ArrayList;
 import java.util.List;
 
-public class DirverBeanExample {
+public class UserBeanExample {
     protected String orderByClause;
 
     protected boolean distinct;
 
     protected List<Criteria> oredCriteria;
 
-    public DirverBeanExample() {
+    public UserBeanExample() {
         oredCriteria = new ArrayList<Criteria>();
     }
 
@@ -171,6 +171,66 @@ public class DirverBeanExample {
 
         public Criteria andUserIdNotBetween(String value1, String value2) {
             addCriterion("F_USER_ID not between", value1, value2, "userId");
+            return (Criteria) this;
+        }
+
+        public Criteria andUserTypeIsNull() {
+            addCriterion("F_USER_TYPE is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andUserTypeIsNotNull() {
+            addCriterion("F_USER_TYPE is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andUserTypeEqualTo(Integer value) {
+            addCriterion("F_USER_TYPE =", value, "userType");
+            return (Criteria) this;
+        }
+
+        public Criteria andUserTypeNotEqualTo(Integer value) {
+            addCriterion("F_USER_TYPE <>", value, "userType");
+            return (Criteria) this;
+        }
+
+        public Criteria andUserTypeGreaterThan(Integer value) {
+            addCriterion("F_USER_TYPE >", value, "userType");
+            return (Criteria) this;
+        }
+
+        public Criteria andUserTypeGreaterThanOrEqualTo(Integer value) {
+            addCriterion("F_USER_TYPE >=", value, "userType");
+            return (Criteria) this;
+        }
+
+        public Criteria andUserTypeLessThan(Integer value) {
+            addCriterion("F_USER_TYPE <", value, "userType");
+            return (Criteria) this;
+        }
+
+        public Criteria andUserTypeLessThanOrEqualTo(Integer value) {
+            addCriterion("F_USER_TYPE <=", value, "userType");
+            return (Criteria) this;
+        }
+
+        public Criteria andUserTypeIn(List<Integer> values) {
+            addCriterion("F_USER_TYPE in", values, "userType");
+            return (Criteria) this;
+        }
+
+        public Criteria andUserTypeNotIn(List<Integer> values) {
+            addCriterion("F_USER_TYPE not in", values, "userType");
+            return (Criteria) this;
+        }
+
+        public Criteria andUserTypeBetween(Integer value1, Integer value2) {
+            addCriterion("F_USER_TYPE between", value1, value2, "userType");
+            return (Criteria) this;
+        }
+
+        public Criteria andUserTypeNotBetween(Integer value1, Integer value2) {
+            addCriterion("F_USER_TYPE not between", value1, value2, "userType");
             return (Criteria) this;
         }
 
@@ -1055,142 +1115,142 @@ public class DirverBeanExample {
         }
 
         public Criteria andContactAddressIsNull() {
-            addCriterion("F_contact_address is null");
+            addCriterion("F_CONTACT_ADDRESS is null");
             return (Criteria) this;
         }
 
         public Criteria andContactAddressIsNotNull() {
-            addCriterion("F_contact_address is not null");
+            addCriterion("F_CONTACT_ADDRESS is not null");
             return (Criteria) this;
         }
 
         public Criteria andContactAddressEqualTo(String value) {
-            addCriterion("F_contact_address =", value, "contactAddress");
+            addCriterion("F_CONTACT_ADDRESS =", value, "contactAddress");
             return (Criteria) this;
         }
 
         public Criteria andContactAddressNotEqualTo(String value) {
-            addCriterion("F_contact_address <>", value, "contactAddress");
+            addCriterion("F_CONTACT_ADDRESS <>", value, "contactAddress");
             return (Criteria) this;
         }
 
         public Criteria andContactAddressGreaterThan(String value) {
-            addCriterion("F_contact_address >", value, "contactAddress");
+            addCriterion("F_CONTACT_ADDRESS >", value, "contactAddress");
             return (Criteria) this;
         }
 
         public Criteria andContactAddressGreaterThanOrEqualTo(String value) {
-            addCriterion("F_contact_address >=", value, "contactAddress");
+            addCriterion("F_CONTACT_ADDRESS >=", value, "contactAddress");
             return (Criteria) this;
         }
 
         public Criteria andContactAddressLessThan(String value) {
-            addCriterion("F_contact_address <", value, "contactAddress");
+            addCriterion("F_CONTACT_ADDRESS <", value, "contactAddress");
             return (Criteria) this;
         }
 
         public Criteria andContactAddressLessThanOrEqualTo(String value) {
-            addCriterion("F_contact_address <=", value, "contactAddress");
+            addCriterion("F_CONTACT_ADDRESS <=", value, "contactAddress");
             return (Criteria) this;
         }
 
         public Criteria andContactAddressLike(String value) {
-            addCriterion("F_contact_address like", value, "contactAddress");
+            addCriterion("F_CONTACT_ADDRESS like", value, "contactAddress");
             return (Criteria) this;
         }
 
         public Criteria andContactAddressNotLike(String value) {
-            addCriterion("F_contact_address not like", value, "contactAddress");
+            addCriterion("F_CONTACT_ADDRESS not like", value, "contactAddress");
             return (Criteria) this;
         }
 
         public Criteria andContactAddressIn(List<String> values) {
-            addCriterion("F_contact_address in", values, "contactAddress");
+            addCriterion("F_CONTACT_ADDRESS in", values, "contactAddress");
             return (Criteria) this;
         }
 
         public Criteria andContactAddressNotIn(List<String> values) {
-            addCriterion("F_contact_address not in", values, "contactAddress");
+            addCriterion("F_CONTACT_ADDRESS not in", values, "contactAddress");
             return (Criteria) this;
         }
 
         public Criteria andContactAddressBetween(String value1, String value2) {
-            addCriterion("F_contact_address between", value1, value2, "contactAddress");
+            addCriterion("F_CONTACT_ADDRESS between", value1, value2, "contactAddress");
             return (Criteria) this;
         }
 
         public Criteria andContactAddressNotBetween(String value1, String value2) {
-            addCriterion("F_contact_address not between", value1, value2, "contactAddress");
+            addCriterion("F_CONTACT_ADDRESS not between", value1, value2, "contactAddress");
             return (Criteria) this;
         }
 
-        public Criteria andFEmailIsNull() {
-            addCriterion("f_email is null");
+        public Criteria andEmailIsNull() {
+            addCriterion("F_EMAIL is null");
             return (Criteria) this;
         }
 
-        public Criteria andFEmailIsNotNull() {
-            addCriterion("f_email is not null");
+        public Criteria andEmailIsNotNull() {
+            addCriterion("F_EMAIL is not null");
             return (Criteria) this;
         }
 
-        public Criteria andFEmailEqualTo(String value) {
-            addCriterion("f_email =", value, "fEmail");
+        public Criteria andEmailEqualTo(String value) {
+            addCriterion("F_EMAIL =", value, "email");
             return (Criteria) this;
         }
 
-        public Criteria andFEmailNotEqualTo(String value) {
-            addCriterion("f_email <>", value, "fEmail");
+        public Criteria andEmailNotEqualTo(String value) {
+            addCriterion("F_EMAIL <>", value, "email");
             return (Criteria) this;
         }
 
-        public Criteria andFEmailGreaterThan(String value) {
-            addCriterion("f_email >", value, "fEmail");
+        public Criteria andEmailGreaterThan(String value) {
+            addCriterion("F_EMAIL >", value, "email");
             return (Criteria) this;
         }
 
-        public Criteria andFEmailGreaterThanOrEqualTo(String value) {
-            addCriterion("f_email >=", value, "fEmail");
+        public Criteria andEmailGreaterThanOrEqualTo(String value) {
+            addCriterion("F_EMAIL >=", value, "email");
             return (Criteria) this;
         }
 
-        public Criteria andFEmailLessThan(String value) {
-            addCriterion("f_email <", value, "fEmail");
+        public Criteria andEmailLessThan(String value) {
+            addCriterion("F_EMAIL <", value, "email");
             return (Criteria) this;
         }
 
-        public Criteria andFEmailLessThanOrEqualTo(String value) {
-            addCriterion("f_email <=", value, "fEmail");
+        public Criteria andEmailLessThanOrEqualTo(String value) {
+            addCriterion("F_EMAIL <=", value, "email");
             return (Criteria) this;
         }
 
-        public Criteria andFEmailLike(String value) {
-            addCriterion("f_email like", value, "fEmail");
+        public Criteria andEmailLike(String value) {
+            addCriterion("F_EMAIL like", value, "email");
             return (Criteria) this;
         }
 
-        public Criteria andFEmailNotLike(String value) {
-            addCriterion("f_email not like", value, "fEmail");
+        public Criteria andEmailNotLike(String value) {
+            addCriterion("F_EMAIL not like", value, "email");
             return (Criteria) this;
         }
 
-        public Criteria andFEmailIn(List<String> values) {
-            addCriterion("f_email in", values, "fEmail");
+        public Criteria andEmailIn(List<String> values) {
+            addCriterion("F_EMAIL in", values, "email");
             return (Criteria) this;
         }
 
-        public Criteria andFEmailNotIn(List<String> values) {
-            addCriterion("f_email not in", values, "fEmail");
+        public Criteria andEmailNotIn(List<String> values) {
+            addCriterion("F_EMAIL not in", values, "email");
             return (Criteria) this;
         }
 
-        public Criteria andFEmailBetween(String value1, String value2) {
-            addCriterion("f_email between", value1, value2, "fEmail");
+        public Criteria andEmailBetween(String value1, String value2) {
+            addCriterion("F_EMAIL between", value1, value2, "email");
             return (Criteria) this;
         }
 
-        public Criteria andFEmailNotBetween(String value1, String value2) {
-            addCriterion("f_email not between", value1, value2, "fEmail");
+        public Criteria andEmailNotBetween(String value1, String value2) {
+            addCriterion("F_EMAIL not between", value1, value2, "email");
             return (Criteria) this;
         }
 

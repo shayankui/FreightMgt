@@ -14,35 +14,12 @@ CREATE TABLE T_SYSTEM (
 		PRIMARY KEY (F_CSBM)
 );
 
-/*发货方表*/
-CREATE TABLE T_USER_SHIPPER (
-		F_USER_ID  						VARCHAR(64) 			NOT NULL 							COMMENT '用户ID,UUID主键',
-		F_PASSWD							VARCHAR(64)				NOT NULL							COMMENT '用户密码,md5加密',
-		F_NAME   							VARCHAR(100) 			NOT NULL 							COMMENT '用户姓名' ,
-		F_CARD_TYPE						INT								NOT NULL	DEFAULT 1 	COMMENT '证件类型,1身份证 2其他 默认1',
-		F_CARD   							VARCHAR(32) 			NOT NULL							COMMENT '证件号码' ,
-		F_MOBILE  						VARCHAR(20) 			NOT NULL							COMMENT '手机号' ,
-		F_PHOTO	  						VARCHAR(1000) 		NULL 									COMMENT '头像,图片url' ,
-		F_COMPANY  						VARCHAR(500) 			NULL 									COMMENT '单位名称' ,
-		F_STATUS  						INT						 		NOT NULL 	DEFAULT 1		COMMENT '状态 1未认证 2已认证 3正常' ,
-		F_PROVINCE_NUM				VARCHAR(100) 			NOT NULL 							COMMENT '用户省份' ,
-		F_REGION_NUM					VARCHAR(100) 			NOT NULL 							COMMENT '用户地市' ,
-		F_COUNTRY_NUM					VARCHAR(100) 			NOT NULL 							COMMENT '用户区县' ,
-		F_contact_address  		VARCHAR(1000) 		NULL 									COMMENT '联系地址（通讯地址）' ,
-		f_email	  						VARCHAR(500)	 		NULL 									COMMENT '电子邮箱' ,
-		F_TELNUM  						VARCHAR(32)		 		NULL 									COMMENT '固话' ,
-		F_CONTACT_USER  			VARCHAR(100)	 		NULL 									COMMENT '备用联系人姓名' ,
-		F_CONTACT_MOBILE  		VARCHAR(20)		 		NULL 									COMMENT '备用联系人手机号' ,
-		F_CONTACT_TEL  				VARCHAR(32) 			NULL 									COMMENT '备用联系人电话' ,
-		F_ATTACH_FILE					VARCHAR(1000)			NULL									COMMENT '用户资质附件',
-		F_BUILD_TIME					VARCHAR(20)		 		NOT NULL							COMMENT '用户创建时间' ,
-		F_MEMO								VARCHAR(1000) 		NULL 									COMMENT '备注' ,
-		PRIMARY KEY (F_USER_ID)
-);
 
-/*司机表*/
-CREATE TABLE T_USER_DRIVER (
+
+/*前端用户表*/
+CREATE TABLE T_USER (
 		F_USER_ID  									VARCHAR(64) 			NOT NULL 							COMMENT '用户ID,UUID主键',
+		F_USER_TYPE									INT								NOT NULL							COMMENT '1发货方 2司机',
 		F_PASSWD										VARCHAR(64)				NOT NULL							COMMENT '用户密码,md5加密',
 		F_NAME   										VARCHAR(100) 			NOT NULL 							COMMENT '用户姓名' ,
 		F_CARD_TYPE									INT								NOT NULL	DEFAULT 1 	COMMENT '证件类型,1身份证 2其他 默认1',
@@ -56,8 +33,8 @@ CREATE TABLE T_USER_DRIVER (
 		F_PROVINCE_NUM							VARCHAR(100) 			NOT NULL 							COMMENT '用户省份' ,
 		F_REGION_NUM								VARCHAR(100) 			NOT NULL 							COMMENT '用户地市' ,
 		F_COUNTRY_NUM								VARCHAR(100) 			NOT NULL 							COMMENT '用户区县' ,
-		F_contact_address  					VARCHAR(1000) 		NULL 									COMMENT '联系地址（通讯地址）' ,
-		f_email	  									VARCHAR(500)	 		NULL 									COMMENT '电子邮箱' ,
+		F_CONTACT_ADDRESS  					VARCHAR(1000) 		NULL 									COMMENT '联系地址（通讯地址）' ,
+		F_EMAIL	  									VARCHAR(500)	 		NULL 									COMMENT '电子邮箱' ,
 		F_TELNUM  									VARCHAR(32)		 		NULL 									COMMENT '固话' ,
 		F_CONTACT_USER  						VARCHAR(100)	 		NULL 									COMMENT '备用联系人姓名' ,
 		F_CONTACT_MOBILE  					VARCHAR(20)		 		NULL 									COMMENT '备用联系人手机号' ,
@@ -67,6 +44,8 @@ CREATE TABLE T_USER_DRIVER (
 		F_MEMO											VARCHAR(1000) 		NULL 									COMMENT '备注' ,
 		PRIMARY KEY (F_USER_ID)
 );
+
+
 
 /*车辆表*/
 CREATE TABLE T_DA_TRAIN (
@@ -427,7 +406,7 @@ CREATE TABLE `t_menu_list` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='菜单表';
 
 /*系统管理用户*/
-CREATE TABLE `t_user` (
+CREATE TABLE `T_EMP` (
   `F_ID` int(10) NOT NULL auto_increment COMMENT '主键',
   `F_NAME` varchar(32) default NULL COMMENT '员工真实姓名',
   `F_USERNAME` varchar(32) default NULL COMMENT '用户名，帐号',

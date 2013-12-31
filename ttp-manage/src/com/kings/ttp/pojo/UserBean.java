@@ -1,7 +1,9 @@
 package com.kings.ttp.pojo;
 
-public class ShipperBean {
+public class UserBean {
     private String userId;
+
+    private Integer userType;
 
     private String passwd;
 
@@ -10,6 +12,10 @@ public class ShipperBean {
     private Integer cardType;
 
     private String card;
+
+    private Integer dirvingLicenseType;
+
+    private String dirvingLicense;
 
     private String mobile;
 
@@ -27,7 +33,7 @@ public class ShipperBean {
 
     private String contactAddress;
 
-    private String fEmail;
+    private String email;
 
     private String telnum;
 
@@ -49,6 +55,14 @@ public class ShipperBean {
 
     public void setUserId(String userId) {
         this.userId = userId == null ? null : userId.trim();
+    }
+
+    public Integer getUserType() {
+        return userType;
+    }
+
+    public void setUserType(Integer userType) {
+        this.userType = userType;
     }
 
     public String getPasswd() {
@@ -81,6 +95,22 @@ public class ShipperBean {
 
     public void setCard(String card) {
         this.card = card == null ? null : card.trim();
+    }
+
+    public Integer getDirvingLicenseType() {
+        return dirvingLicenseType;
+    }
+
+    public void setDirvingLicenseType(Integer dirvingLicenseType) {
+        this.dirvingLicenseType = dirvingLicenseType;
+    }
+
+    public String getDirvingLicense() {
+        return dirvingLicense;
+    }
+
+    public void setDirvingLicense(String dirvingLicense) {
+        this.dirvingLicense = dirvingLicense == null ? null : dirvingLicense.trim();
     }
 
     public String getMobile() {
@@ -147,12 +177,12 @@ public class ShipperBean {
         this.contactAddress = contactAddress == null ? null : contactAddress.trim();
     }
 
-    public String getfEmail() {
-        return fEmail;
+    public String getEmail() {
+        return email;
     }
 
-    public void setfEmail(String fEmail) {
-        this.fEmail = fEmail == null ? null : fEmail.trim();
+    public void setEmail(String email) {
+        this.email = email == null ? null : email.trim();
     }
 
     public String getTelnum() {

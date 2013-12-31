@@ -80,7 +80,7 @@
       distinct
     </if>
     <include refid="Base_Column_List" />
-    from t_user
+    from t_emp
     <if test="_parameter != null" >
       <include refid="Example_Where_Clause" />
     </if>
@@ -91,7 +91,7 @@
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
     select 
     <include refid="Base_Column_List" />
-    from t_user
+    from t_emp
     where F_ID = #{id,jdbcType=INTEGER}
   </select>
   
@@ -99,22 +99,22 @@
    <select id="selectByUsername" resultMap="BaseResultMap" parameterType="java.lang.String" >
     select 
     <include refid="Base_Column_List" />
-    from t_user
+    from t_emp
     where  F_USERNAME = #{username} 
   </select>
   
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
-    delete from t_user
+    delete from t_emp
     where F_ID = #{id,jdbcType=INTEGER}
   </delete>
   <delete id="deleteByExample" parameterType="com.kings.ttp.pojo.AdminUserInfoExample" >
-    delete from t_user
+    delete from t_emp
     <if test="_parameter != null" >
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
   <insert id="insert" parameterType="com.kings.ttp.pojo.AdminUserInfo" >
-    insert into t_user (F_ID, F_NAME, F_USERNAME, 
+    insert into t_emp (F_ID, F_NAME, F_USERNAME, 
       F_PASSWORD, F_DEPARTMENT, F_PROJECT_GROUP, 
       F_EMAIL, F_GROUP_ID, F_STATUS
       )
@@ -124,7 +124,7 @@
       )
   </insert>
   <insert id="insertSelective" parameterType="com.kings.ttp.pojo.AdminUserInfo" >
-    insert into t_user
+    insert into t_emp
     <trim prefix="(" suffix=")" suffixOverrides="," >
       <if test="id != null" >
         F_ID,
@@ -185,13 +185,13 @@
     </trim>
   </insert>
   <select id="countByExample" parameterType="com.kings.ttp.pojo.AdminUserInfoExample" resultType="java.lang.Integer" >
-    select count(*) from t_user
+    select count(*) from t_emp
     <if test="_parameter != null" >
       <include refid="Example_Where_Clause" />
     </if>
   </select>
   <update id="updateByExampleSelective" parameterType="map" >
-    update t_user
+    update t_emp
     <set >
       <if test="record.id != null" >
         F_ID = #{record.id,jdbcType=INTEGER},
@@ -226,7 +226,7 @@
     </if>
   </update>
   <update id="updateByExample" parameterType="map" >
-    update t_user
+    update t_emp
     set F_ID = #{record.id,jdbcType=INTEGER},
       F_NAME = #{record.name,jdbcType=VARCHAR},
       F_USERNAME = #{record.username,jdbcType=VARCHAR},
@@ -241,7 +241,7 @@
     </if>
   </update>
   <update id="updateByPrimaryKeySelective" parameterType="com.kings.ttp.pojo.AdminUserInfo" >
-    update t_user
+    update t_emp
     <set >
       <if test="name != null" >
         F_NAME = #{name,jdbcType=VARCHAR},
@@ -271,7 +271,7 @@
     where F_ID = #{id,jdbcType=INTEGER}
   </update>
   <update id="updateByPrimaryKey" parameterType="com.kings.ttp.pojo.AdminUserInfo" >
-    update t_user
+    update t_emp
     set F_NAME = #{name,jdbcType=VARCHAR},
       F_USERNAME = #{username,jdbcType=VARCHAR},
       F_PASSWORD = #{password,jdbcType=VARCHAR},
