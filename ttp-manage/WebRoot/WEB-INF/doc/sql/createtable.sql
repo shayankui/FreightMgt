@@ -33,6 +33,8 @@ CREATE TABLE T_USER (
 		F_PROVINCE_NUM							VARCHAR(100) 			NOT NULL 							COMMENT '用户省份' ,
 		F_REGION_NUM								VARCHAR(100) 			NOT NULL 							COMMENT '用户地市' ,
 		F_COUNTRY_NUM								VARCHAR(100) 			NOT NULL 							COMMENT '用户区县' ,
+		F_GPS_LONGITUDE							DOUBLE				NULL									COMMENT '定位 经度', 
+		F_GPS_LATITUDE							DOUBLE				NULL									COMMENT '定位 纬度', 
 		F_CONTACT_ADDRESS  					VARCHAR(1000) 		NULL 									COMMENT '联系地址（通讯地址）' ,
 		F_EMAIL	  									VARCHAR(500)	 		NULL 									COMMENT '电子邮箱' ,
 		F_TELNUM  									VARCHAR(32)		 		NULL 									COMMENT '固话' ,
@@ -121,6 +123,8 @@ CREATE TABLE T_DELIV_PLACE (
 		F_REGION_NUM								VARCHAR(100) 			NOT NULL 							COMMENT '发货地地市' ,
 		F_COUNTRY_NUM								VARCHAR(100) 					NULL 							COMMENT '发货地区县' ,
 		F_DETAIL_ADDRESS						VARCHAR(500) 			NULL		 							COMMENT '发货地详细地址' ,
+		F_GPS_LONGITUDE							DOUBLE				NULL									COMMENT '定位 经度', 
+		F_GPS_LATITUDE							DOUBLE				NULL									COMMENT '定位 纬度', 
 		F_IS_DEFAULT								INT 							NOT NULL DEFAULT 1    COMMENT '是否默认 0否 1是',
 		PRIMARY KEY (F_PLACE_ID)
 );
@@ -133,6 +137,8 @@ CREATE TABLE T_RECEIVE_PLACE (
 		F_REGION_NUM								VARCHAR(100) 			NOT NULL 							COMMENT '收货地地市' ,
 		F_COUNTRY_NUM								VARCHAR(100) 					NULL 							COMMENT '收货地区县' ,
 		F_DETAIL_ADDRESS						VARCHAR(500) 			NULL		 							COMMENT '收货地详细地址' ,
+		F_GPS_LONGITUDE							DOUBLE				NULL									COMMENT '定位 经度', 
+		F_GPS_LATITUDE							DOUBLE				NULL									COMMENT '定位 纬度', 
 		F_IS_DEFAULT								INT 							NOT NULL DEFAULT 1    COMMENT '是否默认 0否 1是',
 		PRIMARY KEY (F_PLACE_ID)
 );
@@ -148,6 +154,8 @@ CREATE TABLE T_DISCHARGE_PLACE (
 		F_REGION_NUM								VARCHAR(100) 			NOT NULL 							COMMENT '卸货地地市' ,
 		F_COUNTRY_NUM								VARCHAR(100) 					NULL 							COMMENT '卸货地区县' ,
 		F_DETAIL_ADDRESS						VARCHAR(500) 			NULL		 							COMMENT '卸货地详细地址' ,
+		F_GPS_LONGITUDE							DOUBLE				NULL									COMMENT '定位 经度', 
+		F_GPS_LATITUDE							DOUBLE				NULL									COMMENT '定位 纬度', 
 		F_IS_DEFAULT								INT 							NOT NULL DEFAULT 1    COMMENT '是否默认 0否 1是',
 		F_LAST_TIME									VARCHAR(20)				NOT NULL 							COMMENT '最后一次操作时间 YYYYMMDDHH24MISS',
 		PRIMARY KEY (F_PLACE_ID)
