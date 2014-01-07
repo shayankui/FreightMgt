@@ -31,6 +31,10 @@ public class UserBean {
 
     private String countryNum;
 
+    private Double gpsLongitude;
+
+    private Double gpsLatitude;
+
     private String contactAddress;
 
     private String email;
@@ -44,6 +48,10 @@ public class UserBean {
     private String contactTel;
 
     private String attachFile;
+
+    private Double maxWeight;
+
+    private Double maxSize;
 
     private String buildTime;
 
@@ -169,6 +177,22 @@ public class UserBean {
         this.countryNum = countryNum == null ? null : countryNum.trim();
     }
 
+    public Double getGpsLongitude() {
+        return gpsLongitude;
+    }
+
+    public void setGpsLongitude(Double gpsLongitude) {
+        this.gpsLongitude = gpsLongitude;
+    }
+
+    public Double getGpsLatitude() {
+        return gpsLatitude;
+    }
+
+    public void setGpsLatitude(Double gpsLatitude) {
+        this.gpsLatitude = gpsLatitude;
+    }
+
     public String getContactAddress() {
         return contactAddress;
     }
@@ -223,6 +247,22 @@ public class UserBean {
 
     public void setAttachFile(String attachFile) {
         this.attachFile = attachFile == null ? null : attachFile.trim();
+    }
+
+    public Double getMaxWeight() {
+        return maxWeight;
+    }
+
+    public void setMaxWeight(Double maxWeight) {
+        this.maxWeight = maxWeight;
+    }
+
+    public Double getMaxSize() {
+        return maxSize;
+    }
+
+    public void setMaxSize(Double maxSize) {
+        this.maxSize = maxSize;
     }
 
     public String getBuildTime() {

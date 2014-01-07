@@ -262,3 +262,342 @@ function returnEvent(e){
 function trimBlankFunc(str){
     return str.replace(/^\s*|\s*$/g,"");
 }
+
+
+
+
+var queryParam = {};
+function initToolBar(toolObj){
+	var id = toolObj.id;
+	var title = toolObj.title;
+	var win = toolObj.win;
+	var addurl = toolObj.addurl;
+	var editurl = toolObj.editurl;
+	var viewurl = toolObj.viewurl;
+	var deleteurl = toolObj.deleteurl;
+	
+	var toolbarData = 
+	[{
+		id:'btnadd',
+		text:'添加',
+		iconCls:'icon-add',
+		handler:function(){
+			showAddWindow(title,addurl,win);
+		}
+	},{
+		id:'btnedit',
+		text:'修改',
+		iconCls:'icon-edit',
+		handler:function(){
+			showEditWindow(id,title,editurl,win);
+		}
+	},{
+		id:'btnview',
+		text:'查看',
+		iconCls:'icon-search',
+		handler:function(){
+			showViewWindow(id,undefined,title,viewurl,win);
+		}
+	},{
+		id:'btncut',
+		text:'删除',
+		iconCls:'icon-no',
+		handler:function(){
+			deleteRecord(id,deleteurl);
+		}
+	},
+	'-',{
+		id:'btnClearSelections',
+		text:'清除选择',
+		iconCls:'icon-clear',
+		handler:function(){
+			$('#'+id).datagrid('clearSelections');
+		}
+	},
+	'-',{
+					id:'gridTitle',
+					text:'当前已选中行：<span id="selectRowNum">0</span>'
+	}];
+	return toolbarData;
+}
+//添加信息窗口
+function showAddWindow(title,addurl,win){
+	win_setting.title=title;
+	XW_dialog.window(addurl,win,'addCallBack');
+}
+		
+//查看信息窗口
+function showViewWindow(id,data,title,viewurl,win){
+	if(undefined === data)
+	{
+		var rows = $('#' + id).datagrid("getSelections");
+		if($(rows).length < 1 || $(rows).length > 1)
+		{
+			XW_dialog.alert('',"请选择要查看的记录，只能选取单行查看！");
+			return ;
+		}
+		data = rows[0];
+	}
+	win_setting.title=title;
+	var newUrl = getUrlWithParam(viewurl,data);
+	XW_dialog.window(newUrl,win,'viewCallBack');
+}
+		
+//修改信息窗口
+function showEditWindow(id,title,editurl,win){
+	var rows = $('#' + id).datagrid("getSelections");
+	if($(rows).length < 1 || $(rows).length > 1)
+	{
+		XW_dialog.alert('',"请选择要修改的记录，只能选取单行修改！");
+		return ;
+	}
+	win_setting.title=title;
+	var newUrl = getUrlWithParam(editurl,rows[0]);
+	XW_dialog.window(newUrl,win,'editCallBack');
+}
+//删除信息	
+function deleteRecord(id,deleteurl){
+	var rows = $('#' + id).datagrid("getSelections");
+	if($(rows).length < 1 || $(rows).length > 1)
+	{
+		XW_dialog.alert('',"请选择要删除的记录，只能选取单行删除！");
+		return ;
+	}			
+	XW_dialog.confirm('','请确认是否删除？',
+		function(){
+			deleteData(rows[0],deleteurl);
+	});
+}
+
+function deleteData(data,url){
+	var newUrl = getUrlWithParam(url,data);
+	//发送删除请求
+	$.ajax({
+	   type: "POST",
+	   dataType:'json',
+	   url: newUrl,
+	   success: function(msg){
+	     if(msg.success)
+			{
+				//删除成功
+				XW_dialog.tips(msg.errorMsg,1);
+				deleteCallBack();
+			}
+			else
+			{
+				XW_dialog.alert('',msg.errorMsg);
+			}
+	   }
+	});
+}
+
+function getUrlWithParam(url,data){
+	var param = getParameter(data);
+	if(url){
+		if(url.indexOf ('?') != -1){
+			url = url + "&" + param;
+		}else{
+			url = url + "?" + param;
+		}
+	}
+	return url;
+}
+
+
+function reloadGrid(id){
+	$('#' + id).datagrid('reload');
+	$('#' + id).datagrid('clearSelections');
+}
+
+function querySubmit(id){
+	$('#' + id).datagrid('load',getQueryParam());
+}
+
+function submitForm(id,url,btnId,fn){
+	var fun = document.getElementById(btnId).onclick;
+	document.getElementById(btnId).onclick=function(){return false;};
+	$('#' + id).form('submit',{
+		url: url,
+		onSubmit: function(){
+			if(fn){
+				if(!fn()){
+					return false;
+				}
+			}
+			return $(this).form('validate');
+		},
+		success: function(result){
+			var msg = jQuery.parseJSON(result);
+			if(msg.success)
+			{
+				//关闭对话框
+				XW_dialog.close();
+				//回调opener页面方法
+				XW_dialog.callback();
+				//提示信息
+				XW_dialog.alert('标题',msg.errorMsg);
+			}
+			else
+			{
+				XW_dialog.alert('标题',msg.errorMsg);
+				document.getElementById(btnId).onclick=fun;
+			}
+		}	
+	});
+}		
+//初始化Grid
+function initGrid(girdObject,title,viewurl,win)
+{
+	//表格id
+	var id = girdObject.id;
+	//初始化动态计算高度
+	var wHeight = $(this).height();
+	var top = $('#'+id).offset().top;
+	var height = wHeight - top -20;
+	//初始化属性参数
+	
+	//是否换行，true为一行显示
+	var nowrap = isNull(girdObject.nowrap,false);
+	//True 就把行条纹化,即奇偶行使用不同背景色
+	var striped = isNull(girdObject.striped,true);
+	//True 就会自动扩大或缩小列的尺寸以适应表格的宽度并且防止水平滚动。
+	var fitColumns = isNull(girdObject.fitColumns,true);
+	//从远程站点请求数据的 URL。
+	var url = girdObject.url;
+	//当请求远程数据时，发送的额外参数。
+	var queryParams = girdObject.queryParams;
+	//定义可以排序的列。
+	var sortName = girdObject.sortName;
+	//定义列的排序顺序，只能用 'asc' 或 'desc'。
+	var sortOrder = isNull(girdObject.sortOrder,'desc');
+	//标识字段。
+	var idField = girdObject.idField;
+	//True 就会只允许选中一行。
+	var singleSelect = isNull(girdObject.singleSelect,true);
+	//datagrid 的 column 的配置对象，
+	var columns = girdObject.columns;
+	//True 就会在 datagrid 的底部显示分页栏。
+	var pagination = isNull(girdObject.pagination,true);
+	//True 就会显示行号的列。
+	var rownumbers  = isNull(girdObject.rownumbers,true);
+	//工具栏
+	var toolbar = girdObject.toolbar;
+	
+	$('#'+id).datagrid({
+		width:'95%',	
+		height:height,
+		nowrap: false,
+		striped: true,
+		fitColumns:true,
+		url:url,
+		queryParams:queryParams,
+		sortName: sortName,
+		sortOrder: 'desc',
+		remoteSort:false,
+		//Grid对应的主键列
+		idField:idField,
+		singleSelect:true,
+		columns:[columns],
+		pagination:pagination,
+		rownumbers:true,
+		toolbar:toolbar,
+		onLoadError:function(){
+			XW_dialog.alert('',"数据加载失败");
+		},
+		//双击事件
+		onDblClickRow:function(rowIndex,rowData){
+			showViewWindow(id,rowData,title,viewurl,win);
+			
+		},
+		onLoadSuccess : function(data){
+			if(data.total < 1){
+				XW_dialog.tips('未查询到数据！');
+			}
+		},
+		onSelect:function(rowIndex,rowData){
+			var selections = $('#grid').datagrid('getSelections');
+			$('#selectRowNum')[0].innerHTML = selections.length;
+		},
+		onUnselect:function(rowIndex,rowData){
+			var selections = $('#'+id).datagrid('getSelections');
+			$('#selectRowNum')[0].innerHTML = selections.length;
+		},
+		onSelectAll:function(rowIndex,rowData){
+			var selections = $('#'+id).datagrid('getSelections');
+			$('#selectRowNum')[0].innerHTML = selections.length;
+		},
+		onUnselectAll:function(rowIndex,rowData){
+			var selections = $('#'+id).datagrid('getSelections');
+			$('#selectRowNum')[0].innerHTML = selections.length;
+		}
+	});
+	//设置分页控件  
+    var p = $('#'+id).datagrid('getPager');  
+    $(p).pagination(PAGE_TEMPLATE);
+}
+
+function isNull(value,defaultValue){
+	if(value == null || value == undefined || value == ''){
+		return defaultValue;
+	}else{
+		return value;
+	}
+}
+
+//初始化公共信息
+function initCommonInfo(){
+	
+}
+
+jQuery.extend({
+	toJSON: function(object)
+	{
+     	var type = typeof object;
+     	if ('object' == type && object != null) 
+     	{
+       		if (Array == object.constructor) type = 'array';
+       		else if (RegExp == object.constructor) type = 'regexp';
+       		else type = 'object';
+     	}
+     	switch (type) 
+     	{
+     		case 'undefined':
+     		case 'unknown':
+       			return;
+      			break;
+     		case 'function':
+     		case 'boolean':
+     		case 'regexp':
+       		return object.toString();
+       		break;
+     		case 'number':
+       		return isFinite(object) ? object.toString() : 'null';
+       		break;
+     		case 'string':
+       		return '"' + object.replace(/(\\|\")/g, "\\$1").replace(/\n|\r|\t/g, function() {
+         	var a = arguments[0];
+         	return (a == '\n') ? '\\n': (a == '\r') ? '\\r': (a == '\t') ? '\\t': ""
+       			}) + '"';
+       		break;
+     		case 'object':
+       		if (object === null) return 'null';
+       		var results = [];
+       		for (var property in object) 
+       		{
+         		var value = jQuery.toJSON(object[property]);
+         		if (value !== undefined) results.push(jQuery.toJSON(property) + ':' + value);
+       		}
+       		return '{' + results.join(',') + '}';
+       		break;
+     		case 'array':
+       		var results = [];
+       		for (var i = 0; i < object.length; i++) 
+       		{
+         		var value = jQuery.toJSON(object[i]);
+         		if (value !== undefined) results.push(value);
+       		}
+       		return '[' + results.join(',') + ']';
+       		break;
+     }
+   } 
+});

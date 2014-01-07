@@ -42,19 +42,6 @@
 				}
 			});
 		
-		
-			$('#div_acc').accordion('add',{
-				title:'系统设置',
-				content:'系统信息设置'
-			});
-			$('#div_acc').accordion('add',{
-				title:'菜单一',
-				content:'字菜单一'
-			});
-			$('#div_acc').accordion('add',{
-				title:'菜单二',
-				content:'字菜单二'
-			});
 		}
 		
 		
@@ -77,11 +64,43 @@
 			for(var i=0;i<menus.length;i++)
 			{
 				var m = menus[i];
+				var content = "<a href='javascript:void(0);' id='"+m.id+"' onclick='showPage(this);' url='"+GLOBAL_INFO.CONTEXTPATH + m.url +"' class='menu_list'>"+m.menuName+"</a>";
 				$('#div_acc').accordion('add',{
 					title:m.menuName,
-					content:m.menuName
+					content:content
 				});
 			}
+		}
+		//弹出菜单对应页面
+		function showPage(a)
+		{
+			var url = $(a).attr('url');
+			var title = $(a).text();
+			var menuId = $(a).attr('id');
+			if(url){
+				var bExists = $('#main_tab').tabs('exists', title);
+				if(bExists){
+					$('#main_tab').tabs('select', title);
+					var tab = $('#main_tab').tabs('getSelected');
+					$('#main_tab').tabs('update', {
+							tab: tab,
+							options:{
+								title:title,
+								content:'<iframe src="'+ url +'" id="iframe_' + menuId + '" frameborder="0" scrolling="auto" style="width:100%;height:100%"></iframe>',
+								iconCls:'icon-save',
+								closable:true
+							}
+						});
+				}else{
+					$('#main_tab').tabs('add', {
+						title:title,
+						content:'<iframe src="'+ url +'" frameborder="0" scrolling="auto" style="width:100%;height:100%"></iframe>',
+						iconCls:'icon-save',
+						closable:true
+					});
+				}
+			}
+			
 		}
 	</script>
 </head>
@@ -116,18 +135,8 @@
 		
 		<!--主功能区域定义开始-->
 		<div region="center" style="overflow:hidden;">
-			<div class="easyui-tabs" fit="true" border="false">
+			<div class="easyui-tabs" fit="true" border="false" id="main_tab">
 				<div title="起始页" iconCls="icon-reload" style="padding:20px;overflow:hidden;"> 
-					<div style="margin-top:20px;">
-						<iframe frameborder="0" scrolling="auto" style="width:100%;height:100%"></iframe>
-					</div>
-				</div>
-				<div title="系统参数设置" iconCls="icon-reload" closable="true" style="padding:20px;overflow:hidden;">
-					<div style="margin-top:20px;">
-						<iframe frameborder="0" scrolling="auto" style="width:100%;height:100%"></iframe>
-					</div>
-				</div>
-				<div title="用户权限设置" iconCls="icon-reload" closable="true" style="padding:20px;overflow:hidden;">
 					<div style="margin-top:20px;">
 						<iframe frameborder="0" scrolling="auto" style="width:100%;height:100%"></iframe>
 					</div>

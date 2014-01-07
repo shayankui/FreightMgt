@@ -5,6 +5,7 @@
     <id column="F_ORDER_NUM" property="orderNum" jdbcType="VARCHAR" />
     <result column="F_INIT_NUM" property="initNum" jdbcType="VARCHAR" />
     <result column="F_EXT_NUM" property="extNum" jdbcType="VARCHAR" />
+    <result column="F_ORDER_TITLE" property="orderTitle" jdbcType="VARCHAR" />
     <result column="F_ORDER_MANCODE" property="orderMancode" jdbcType="VARCHAR" />
     <result column="F_ORDER_MANNAME" property="orderManname" jdbcType="VARCHAR" />
     <result column="F_ORDER_TIME" property="orderTime" jdbcType="VARCHAR" />
@@ -101,8 +102,8 @@
     </where>
   </sql>
   <sql id="Base_Column_List" >
-    F_ORDER_NUM, F_INIT_NUM, F_EXT_NUM, F_ORDER_MANCODE, F_ORDER_MANNAME, F_ORDER_TIME, 
-    F_ORDER_MOBILE, F_CLIENT_TYPE, F_CLIENT_IMEI, F_DELIV_PLACE_ID, F_DELIV_PROVINCE_NUM, 
+    F_ORDER_NUM, F_INIT_NUM, F_EXT_NUM, F_ORDER_TITLE, F_ORDER_MANCODE, F_ORDER_MANNAME, 
+    F_ORDER_TIME, F_ORDER_MOBILE, F_CLIENT_TYPE, F_CLIENT_IMEI, F_DELIV_PLACE_ID, F_DELIV_PROVINCE_NUM, 
     F_DELIV_REGION_NUM, F_DELIV_COUNTRY_NUM, F_DELIV_DETAIL_ADDRESS, F_RECEIVE_PLACE_ID, 
     F_RECEIVE_PROVINCE_NUM, F_RECEIVE_REGION_NUM, F_RECEIVE_COUNTRY_NUM, F_RECEIVE_DETAIL_ADDRESS, 
     F_DRIVER_ID, F_DRIVER_NAME, F_DRIVER_MOBILE, F_DRIVER_CLIENT_TYPE, F_DRIVER_CLIENT_IMEI, 
@@ -142,33 +143,33 @@
   </delete>
   <insert id="insert" parameterType="com.kings.ttp.pojo.OrderMainInfo" >
     insert into t_order_main (F_ORDER_NUM, F_INIT_NUM, F_EXT_NUM, 
-      F_ORDER_MANCODE, F_ORDER_MANNAME, F_ORDER_TIME, 
-      F_ORDER_MOBILE, F_CLIENT_TYPE, F_CLIENT_IMEI, 
-      F_DELIV_PLACE_ID, F_DELIV_PROVINCE_NUM, F_DELIV_REGION_NUM, 
-      F_DELIV_COUNTRY_NUM, F_DELIV_DETAIL_ADDRESS, F_RECEIVE_PLACE_ID, 
-      F_RECEIVE_PROVINCE_NUM, F_RECEIVE_REGION_NUM, F_RECEIVE_COUNTRY_NUM, 
-      F_RECEIVE_DETAIL_ADDRESS, F_DRIVER_ID, F_DRIVER_NAME, 
-      F_DRIVER_MOBILE, F_DRIVER_CLIENT_TYPE, F_DRIVER_CLIENT_IMEI, 
-      F_ORDER_STATUS, F_STATUS_CAPTION, F_VALID_DATE, 
-      F_PAY_TIME, F_CHECK_DATE, F_ORDER_MEMO, 
-      F_ORDER_MONEY, F_ORDER_ISPAY, F_ORDER_PAYMONEY, 
-      F_ORDER_DISCOUNT, F_IS_EVAL, F_LAST_MANCODE, 
-      F_LAST_MANNAME, F_LAST_TIME, F_LAST_MEMO
-      )
+      F_ORDER_TITLE, F_ORDER_MANCODE, F_ORDER_MANNAME, 
+      F_ORDER_TIME, F_ORDER_MOBILE, F_CLIENT_TYPE, 
+      F_CLIENT_IMEI, F_DELIV_PLACE_ID, F_DELIV_PROVINCE_NUM, 
+      F_DELIV_REGION_NUM, F_DELIV_COUNTRY_NUM, F_DELIV_DETAIL_ADDRESS, 
+      F_RECEIVE_PLACE_ID, F_RECEIVE_PROVINCE_NUM, F_RECEIVE_REGION_NUM, 
+      F_RECEIVE_COUNTRY_NUM, F_RECEIVE_DETAIL_ADDRESS, 
+      F_DRIVER_ID, F_DRIVER_NAME, F_DRIVER_MOBILE, 
+      F_DRIVER_CLIENT_TYPE, F_DRIVER_CLIENT_IMEI, F_ORDER_STATUS, 
+      F_STATUS_CAPTION, F_VALID_DATE, F_PAY_TIME, 
+      F_CHECK_DATE, F_ORDER_MEMO, F_ORDER_MONEY, 
+      F_ORDER_ISPAY, F_ORDER_PAYMONEY, F_ORDER_DISCOUNT, 
+      F_IS_EVAL, F_LAST_MANCODE, F_LAST_MANNAME, 
+      F_LAST_TIME, F_LAST_MEMO)
     values (#{orderNum,jdbcType=VARCHAR}, #{initNum,jdbcType=VARCHAR}, #{extNum,jdbcType=VARCHAR}, 
-      #{orderMancode,jdbcType=VARCHAR}, #{orderManname,jdbcType=VARCHAR}, #{orderTime,jdbcType=VARCHAR}, 
-      #{orderMobile,jdbcType=VARCHAR}, #{clientType,jdbcType=INTEGER}, #{clientImei,jdbcType=VARCHAR}, 
-      #{delivPlaceId,jdbcType=VARCHAR}, #{delivProvinceNum,jdbcType=VARCHAR}, #{delivRegionNum,jdbcType=VARCHAR}, 
-      #{delivCountryNum,jdbcType=VARCHAR}, #{delivDetailAddress,jdbcType=VARCHAR}, #{receivePlaceId,jdbcType=VARCHAR}, 
-      #{receiveProvinceNum,jdbcType=VARCHAR}, #{receiveRegionNum,jdbcType=VARCHAR}, #{receiveCountryNum,jdbcType=VARCHAR}, 
-      #{receiveDetailAddress,jdbcType=VARCHAR}, #{driverId,jdbcType=VARCHAR}, #{driverName,jdbcType=VARCHAR}, 
-      #{driverMobile,jdbcType=VARCHAR}, #{driverClientType,jdbcType=INTEGER}, #{driverClientImei,jdbcType=VARCHAR}, 
-      #{orderStatus,jdbcType=VARCHAR}, #{statusCaption,jdbcType=VARCHAR}, #{validDate,jdbcType=VARCHAR}, 
-      #{payTime,jdbcType=VARCHAR}, #{checkDate,jdbcType=VARCHAR}, #{orderMemo,jdbcType=VARCHAR}, 
-      #{orderMoney,jdbcType=DOUBLE}, #{orderIspay,jdbcType=INTEGER}, #{orderPaymoney,jdbcType=DOUBLE}, 
-      #{orderDiscount,jdbcType=DOUBLE}, #{isEval,jdbcType=INTEGER}, #{lastMancode,jdbcType=VARCHAR}, 
-      #{lastManname,jdbcType=VARCHAR}, #{lastTime,jdbcType=VARCHAR}, #{lastMemo,jdbcType=VARCHAR}
-      )
+      #{orderTitle,jdbcType=VARCHAR}, #{orderMancode,jdbcType=VARCHAR}, #{orderManname,jdbcType=VARCHAR}, 
+      #{orderTime,jdbcType=VARCHAR}, #{orderMobile,jdbcType=VARCHAR}, #{clientType,jdbcType=INTEGER}, 
+      #{clientImei,jdbcType=VARCHAR}, #{delivPlaceId,jdbcType=VARCHAR}, #{delivProvinceNum,jdbcType=VARCHAR}, 
+      #{delivRegionNum,jdbcType=VARCHAR}, #{delivCountryNum,jdbcType=VARCHAR}, #{delivDetailAddress,jdbcType=VARCHAR}, 
+      #{receivePlaceId,jdbcType=VARCHAR}, #{receiveProvinceNum,jdbcType=VARCHAR}, #{receiveRegionNum,jdbcType=VARCHAR}, 
+      #{receiveCountryNum,jdbcType=VARCHAR}, #{receiveDetailAddress,jdbcType=VARCHAR}, 
+      #{driverId,jdbcType=VARCHAR}, #{driverName,jdbcType=VARCHAR}, #{driverMobile,jdbcType=VARCHAR}, 
+      #{driverClientType,jdbcType=INTEGER}, #{driverClientImei,jdbcType=VARCHAR}, #{orderStatus,jdbcType=VARCHAR}, 
+      #{statusCaption,jdbcType=VARCHAR}, #{validDate,jdbcType=VARCHAR}, #{payTime,jdbcType=VARCHAR}, 
+      #{checkDate,jdbcType=VARCHAR}, #{orderMemo,jdbcType=VARCHAR}, #{orderMoney,jdbcType=DOUBLE}, 
+      #{orderIspay,jdbcType=INTEGER}, #{orderPaymoney,jdbcType=DOUBLE}, #{orderDiscount,jdbcType=DOUBLE}, 
+      #{isEval,jdbcType=INTEGER}, #{lastMancode,jdbcType=VARCHAR}, #{lastManname,jdbcType=VARCHAR}, 
+      #{lastTime,jdbcType=VARCHAR}, #{lastMemo,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="com.kings.ttp.pojo.OrderMainInfo" >
     insert into t_order_main
@@ -181,6 +182,9 @@
       </if>
       <if test="extNum != null" >
         F_EXT_NUM,
+      </if>
+      <if test="orderTitle != null" >
+        F_ORDER_TITLE,
       </if>
       <if test="orderMancode != null" >
         F_ORDER_MANCODE,
@@ -300,6 +304,9 @@
       </if>
       <if test="extNum != null" >
         #{extNum,jdbcType=VARCHAR},
+      </if>
+      <if test="orderTitle != null" >
+        #{orderTitle,jdbcType=VARCHAR},
       </if>
       <if test="orderMancode != null" >
         #{orderMancode,jdbcType=VARCHAR},
@@ -429,6 +436,9 @@
       <if test="record.extNum != null" >
         F_EXT_NUM = #{record.extNum,jdbcType=VARCHAR},
       </if>
+      <if test="record.orderTitle != null" >
+        F_ORDER_TITLE = #{record.orderTitle,jdbcType=VARCHAR},
+      </if>
       <if test="record.orderMancode != null" >
         F_ORDER_MANCODE = #{record.orderMancode,jdbcType=VARCHAR},
       </if>
@@ -547,6 +557,7 @@
     set F_ORDER_NUM = #{record.orderNum,jdbcType=VARCHAR},
       F_INIT_NUM = #{record.initNum,jdbcType=VARCHAR},
       F_EXT_NUM = #{record.extNum,jdbcType=VARCHAR},
+      F_ORDER_TITLE = #{record.orderTitle,jdbcType=VARCHAR},
       F_ORDER_MANCODE = #{record.orderMancode,jdbcType=VARCHAR},
       F_ORDER_MANNAME = #{record.orderManname,jdbcType=VARCHAR},
       F_ORDER_TIME = #{record.orderTime,jdbcType=VARCHAR},
@@ -595,6 +606,9 @@
       </if>
       <if test="extNum != null" >
         F_EXT_NUM = #{extNum,jdbcType=VARCHAR},
+      </if>
+      <if test="orderTitle != null" >
+        F_ORDER_TITLE = #{orderTitle,jdbcType=VARCHAR},
       </if>
       <if test="orderMancode != null" >
         F_ORDER_MANCODE = #{orderMancode,jdbcType=VARCHAR},
@@ -711,6 +725,7 @@
     update t_order_main
     set F_INIT_NUM = #{initNum,jdbcType=VARCHAR},
       F_EXT_NUM = #{extNum,jdbcType=VARCHAR},
+      F_ORDER_TITLE = #{orderTitle,jdbcType=VARCHAR},
       F_ORDER_MANCODE = #{orderMancode,jdbcType=VARCHAR},
       F_ORDER_MANNAME = #{orderManname,jdbcType=VARCHAR},
       F_ORDER_TIME = #{orderTime,jdbcType=VARCHAR},

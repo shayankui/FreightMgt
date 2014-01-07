@@ -1114,6 +1114,126 @@ public class UserBeanExample {
             return (Criteria) this;
         }
 
+        public Criteria andGpsLongitudeIsNull() {
+            addCriterion("F_GPS_LONGITUDE is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andGpsLongitudeIsNotNull() {
+            addCriterion("F_GPS_LONGITUDE is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andGpsLongitudeEqualTo(Double value) {
+            addCriterion("F_GPS_LONGITUDE =", value, "gpsLongitude");
+            return (Criteria) this;
+        }
+
+        public Criteria andGpsLongitudeNotEqualTo(Double value) {
+            addCriterion("F_GPS_LONGITUDE <>", value, "gpsLongitude");
+            return (Criteria) this;
+        }
+
+        public Criteria andGpsLongitudeGreaterThan(Double value) {
+            addCriterion("F_GPS_LONGITUDE >", value, "gpsLongitude");
+            return (Criteria) this;
+        }
+
+        public Criteria andGpsLongitudeGreaterThanOrEqualTo(Double value) {
+            addCriterion("F_GPS_LONGITUDE >=", value, "gpsLongitude");
+            return (Criteria) this;
+        }
+
+        public Criteria andGpsLongitudeLessThan(Double value) {
+            addCriterion("F_GPS_LONGITUDE <", value, "gpsLongitude");
+            return (Criteria) this;
+        }
+
+        public Criteria andGpsLongitudeLessThanOrEqualTo(Double value) {
+            addCriterion("F_GPS_LONGITUDE <=", value, "gpsLongitude");
+            return (Criteria) this;
+        }
+
+        public Criteria andGpsLongitudeIn(List<Double> values) {
+            addCriterion("F_GPS_LONGITUDE in", values, "gpsLongitude");
+            return (Criteria) this;
+        }
+
+        public Criteria andGpsLongitudeNotIn(List<Double> values) {
+            addCriterion("F_GPS_LONGITUDE not in", values, "gpsLongitude");
+            return (Criteria) this;
+        }
+
+        public Criteria andGpsLongitudeBetween(Double value1, Double value2) {
+            addCriterion("F_GPS_LONGITUDE between", value1, value2, "gpsLongitude");
+            return (Criteria) this;
+        }
+
+        public Criteria andGpsLongitudeNotBetween(Double value1, Double value2) {
+            addCriterion("F_GPS_LONGITUDE not between", value1, value2, "gpsLongitude");
+            return (Criteria) this;
+        }
+
+        public Criteria andGpsLatitudeIsNull() {
+            addCriterion("F_GPS_LATITUDE is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andGpsLatitudeIsNotNull() {
+            addCriterion("F_GPS_LATITUDE is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andGpsLatitudeEqualTo(Double value) {
+            addCriterion("F_GPS_LATITUDE =", value, "gpsLatitude");
+            return (Criteria) this;
+        }
+
+        public Criteria andGpsLatitudeNotEqualTo(Double value) {
+            addCriterion("F_GPS_LATITUDE <>", value, "gpsLatitude");
+            return (Criteria) this;
+        }
+
+        public Criteria andGpsLatitudeGreaterThan(Double value) {
+            addCriterion("F_GPS_LATITUDE >", value, "gpsLatitude");
+            return (Criteria) this;
+        }
+
+        public Criteria andGpsLatitudeGreaterThanOrEqualTo(Double value) {
+            addCriterion("F_GPS_LATITUDE >=", value, "gpsLatitude");
+            return (Criteria) this;
+        }
+
+        public Criteria andGpsLatitudeLessThan(Double value) {
+            addCriterion("F_GPS_LATITUDE <", value, "gpsLatitude");
+            return (Criteria) this;
+        }
+
+        public Criteria andGpsLatitudeLessThanOrEqualTo(Double value) {
+            addCriterion("F_GPS_LATITUDE <=", value, "gpsLatitude");
+            return (Criteria) this;
+        }
+
+        public Criteria andGpsLatitudeIn(List<Double> values) {
+            addCriterion("F_GPS_LATITUDE in", values, "gpsLatitude");
+            return (Criteria) this;
+        }
+
+        public Criteria andGpsLatitudeNotIn(List<Double> values) {
+            addCriterion("F_GPS_LATITUDE not in", values, "gpsLatitude");
+            return (Criteria) this;
+        }
+
+        public Criteria andGpsLatitudeBetween(Double value1, Double value2) {
+            addCriterion("F_GPS_LATITUDE between", value1, value2, "gpsLatitude");
+            return (Criteria) this;
+        }
+
+        public Criteria andGpsLatitudeNotBetween(Double value1, Double value2) {
+            addCriterion("F_GPS_LATITUDE not between", value1, value2, "gpsLatitude");
+            return (Criteria) this;
+        }
+
         public Criteria andContactAddressIsNull() {
             addCriterion("F_CONTACT_ADDRESS is null");
             return (Criteria) this;
@@ -1601,6 +1721,126 @@ public class UserBeanExample {
 
         public Criteria andAttachFileNotBetween(String value1, String value2) {
             addCriterion("F_ATTACH_FILE not between", value1, value2, "attachFile");
+            return (Criteria) this;
+        }
+
+        public Criteria andMaxWeightIsNull() {
+            addCriterion("F_MAX_WEIGHT is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andMaxWeightIsNotNull() {
+            addCriterion("F_MAX_WEIGHT is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andMaxWeightEqualTo(Double value) {
+            addCriterion("F_MAX_WEIGHT =", value, "maxWeight");
+            return (Criteria) this;
+        }
+
+        public Criteria andMaxWeightNotEqualTo(Double value) {
+            addCriterion("F_MAX_WEIGHT <>", value, "maxWeight");
+            return (Criteria) this;
+        }
+
+        public Criteria andMaxWeightGreaterThan(Double value) {
+            addCriterion("F_MAX_WEIGHT >", value, "maxWeight");
+            return (Criteria) this;
+        }
+
+        public Criteria andMaxWeightGreaterThanOrEqualTo(Double value) {
+            addCriterion("F_MAX_WEIGHT >=", value, "maxWeight");
+            return (Criteria) this;
+        }
+
+        public Criteria andMaxWeightLessThan(Double value) {
+            addCriterion("F_MAX_WEIGHT <", value, "maxWeight");
+            return (Criteria) this;
+        }
+
+        public Criteria andMaxWeightLessThanOrEqualTo(Double value) {
+            addCriterion("F_MAX_WEIGHT <=", value, "maxWeight");
+            return (Criteria) this;
+        }
+
+        public Criteria andMaxWeightIn(List<Double> values) {
+            addCriterion("F_MAX_WEIGHT in", values, "maxWeight");
+            return (Criteria) this;
+        }
+
+        public Criteria andMaxWeightNotIn(List<Double> values) {
+            addCriterion("F_MAX_WEIGHT not in", values, "maxWeight");
+            return (Criteria) this;
+        }
+
+        public Criteria andMaxWeightBetween(Double value1, Double value2) {
+            addCriterion("F_MAX_WEIGHT between", value1, value2, "maxWeight");
+            return (Criteria) this;
+        }
+
+        public Criteria andMaxWeightNotBetween(Double value1, Double value2) {
+            addCriterion("F_MAX_WEIGHT not between", value1, value2, "maxWeight");
+            return (Criteria) this;
+        }
+
+        public Criteria andMaxSizeIsNull() {
+            addCriterion("F_MAX_SIZE is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andMaxSizeIsNotNull() {
+            addCriterion("F_MAX_SIZE is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andMaxSizeEqualTo(Double value) {
+            addCriterion("F_MAX_SIZE =", value, "maxSize");
+            return (Criteria) this;
+        }
+
+        public Criteria andMaxSizeNotEqualTo(Double value) {
+            addCriterion("F_MAX_SIZE <>", value, "maxSize");
+            return (Criteria) this;
+        }
+
+        public Criteria andMaxSizeGreaterThan(Double value) {
+            addCriterion("F_MAX_SIZE >", value, "maxSize");
+            return (Criteria) this;
+        }
+
+        public Criteria andMaxSizeGreaterThanOrEqualTo(Double value) {
+            addCriterion("F_MAX_SIZE >=", value, "maxSize");
+            return (Criteria) this;
+        }
+
+        public Criteria andMaxSizeLessThan(Double value) {
+            addCriterion("F_MAX_SIZE <", value, "maxSize");
+            return (Criteria) this;
+        }
+
+        public Criteria andMaxSizeLessThanOrEqualTo(Double value) {
+            addCriterion("F_MAX_SIZE <=", value, "maxSize");
+            return (Criteria) this;
+        }
+
+        public Criteria andMaxSizeIn(List<Double> values) {
+            addCriterion("F_MAX_SIZE in", values, "maxSize");
+            return (Criteria) this;
+        }
+
+        public Criteria andMaxSizeNotIn(List<Double> values) {
+            addCriterion("F_MAX_SIZE not in", values, "maxSize");
+            return (Criteria) this;
+        }
+
+        public Criteria andMaxSizeBetween(Double value1, Double value2) {
+            addCriterion("F_MAX_SIZE between", value1, value2, "maxSize");
+            return (Criteria) this;
+        }
+
+        public Criteria andMaxSizeNotBetween(Double value1, Double value2) {
+            addCriterion("F_MAX_SIZE not between", value1, value2, "maxSize");
             return (Criteria) this;
         }
 

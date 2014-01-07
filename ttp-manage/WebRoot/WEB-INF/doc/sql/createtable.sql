@@ -42,6 +42,8 @@ CREATE TABLE T_USER (
 		F_CONTACT_MOBILE  					VARCHAR(20)		 		NULL 									COMMENT '备用联系人手机号' ,
 		F_CONTACT_TEL  							VARCHAR(32) 			NULL 									COMMENT '备用联系人电话' ,
 		F_ATTACH_FILE								VARCHAR(1000)			NULL									COMMENT '用户资质附件',
+		F_MAX_WEIGHT								DOUBLE						NULL									COMMENT '最大限重，单位kg 司机字段',
+		F_MAX_SIZE									DOUBLE						NULL									COMMENT '最大体积，单位立方米  司机字段',		
 		F_BUILD_TIME								VARCHAR(20)		 		NOT NULL							COMMENT '用户创建时间' ,
 		F_MEMO											VARCHAR(1000) 		NULL 									COMMENT '备注' ,
 		PRIMARY KEY (F_USER_ID)
@@ -202,6 +204,7 @@ CREATE TABLE T_ORDER_MAIN (
 		F_ORDER_NUM  								VARCHAR(64) 			NOT NULL 											COMMENT '交易单号',
 		F_INIT_NUM  								VARCHAR(64) 					NULL 											COMMENT '原始交易单号，从外部导入',
 		F_EXT_NUM	  								VARCHAR(64) 					NULL 											COMMENT '扩展交易单号',
+		F_ORDER_TITLE								VARCHAR(500) 					NULL		 									COMMENT '交易单标题' ,
 		F_ORDER_MANCODE							VARCHAR(64) 			NOT NULL 											COMMENT '下单人编码',
 		F_ORDER_MANNAME							VARCHAR(100) 			NOT NULL 											COMMENT '下单人名称',								
 		F_ORDER_TIME								VARCHAR(20)				NOT NULL 											COMMENT '下单时间 YYYYMMDDHH24MISS',

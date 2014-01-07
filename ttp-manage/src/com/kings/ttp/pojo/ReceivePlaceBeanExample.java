@@ -454,6 +454,126 @@ public class ReceivePlaceBeanExample {
             return (Criteria) this;
         }
 
+        public Criteria andGpsLongitudeIsNull() {
+            addCriterion("F_GPS_LONGITUDE is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andGpsLongitudeIsNotNull() {
+            addCriterion("F_GPS_LONGITUDE is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andGpsLongitudeEqualTo(Double value) {
+            addCriterion("F_GPS_LONGITUDE =", value, "gpsLongitude");
+            return (Criteria) this;
+        }
+
+        public Criteria andGpsLongitudeNotEqualTo(Double value) {
+            addCriterion("F_GPS_LONGITUDE <>", value, "gpsLongitude");
+            return (Criteria) this;
+        }
+
+        public Criteria andGpsLongitudeGreaterThan(Double value) {
+            addCriterion("F_GPS_LONGITUDE >", value, "gpsLongitude");
+            return (Criteria) this;
+        }
+
+        public Criteria andGpsLongitudeGreaterThanOrEqualTo(Double value) {
+            addCriterion("F_GPS_LONGITUDE >=", value, "gpsLongitude");
+            return (Criteria) this;
+        }
+
+        public Criteria andGpsLongitudeLessThan(Double value) {
+            addCriterion("F_GPS_LONGITUDE <", value, "gpsLongitude");
+            return (Criteria) this;
+        }
+
+        public Criteria andGpsLongitudeLessThanOrEqualTo(Double value) {
+            addCriterion("F_GPS_LONGITUDE <=", value, "gpsLongitude");
+            return (Criteria) this;
+        }
+
+        public Criteria andGpsLongitudeIn(List<Double> values) {
+            addCriterion("F_GPS_LONGITUDE in", values, "gpsLongitude");
+            return (Criteria) this;
+        }
+
+        public Criteria andGpsLongitudeNotIn(List<Double> values) {
+            addCriterion("F_GPS_LONGITUDE not in", values, "gpsLongitude");
+            return (Criteria) this;
+        }
+
+        public Criteria andGpsLongitudeBetween(Double value1, Double value2) {
+            addCriterion("F_GPS_LONGITUDE between", value1, value2, "gpsLongitude");
+            return (Criteria) this;
+        }
+
+        public Criteria andGpsLongitudeNotBetween(Double value1, Double value2) {
+            addCriterion("F_GPS_LONGITUDE not between", value1, value2, "gpsLongitude");
+            return (Criteria) this;
+        }
+
+        public Criteria andGpsLatitudeIsNull() {
+            addCriterion("F_GPS_LATITUDE is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andGpsLatitudeIsNotNull() {
+            addCriterion("F_GPS_LATITUDE is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andGpsLatitudeEqualTo(Double value) {
+            addCriterion("F_GPS_LATITUDE =", value, "gpsLatitude");
+            return (Criteria) this;
+        }
+
+        public Criteria andGpsLatitudeNotEqualTo(Double value) {
+            addCriterion("F_GPS_LATITUDE <>", value, "gpsLatitude");
+            return (Criteria) this;
+        }
+
+        public Criteria andGpsLatitudeGreaterThan(Double value) {
+            addCriterion("F_GPS_LATITUDE >", value, "gpsLatitude");
+            return (Criteria) this;
+        }
+
+        public Criteria andGpsLatitudeGreaterThanOrEqualTo(Double value) {
+            addCriterion("F_GPS_LATITUDE >=", value, "gpsLatitude");
+            return (Criteria) this;
+        }
+
+        public Criteria andGpsLatitudeLessThan(Double value) {
+            addCriterion("F_GPS_LATITUDE <", value, "gpsLatitude");
+            return (Criteria) this;
+        }
+
+        public Criteria andGpsLatitudeLessThanOrEqualTo(Double value) {
+            addCriterion("F_GPS_LATITUDE <=", value, "gpsLatitude");
+            return (Criteria) this;
+        }
+
+        public Criteria andGpsLatitudeIn(List<Double> values) {
+            addCriterion("F_GPS_LATITUDE in", values, "gpsLatitude");
+            return (Criteria) this;
+        }
+
+        public Criteria andGpsLatitudeNotIn(List<Double> values) {
+            addCriterion("F_GPS_LATITUDE not in", values, "gpsLatitude");
+            return (Criteria) this;
+        }
+
+        public Criteria andGpsLatitudeBetween(Double value1, Double value2) {
+            addCriterion("F_GPS_LATITUDE between", value1, value2, "gpsLatitude");
+            return (Criteria) this;
+        }
+
+        public Criteria andGpsLatitudeNotBetween(Double value1, Double value2) {
+            addCriterion("F_GPS_LATITUDE not between", value1, value2, "gpsLatitude");
+            return (Criteria) this;
+        }
+
         public Criteria andIsDefaultIsNull() {
             addCriterion("F_IS_DEFAULT is null");
             return (Criteria) this;

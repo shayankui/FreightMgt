@@ -1,3 +1,55 @@
-body {
-	font-size: 12px;
-}
+@charset "utf-8";
+/* CSS Document */
+
+*{margin:0;padding:0;list-style:none;}
+body{background-color:#fff;font-family:"微软雅黑", Arial;font-size:12px;line-heght:150%;color:#000;text-align:left;}
+
+/*操作历史*/
+.history,.history li,.history a{background:url(../images/history_ico.jpg) no-repeat 0 0;}
+.history{height:50px;padding-top:9px;background-repeat:repeat-x;}
+.history li,.history a,.history span{float:left;display:inline-block;height:32px;}
+.history li{background-position:0 -65px;cursor:pointer;}
+.history a{width:25px;overflow:hidden;background-position:right -65px;text-indent:-9999px;}
+.history a:hover{background-position:right -100px;}
+.history span{padding:0 8px 0 15px;font-size:13px;line-height:250%;}
+.history li.selected{background-position:0 -135px;}
+.history li.selected a{background-position:right -135px;}
+.history li.selected a:hover{background-position:right -170px;}
+
+
+/*主体内容区域和面包屑，默认按钮*/
+.container{padding:0 15px 15px;}
+.content{margin-bottom:10px;}
+.breadcrumb span,.btn{background:url(../img/ico.gif) no-repeat 0 0;}
+.breadcrumb,.breadcrumb-iframe{position:relative;height:24px;margin-bottom:15px;border-bottom:2px solid #9cf;color:#036;font-size:15px;}
+.breadcrumb{text-indent:40px;}
+.breadcrumb span{position:absolute;left:0;top:0;display:block;width:40px;height:35px;background-position: 0 0; text-indent:-9999px;}
+.breadcrumb a{color:#036;text-decoration:none;}
+.breadcrumb a:hover{color:#39c;text-decoration:underline;}
+.btn{display:inline-block;width:78px;height:23px;margin-right:5px;overflow:hidden;vertical-align:middle;background-position:0 -40px;text-align:center;color:#fff;text-decoration:none;font-size:13px;line-height:23px;}
+.btn:hover{color:#ff0;}
+
+/*一些基本样式*/
+/*查询框*/
+.defaultFieldset{padding:10px;margin-bottom:10px;border:1px solid #9cf;}
+.defaultFieldset legend{padding:0 5px;font-size:13px;font-weight:bold;}
+.defaultFieldset table{width:100%;border:0;}
+.defaultFieldset td,.defaultFieldset th{padding:3px;border:0;font-size:12px;}
+.defaultFieldset input{margin-right:5px;vertical-align:middle;border:1px solid #ccc;padding:2px;}
+/*表格*/
+.defaultTable{width:100%;margin-bottom:10px;border-collapse:collapse;border:1px solid #ccc;}
+.defaultTable td,.defaultTable th{padding:3px;border:1px solid #ccc;}
+.defaultTable td{text-align:center;font-size:12px;}
+.defaultTable thead td,.defaultTable thead th{ background-color:#9cf;}
+.defaultTable thead a{color:#000;}
+
+.tableStyle1 th{text-align:right;background-color:#E0ECFF;}
+.tableStyle1 td{text-align:left;}
+/*页码行*/
+.pageNum{text-align:right;}
+.pageNum input{width:25px;margin:0 2px;vertical-align:middle;border:1px solid #ccc;padding:2px;}
+.pageNum a{color:#09f;}
+
+.form_text{text-align:right;font-size:12px;}
+.form_input{margin-right:5px;vertical-align:middle;border:1px solid #ccc;padding:2px;}
+#gridParent{margin:0 0 0 0px;padding:0 0 0 0px;}

@@ -314,6 +314,76 @@ public class OrderMainInfoExample {
             return (Criteria) this;
         }
 
+        public Criteria andOrderTitleIsNull() {
+            addCriterion("F_ORDER_TITLE is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andOrderTitleIsNotNull() {
+            addCriterion("F_ORDER_TITLE is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andOrderTitleEqualTo(String value) {
+            addCriterion("F_ORDER_TITLE =", value, "orderTitle");
+            return (Criteria) this;
+        }
+
+        public Criteria andOrderTitleNotEqualTo(String value) {
+            addCriterion("F_ORDER_TITLE <>", value, "orderTitle");
+            return (Criteria) this;
+        }
+
+        public Criteria andOrderTitleGreaterThan(String value) {
+            addCriterion("F_ORDER_TITLE >", value, "orderTitle");
+            return (Criteria) this;
+        }
+
+        public Criteria andOrderTitleGreaterThanOrEqualTo(String value) {
+            addCriterion("F_ORDER_TITLE >=", value, "orderTitle");
+            return (Criteria) this;
+        }
+
+        public Criteria andOrderTitleLessThan(String value) {
+            addCriterion("F_ORDER_TITLE <", value, "orderTitle");
+            return (Criteria) this;
+        }
+
+        public Criteria andOrderTitleLessThanOrEqualTo(String value) {
+            addCriterion("F_ORDER_TITLE <=", value, "orderTitle");
+            return (Criteria) this;
+        }
+
+        public Criteria andOrderTitleLike(String value) {
+            addCriterion("F_ORDER_TITLE like", value, "orderTitle");
+            return (Criteria) this;
+        }
+
+        public Criteria andOrderTitleNotLike(String value) {
+            addCriterion("F_ORDER_TITLE not like", value, "orderTitle");
+            return (Criteria) this;
+        }
+
+        public Criteria andOrderTitleIn(List<String> values) {
+            addCriterion("F_ORDER_TITLE in", values, "orderTitle");
+            return (Criteria) this;
+        }
+
+        public Criteria andOrderTitleNotIn(List<String> values) {
+            addCriterion("F_ORDER_TITLE not in", values, "orderTitle");
+            return (Criteria) this;
+        }
+
+        public Criteria andOrderTitleBetween(String value1, String value2) {
+            addCriterion("F_ORDER_TITLE between", value1, value2, "orderTitle");
+            return (Criteria) this;
+        }
+
+        public Criteria andOrderTitleNotBetween(String value1, String value2) {
+            addCriterion("F_ORDER_TITLE not between", value1, value2, "orderTitle");
+            return (Criteria) this;
+        }
+
         public Criteria andOrderMancodeIsNull() {
             addCriterion("F_ORDER_MANCODE is null");
             return (Criteria) this;

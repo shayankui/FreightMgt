@@ -7,6 +7,8 @@ public class OrderMainInfo {
 
     private String extNum;
 
+    private String orderTitle;
+
     private String orderMancode;
 
     private String orderManname;
@@ -101,6 +103,14 @@ public class OrderMainInfo {
 
     public void setExtNum(String extNum) {
         this.extNum = extNum == null ? null : extNum.trim();
+    }
+
+    public String getOrderTitle() {
+        return orderTitle;
+    }
+
+    public void setOrderTitle(String orderTitle) {
+        this.orderTitle = orderTitle == null ? null : orderTitle.trim();
     }
 
     public String getOrderMancode() {

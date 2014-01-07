@@ -11,6 +11,10 @@ public class ReceivePlaceBean {
 
     private String detailAddress;
 
+    private Double gpsLongitude;
+
+    private Double gpsLatitude;
+
     private Integer isDefault;
 
     public String getPlaceId() {
@@ -51,6 +55,22 @@ public class ReceivePlaceBean {
 
     public void setDetailAddress(String detailAddress) {
         this.detailAddress = detailAddress == null ? null : detailAddress.trim();
+    }
+
+    public Double getGpsLongitude() {
+        return gpsLongitude;
+    }
+
+    public void setGpsLongitude(Double gpsLongitude) {
+        this.gpsLongitude = gpsLongitude;
+    }
+
+    public Double getGpsLatitude() {
+        return gpsLatitude;
+    }
+
+    public void setGpsLatitude(Double gpsLatitude) {
+        this.gpsLatitude = gpsLatitude;
     }
 
     public Integer getIsDefault() {
